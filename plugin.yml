@@ -1,0 +1,153 @@
+name: KP-PVP
+main: me.RafaelAulerDeMeloAraujo.main.Main
+version: BUILD-02
+author: zEnderX5_ , Rafael Auler
+description: KitPvP Plugin what have much features like kits,shop with Custom Economy Support,A Unique 1v1 system to players fight,Coins System,Scoreboard,Stats kills,deaths,streak,Varius commands, and are very customisable,Support with others Gamemodes like Skywars and have everything to control your KITPVP Server. And the best part its is free to Download. If you want to support the developer subscribe to his channel.
+website: http://bit.ly/2kC345B , http://bit.ly/2j5qvnM
+
+commands:
+   kitpvp:
+        description: Main Command
+   set1v1:
+        description: Set the kitpvp 1vs1     
+   kpsetspawn:
+        description: Set the kitpvp spawn  
+   rektf58942kka:   
+        description: The antibug command     
+   kpvp:
+        description: Kit PvP
+   viper:
+        description: Kit Viper to poison your enemies
+   gladiator:
+        description: My favorite kit from this plugin    
+   basic:
+        description: A Weaker version of the kit PvP
+   archer:
+        description: Kit Archer to shot arrow in your enemies
+   pyro:
+        description: Kit Pyro
+   doublejump:
+        description: Kit Doublejump
+   tank:
+        description: Kit Tank
+   switcher:
+        description: Kit Switcher
+   tiggertoo:
+        description: Kit Tigertoo
+   freezer:
+        description: Kit Freezer
+   timelord:
+        description: Kit Timelord to freeze players
+   jumper:
+        description: Kit Jumper
+   cactus:
+        description: Kit Cactus
+   bomber:
+        description: Kit Bomber
+   warper:
+        description: Kit Warper
+   wasp:
+        description: Kit Wasp
+   spiderman:
+        description: Kit Spiderman
+   airman:
+        description: Kit Airman
+   fisherman:
+        description: Kit Fisherman
+   kangaroo:
+        description: Kit Kangaroo
+   kitreload:
+        description: Reload the configuration file
+  
+   stats:
+        description: Display your statistics
+   kpkit:
+        description: Open the kit menu
+   kitmenu:
+        description: Open the kit menu
+   kpkits:
+        description: Open the kit menu
+   kitcredits:
+        description: Display the credits and plugin info
+   dev:
+        description: Display the credits and plugin info
+   kitsc:
+        description: A Custom StaffChat
+   ksc:
+        description: A Custom StaffChat
+   stomper:
+        description: Kit Stomper
+   ninja:
+        description: Kit Ninja
+   critical:
+        description: Kit Critical
+   monk:
+        description: Kit Monk        
+   deshfire:
+        description: Kit Deshfire     
+   shopmenu:
+        description: Open the shop menu
+   kploja:
+        description: Open the shop menu
+   kpshop:
+        description: Open the Shop menu
+   coins:
+        description: Manage the coins system
+   adminmode:
+        description: Enter in adminmode to catch cheaters
+   kp:
+        description: Display command help menu
+   togglescore:
+        description: Enable or Disable the Scoreboard
+   kitclear:
+        description: Clears yours kit 
+  
+        
+         
+                 
+  
+   
+   
+      
+permission:
+   kitpvp.pvp
+   kitpvp.archer
+   kitpvp.pyro
+   kitpvp.tank
+   kitpvp.switcher
+   kitpvp.tiggertoo
+   kitpvp.cactus
+   kitpvp.bomber
+   kitpvp.warper
+   kitpvp.wasp
+   kitpvp.spiderman
+   kitpvp.airman
+   kitpvp.fisherman
+   kitpvp.stomper
+   kitpvp.freezer
+   kitpvp.deshfire
+   kitpvp.gladiator
+   kitpvp.kangaroo
+   kitpvp.ninja
+   kitpvp.critical
+   kitpvp.timelord
+   kitpvp.monk
+   kitpvp.doublejump
+   kitpvp.kitreload
+   kitpvp.kitclear
+   kitpvp.stats.see.other
+   kitpvp.staffchat
+   kitpvp.coins.add
+   kitpvp.coins.remove
+   kitpvp.coins.set
+   kitpvp.adminmode
+   kitpvp.setspawn
+   kitpvp.set1v1
+   kitpvp.build
+   kitpvp.createsigns
+   
+
+
+  
+   
+   

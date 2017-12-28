@@ -1,0 +1,4 @@
+#If the player kills a player put here the quantity of earned coins
+Earned-Coins-Per-Kill: 100
+#If the player is killed put here the quantity of lost coins
+Lost-Coins-Per-Death: 50

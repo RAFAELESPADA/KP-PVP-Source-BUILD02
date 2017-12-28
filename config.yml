@@ -1,0 +1,110 @@
+#KitPvP Version BUILD-02 | Author: zEnderX5_ , Rafael Auler
+#Author Channel: https://www.youtube.com/channel/UCb1kjbiQj2B4KnRQpgeUwmQ
+#Subscribe to help me to improve the plugin. Thanks =D
+#PS: use /kp for view the plugin command list
+
+#Prefix settings
+Prefix: '&8[&cKitPvP&8] '
+
+#No Permission Message
+#ALL PERMISSION IS LISTED HERE: https://pastebin.com/iFwurRwP
+Permission: 'Sorry you dont have the permission kitpvp.%permisson%'
+
+#Kill & Death settings
+CustomKillAndDeathMessage: true
+
+#Message settings
+Message:
+  Kit: '&aYou have chosen kit &8- &a%kit%!'
+  KitUse: '&cYou have already taken a kit'
+  Death: '&cYou are killed by &7%player%'
+  Kill: '&cYou killed the player &7%player%'
+  Clear: '&cYour inventory is now clear'
+  
+#Kit Menu item settings
+JoinItem:
+ 
+  Lore: '&7Right click to open the kit menu'
+  Spawn: 'spawn %player%'
+  OpenKitMenu: 'false'
+  JoinSound: 'true'
+  
+  
+#Should we disable hunger while in game? default: true
+DisableHunger: true  
+  
+#Spiderman settings
+SidermanKit:
+  Name: '&aWall Climber &7(Right click)'
+  Lore: '&7(Right click) wall climber'
+#Airman settings
+AirmanKit:
+  Name: '&aFly &7(Right click)'
+  Lore: '&7(Right click) to fly'
+
+#Title settings
+CustomDeathTitleMessage: true
+CustomKitTitleMessage: true
+Title:
+  KitTitle: '&aYou have chosen kit'
+  KitSubTitle: '&aKit &8- &a%kit%!'
+  DeathTitle: '&cYou are killed'
+  DeathSubTitle: '&cby &7%player%'
+#Respawn settings
+RespawnParticle: true'
+RespawnSound: 'true'
+
+#Sound list https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+Sound:
+  Kit: 'ENTITY_ITEM_PICKUP'
+  KitUse: 'ENTITY_ENDERDRAGON_HURT'
+  Soup: 'ENTITY_GENERIC_EAT'
+  Fisherman: 'ENTITY_ENDERMEN_TELEPORT'
+  Spiderman: 'ENTITY_SLIME_JUMP'
+  Respawn: 'ENTITY_PLAYER_LEVELUP'
+  Join: 'ENTITY_PLAYER_LEVELUP'
+
+
+#Effect list https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
+Effect:
+  Fisherman: 'WATERDRIP'
+  Spiderman: 'FIREWORKS_SPARK'
+  Respawn: 'FIREWORKS_SPARK'
+  
+Death:
+#Custom death message
+  Tell: '&aYou have died to &7%player%&a! You lost 50 coins.'
+  
+#Custom kill message  
+Kill:
+  Tell: '&aYou killed &7%player%&a, you earned 100 coins.'
+ 
+
+  
+#Edit the ScoreBoard Here
+
+#Score Title
+ScorePrefix: '&8&l[&e&lKitPvP&8&l]' 
+#Score Kills
+ScoreKills: '&e&lKills:&f'
+#Score Deaths
+ScoreDeaths: '&e&lDeaths:&f' 
+#Score Coins
+ScoreCoins: '&e&lCoins:&f'
+status:
+  retaliado1:
+    kills: 2
+    mortes: 0
+  retaliado2:
+    kills: 2
+    mortes: 0
+Spawn:
+  World: world
+  X: 45.80294662701026
+  Y: 124.86933315841993
+  Z: -91.71575866737658
+  Pitch: 42.90001
+  Yaw: -9.5999975
+ 
+
+  

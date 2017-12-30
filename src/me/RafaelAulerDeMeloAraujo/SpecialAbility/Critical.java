@@ -19,20 +19,19 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.RafaelAulerDeMeloAraujo.main.Main;
-import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
+
+
 
 public class Critical 
-implements Listener, CommandExecutor {
-private Main main;
-/*     */   static Main plugin;
-/*     */   
-/*     */   public Critical (Main main) {
-/*  27 */     this.main = main;
-/*  28 */     plugin = main;
-/*     */   }
+implements Listener, CommandExecutor
 {
-	
-}
+	 private Main main;
+	 /*     */   static Main plugin;
+	 /*     */   
+	 /*     */   public Critical(Main main) {
+	 /*  27 */     this.main = main;
+	 /*  28 */     plugin = main;
+	 /*     */   }
 
 	@EventHandler
 	  public void dano(EntityDamageByEntityEvent e)
@@ -41,7 +40,7 @@ private Main main;
 	    {
 	      Player p = (Player)e.getEntity();
 	      Player d = (Player)e.getDamager();
-	      if (Habilidade.getAbility(p).equalsIgnoreCase("Critical"))
+	      if (Habilidade.getAbility(d) == "Critical")
 	      {
 	        Random r = new Random();
 	        int c = r.nextInt(100);
@@ -49,7 +48,7 @@ private Main main;
 	        {
 	          e.setDamage(e.getDamage() + 4.0D);
 	          p.getWorld().playEffect(p.getLocation(), Effect.STEP_SOUND, Material.REDSTONE_BLOCK, 10);
-	          d.sendMessage(ChatColor.RED + "You give a critical hit on the player " + ChatColor.DARK_RED + p.getName());
+	          d.sendMessage(ChatColor.RED + "You give a critical hit on player " + ChatColor.DARK_RED + p.getName());
 	          p.sendMessage(ChatColor.RED + "You receive a critical hit from " + ChatColor.DARK_RED + d.getName());
 	        }
 	      }
@@ -68,23 +67,23 @@ private Main main;
 		 
 	    if (!p.hasPermission("kitpvp.critical"))
 	    {
-	    	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
+	    	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
 	      return true;
 	    }
 	  
 	         if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-	           p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
+	           p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
 	           p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 	          return true;
 	        }
 	         p.getInventory().clear();
 	         ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
 	         ItemMeta souperaa = dima.getItemMeta();
-	         souperaa.setDisplayName("งcSword");
+	         souperaa.setDisplayName("ยงcSword");
 	         dima.setItemMeta(souperaa);
 	         ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
 	         ItemMeta sopas = sopa.getItemMeta();
-	         sopas.setDisplayName("ง6Soup");
+	         sopas.setDisplayName("ยง6Soup");
 	         sopa.setItemMeta(sopas);
 	         
 	         
@@ -101,7 +100,7 @@ private Main main;
 	         p.getInventory().setLeggings(calca0);
 	         p.getInventory().setBoots(Bota0);
 	    
-	    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Critical").replace("&", "ง"));
+	    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Critical").replace("&", "ยง"));
 	    Habilidade.setAbility(p, "Critical");
 	    p.getInventory().addItem(new ItemStack[] { dima });
 	    
@@ -115,10 +114,11 @@ private Main main;
 	    
 	  }
 	  if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-		  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Critical").replace("&", "ง"));
+		  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Critical").replace("&", "ยง"));
 		  /*     */       }
 		  /*  96 */       return false; }{
 	  
 	}
 	}
+
 

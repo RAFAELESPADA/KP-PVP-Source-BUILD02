@@ -29,7 +29,7 @@ import me.RafaelAulerDeMeloAraujo.main.Main;
       static {
     	  Sponge.naotomardanoqueda = new ArrayList<String>();
       }
-      
+      //Sponge method class
       @EventHandler(priority = EventPriority.MONITOR)
       public void aoBlocoJump(final PlayerMoveEvent e) {
           final Player p = e.getPlayer();

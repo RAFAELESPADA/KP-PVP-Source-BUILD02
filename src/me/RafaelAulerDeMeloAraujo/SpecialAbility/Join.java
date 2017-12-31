@@ -34,6 +34,7 @@ public class Join implements CommandExecutor, Listener {
 
 	public static HashMap<String, ItemStack[]> saveinv = new HashMap<String, ItemStack[]>();
 	public static HashMap<String, ItemStack[]> savearmor = new HashMap<String, ItemStack[]>();
+	public static HashMap<String, Location> saveworld = new HashMap<String, Location>();
 
 
 
@@ -103,8 +104,8 @@ public class Join implements CommandExecutor, Listener {
 	          Player p = (Player)sender;
 	        
 	          
-	            p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou join on the kitpvp"));
-	            p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eType /kitpvp to view commands"));
+	            p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eYou join on the kitpvp"));
+	            p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eType /kitpvp to view commands"));
 	            
 	           
 	           
@@ -115,8 +116,10 @@ public class Join implements CommandExecutor, Listener {
 	             double y = Main.plugin.getConfig().getDouble("Spawn.Y");
 	             double z = Main.plugin.getConfig().getDouble("Spawn.Z");
 	             Location lobby = new Location(w, x, y, z);
+	             saveworld.put(p.getName(), p.getLocation());
 	             saveinv.put(p.getName(), p.getInventory().getContents());
 		         savearmor.put(p.getName(), p.getInventory().getArmorContents());
+		         
 	             lobby.setPitch((float)Main.plugin.getConfig().getDouble("Spawn.Pitch"));
 	             lobby.setYaw((float)Main.plugin.getConfig().getDouble("Spawn.Yaw"));
 	              p.getInventory().clear();
@@ -127,10 +130,10 @@ public class Join implements CommandExecutor, Listener {
 	              
 		            p.getInventory().clear();
 		              p.getInventory().setArmorContents(null);
-		       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "§aKit menu §7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
+		       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "Â§aKit menu Â§7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "Â§") }))) });
 		        ItemStack kits = new ItemStack(Material.EMERALD);
 		        ItemMeta kits2 = kits.getItemMeta();
-		        kits2.setDisplayName("§b§lShop Menu");
+		        kits2.setDisplayName("Â§bÂ§lShop Menu");
 		        kits.setItemMeta(kits2);
 		        p.getInventory().addItem(kits);  
 		       
@@ -213,12 +216,13 @@ Habilidade.removeAbility(p);
   
   Join.game.remove(p.getName());
   
-  World world = p.getWorld();
   
-  p.teleport(world.getSpawnLocation());
+  
+
   Cooldown.remove(p);
-  p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §aYou leave the kitpvp"));
+  p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§aYou leave the kitpvp"));
 p.getInventory().clear();
+p.teleport(saveworld.get(p.getName()));
 p.getInventory().setContents(saveinv.get(p.getName()));
 p.getInventory().setArmorContents(savearmor.get(p.getName()));
 p.updateInventory();
@@ -238,7 +242,7 @@ return false;
 X1.entrar1v1(p);
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("§cYou must be in game to join 1v1!");
+	e.getPlayer().sendMessage("Â§cYou must be in game to join 1v1!");
 	e.setCancelled(true);
 }
 
@@ -258,6 +262,3 @@ return false;
 }
 }
 
-
-
-   

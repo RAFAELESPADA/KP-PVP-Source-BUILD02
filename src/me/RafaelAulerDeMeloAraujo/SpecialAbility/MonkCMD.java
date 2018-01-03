@@ -33,29 +33,34 @@ public class MonkCMD implements CommandExecutor {
   if (cmd.getName().equalsIgnoreCase("monk"))
   {
 	  
-    if (!p.hasPermission("kitpvp.monk"))
+    if (!p.hasPermission("kitpvp.kit.monk"))
     {
-    	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
+    	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
       return true;
     }
   
          if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-           p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
+           p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
            p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
           return true;
         }
+         if (!Join.game.contains(p.getName()))
+         {
+             p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+             return true;
+         }
          p.getInventory().clear();
          ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
          ItemMeta souperaa = dima.getItemMeta();
-         souperaa.setDisplayName("งcSword");
+         souperaa.setDisplayName("ยงcSword");
          dima.setItemMeta(souperaa);
          ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
          ItemMeta sopas = sopa.getItemMeta();
-         sopas.setDisplayName("ง6Soup");
+         sopas.setDisplayName("ยง6Soup");
          sopa.setItemMeta(sopas);
          ItemStack especial = new ItemStack(Material.BLAZE_ROD);
          ItemMeta especial2 = especial.getItemMeta();
-         especial2.setDisplayName("ง6Monk Power");
+         especial2.setDisplayName("ยง6Monk Power");
          especial.setItemMeta(especial2);
          
          ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
@@ -71,7 +76,7 @@ public class MonkCMD implements CommandExecutor {
          p.getInventory().setLeggings(calca0);
          p.getInventory().setBoots(Bota0);
     
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Monk").replace("&", "ง"));
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Monk").replace("&", "ยง"));
     Habilidade.setAbility(p, "Monk");
     p.getInventory().addItem(new ItemStack[] { dima });
     p.getInventory().addItem(new ItemStack[] { especial });
@@ -85,10 +90,9 @@ public class MonkCMD implements CommandExecutor {
     
   }
   if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Monk").replace("&", "ง"));
+	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Monk").replace("&", "ยง"));
 	  /*     */       }
 	  /*  96 */       return false; }{
   
 }
 }
-

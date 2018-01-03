@@ -130,26 +130,31 @@ public class Dublejump
 
     if (cmd.getName().equalsIgnoreCase("doublejump"))
     {
-    	 if (!p.hasPermission("kitpvp.doublejump"))
+    	  if (!Join.game.contains(p.getName()))
+          {
+              p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+              return true;
+          }
+    	 if (!p.hasPermission("kitpvp.kit.doublejump"))
  	    {
- 	    	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
+ 	    	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
  	      return true;
  	    }
     
     
            if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-             p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
+             p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
              p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
             return true;
           }
            p.getInventory().clear();
            ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
            ItemMeta souperaa = dima.getItemMeta();
-           souperaa.setDisplayName("งcSword");
+           souperaa.setDisplayName("ยงcSword");
            dima.setItemMeta(souperaa);
            ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
            ItemMeta sopas = sopa.getItemMeta();
-           sopas.setDisplayName("ง6Soup");
+           sopas.setDisplayName("ยง6Soup");
            sopa.setItemMeta(sopas);
 
            
@@ -166,7 +171,7 @@ public class Dublejump
            p.getInventory().setLeggings(calca0);
            p.getInventory().setBoots(Bota0);
            Habilidade.setAbility(p, "DoubleJump");
-      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "DoubleJump").replace("&", "ง"));
+      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "DoubleJump").replace("&", "ยง"));
      
       p.getInventory().addItem(new ItemStack[] { dima });
      
@@ -180,7 +185,7 @@ public class Dublejump
       
     }
     if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-   	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "DoubleJump").replace("&", "ง"));
+   	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "DoubleJump").replace("&", "ยง"));
    	  /*     */       }
    	  /*  96 */       return false; }{
     

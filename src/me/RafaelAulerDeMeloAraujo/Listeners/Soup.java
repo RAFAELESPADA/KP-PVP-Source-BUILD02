@@ -1,5 +1,6 @@
 /*    */ package me.RafaelAulerDeMeloAraujo.Listeners;
 
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 /*    */ 
 /*    */ import me.RafaelAulerDeMeloAraujo.main.Main;
 /*    */ 
@@ -15,8 +16,8 @@
 /*    */ public class Soup implements Listener
 /*    */ {
 /*    */   private Main main;
-/* 18 */   public int vida = 6;
-/* 19 */   public int fome = 6;
+/* 18 */   public int vida = 7;
+/* 19 */   public int fome = 7;
 /*    */   
 /*    */   public Soup(Main main) {
 /* 22 */     this.main = main;
@@ -27,18 +28,19 @@
 /* 27 */     if (e.getItem() == null) {
 /* 28 */       return;
 /*    */     }
-/* 30 */     if (e.getItem().getType() == Material.MUSHROOM_SOUP) {
-/* 31 */       e.setCancelled(true);
-/* 32 */       Player p = e.getPlayer();
-/* 33 */       if (p.getHealth() < 20.0D) {
+
+Player p = e.getPlayer();
+/* 33 */       if (p.getHealth() < 20.0D && Join.game.contains(p.getName()) && (p.getItemInHand().getType() == Material.MUSHROOM_SOUP)) {
+	e.setCancelled(true);
 /* 34 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Soup")), 1.0F, 1.0F);
-/* 35 */         
+/* 35 */        
 /* 36 */         
 /* 37 */         p.setHealth(p.getHealth() + this.vida >= 20.0D ? 20.0D : p.getHealth() + this.vida);
 /* 38 */         e.getItem().setType(Material.BOWL);
+                
 /*    */       }
 /*    */     }
 /*    */   }
-/*    */ }
+/*    */ 
 
 

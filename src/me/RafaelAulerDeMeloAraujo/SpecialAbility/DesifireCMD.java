@@ -32,8 +32,13 @@ public boolean onCommand(CommandSender sender, Command command, String cmd, Stri
 	 Player p = (Player)sender;
   if (command.getName().equalsIgnoreCase("deshfire"))
   {
-  if (!p.hasPermission("kitpvp.deshfire")) {
-	  p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", cmd));
+	  if (!Join.game.contains(p.getName()))
+      {
+          p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eYou are not in kitpvp to do choose this kit!");
+          return true;
+      }
+  if (!p.hasPermission("kitpvp.kit.deshfire")) {
+	  p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Permission").replace("&", "Â§").replaceAll("%permisson%", cmd));
     return true;
   }
   
@@ -44,15 +49,15 @@ public boolean onCommand(CommandSender sender, Command command, String cmd, Stri
   
   ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
   ItemMeta souperaa = dima.getItemMeta();
-  souperaa.setDisplayName("§cSword");
+  souperaa.setDisplayName("Â§cSword");
   dima.setItemMeta(souperaa);
   ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
   ItemMeta sopas = sopa.getItemMeta();
-  sopas.setDisplayName("§6Soup");
+  sopas.setDisplayName("Â§6Soup");
   sopa.setItemMeta(sopas);
   ItemStack especial = new ItemStack(Material.REDSTONE_BLOCK);
   ItemMeta especial2 = especial.getItemMeta();
-  especial2.setDisplayName("§cDeshfire!");
+  especial2.setDisplayName("Â§cDeshfire!");
   especial.setItemMeta(especial2);
   
   ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
@@ -69,7 +74,7 @@ public boolean onCommand(CommandSender sender, Command command, String cmd, Stri
   p.getInventory().setLeggings(calca0);
   p.getInventory().setBoots(Bota0);
 
-p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Deshfire").replace("&", "§"));
+p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Deshfire").replace("&", "Â§"));
 Habilidade.setAbility(p, "Deshfire");
 
   
@@ -80,7 +85,7 @@ Habilidade.setAbility(p, "Deshfire");
   }
 }
   if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Deshfire").replace("&", "§"));
+	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "Â§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Deshfire").replace("&", "Â§"));
 	  /*     */       }
 	  /*  96 */       return false; }{
 

@@ -22,8 +22,11 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Kangaroo;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Monk;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.MonkCMD;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Ninja;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Sponge;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Stomper;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.StomperKITCOMMAND;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Thor;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.ThorKITCOMMAND;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.TimeLord;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.TimelordCMD;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Viper;
@@ -34,7 +37,8 @@ import me.RafaelAulerDeMeloAraujo.Coins.Coins;
 import me.RafaelAulerDeMeloAraujo.Coins.Commands;
 import me.RafaelAulerDeMeloAraujo.Listeners.SoupSign;
 import me.RafaelAulerDeMeloAraujo.ScoreboardManager.ScoreBoarding;
-import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Status;
+
+import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 import me.RafaelAulerDeMeloAraujo.main.Stats;
 
 
@@ -202,6 +206,7 @@ public ConfigUtils getConfigHandler()
 	    getCommand("archer").setExecutor(new Kits(this));
 	    getCommand("tank").setExecutor(new Kits(this));
 	    getCommand("pyro").setExecutor(new Kits(this));
+	    getCommand("kthor").setExecutor(new ThorKITCOMMAND(this));
 	    getCommand("switcher").setExecutor(new Kits(this));
 	    getCommand("viper").setExecutor(new Viper(this));
 	    getCommand("warper").setExecutor(new Kits(this));
@@ -239,15 +244,17 @@ public ConfigUtils getConfigHandler()
 /*  87 */     this.pm.registerEvents(new ThrowTnt(this), this);
 this.pm.registerEvents(new Dublejump(this), this);
               this.pm.registerEvents(new Monk(this), this);
+              
+              this.pm.registerEvents(new Sponge(), this);
               this.pm.registerEvents(new Critical(this), this);
 /*  88 */     this.pm.registerEvents(new Menu(this), this);
               this.pm.registerEvents(new NoBreakEvent(), this);
 /*  89 */     this.pm.registerEvents(new Fisherman(this), this);
 /*  90 */     this.pm.registerEvents(new Switcher(), this);
               this.pm.registerEvents(new Viper(this), this);
-              this.pm.registerEvents(new SoupSign(this), this);
+              this.pm.registerEvents(new SoupSign(), this);
               this.pm.registerEvents(new Deshfire(), this);
-             
+              this.pm.registerEvents(new Thor(this), this);
               this.pm.registerEvents(new Ninja(this), this);
               this.pm.registerEvents(new JoinSign(this), this);
               this.pm.registerEvents(new LeaveSign(this), this);
@@ -261,12 +268,13 @@ this.pm.registerEvents(new Dublejump(this), this);
               this.pm.registerEvents(new Join(this), this);
               this.pm.registerEvents(new Shop(this), this);
               this.pm.registerEvents(new Stomper(), this);
-              this.pm.registerEvents(new Status(), this);
+              
               this.pm.registerEvents(new X1(), this);
+              this.pm.registerEvents(new Streak(), this);
               this.pm.registerEvents(new me.RafaelAulerDeMeloAraujo.Listeners.NoExplosion(), this);
 /*  93 */     this.pm.registerEvents(new AntiDeathDrop(this), this);
 /*  94 */     this.pm.registerEvents(new WallClamber(this), this);
-              this.pm.registerEvents(new SoupSign(this), this);
+              this.pm.registerEvents(new SoupSign(), this);
               
 /*  95 */     this.pm.registerEvents(new AirmanFly(this), this);
 /*     */   

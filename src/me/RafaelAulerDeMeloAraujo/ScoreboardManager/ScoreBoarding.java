@@ -17,6 +17,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import me.RafaelAulerDeMeloAraujo.Coins.Coins;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
 import me.RafaelAulerDeMeloAraujo.main.Main;
 public class ScoreBoarding {
 
@@ -34,25 +35,34 @@ public class ScoreBoarding {
 public static void setScoreBoard(Player p)
 {
   
-  Random r = new Random();
+  
   
 
  
   {
-	  SimpleScoreboard scoreboard = new SimpleScoreboard(Main.getPlugin().getConfig().getString("ScorePrefix").replace("&", "ง"));
+	  SimpleScoreboard scoreboard = new SimpleScoreboard(Main.getPlugin().getConfig().getString("ScorePrefix").replace("&", "ยง"));
     
+    
+	scoreboard.blankLine();
+	
+	
+	
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ยง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreKills").replace("&", "ยง")) + " " + Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".kills").toString()));
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ยง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreDeaths").replace("&", "ยง")) + " " + Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".mortes").toString()));
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ยง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreStreak").replace("&", "ยง")) + " " + Streak.killstreak.get(p.getName()));
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ยง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreCoins").replace("&", "ยง")) + " " + Coins.getCoins(p.getName()));
+    
+   
+    
+
     scoreboard.blankLine();
-    scoreboard.add("งbงl\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreKills").replace("&", "ง")) + " " + Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".kills").toString()));
-    scoreboard.add("งbงl\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreDeaths").replace("&", "ง")) + " " + Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".mortes").toString()));
-    
-    scoreboard.add("งbงl\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreCoins").replace("&", "ง")) + " " + Coins.getCoins(p.getName()));
-    scoreboard.blankLine();
     
     
     
     
-    scoreboard.add("งc/togglescore");
+    scoreboard.add("ยงc/togglescore");
     scoreboard.build();
+   
     scoreboard.send(new Player[] { p });
   }
 }

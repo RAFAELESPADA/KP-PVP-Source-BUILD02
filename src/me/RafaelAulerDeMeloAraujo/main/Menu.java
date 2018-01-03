@@ -30,6 +30,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 /*     */ import org.bukkit.inventory.meta.ItemMeta;
 /*     */ import org.bukkit.potion.PotionEffectType;
 
+
+import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Cooldown;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Deshfire;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
@@ -44,33 +46,35 @@ import me.RafaelAulerDeMeloAraujo.X1.X1;
 
 
 /*     */   static {
-/*  33 */     createButton(Material.WOOD_SWORD, kitpvp, 0, "§6\u27a1 §cBasic", "§aThe Basic and Stantard kit!");
-/*  42 */     createButton(Material.DIAMOND_SWORD, kitpvp, 1, "§6\u27a1 §cPvP", "§aA stronger version of the Basic kit!");
-/*  43 */     createButton(Material.BOW, kitpvp, 2, "§6\u27a1 §cArcher", "§aStarts with swords and bow and arrows!");
-/*  44 */     createButton(Material.FLINT_AND_STEEL, kitpvp, 3, "§6\u27a1 §cPyro", "§aStart with fire sword and fire bow!");
-/*  45 */     createButton(Material.DIAMOND_CHESTPLATE, kitpvp, 4, "§6\u27a1 §cTank", "§aStarts with diamond armor but are slow!");
-/*  46 */     createButton(Material.SNOW_BALL, kitpvp, 5, "§6\u27a1 §cSwitcher", "§aThrow a snowball to change places with your enemy!");
-/*  47 */     createButton(Material.MAGMA_CREAM, kitpvp, 6, "§6\u27a1 §cJumper", "§aJump all you can!");
-/*  48 */     createButton(Material.CACTUS, kitpvp, 7, "§6\u27a1 §cCactus", "§aGet armor with thorns!");
-/*  49 */     createButton(Material.TNT, kitpvp, 8, "§6\u27a1 §cBomber", "§aThrow tnt on your enemy!");
-/*  50 */     createButton(Material.ENDER_PEARL, kitpvp, 9, "§6\u27a1 §cWarper", "§aStarts with swords and ender pearls!");
-/*  51 */     createButton(Material.BLAZE_ROD, kitpvp, 10, "§6\u27a1 §cWasp", "§aStarts with sharp IV blaze rod!");
-/*  52 */     createButton(Material.STRING, kitpvp, 11, "§6\u27a1 §cSpiderman", "§aCan wall clamber!");
-/*  53 */     createButton(Material.FEATHER, kitpvp, 12, "§6\u27a1 §cAirman", "§aFly fly");
-/*  54 */     createButton(Material.FISHING_ROD, kitpvp, 13, "§6\u27a1 §cFisherman", "§aCatch a big cod!");
+/*  33 */     createButton(Material.WOOD_SWORD, kitpvp, 0, "Â§6\u27a1 Â§cBasic", "Â§aThe Basic and Stantard kit!");
+/*  42 */     createButton(Material.DIAMOND_SWORD, kitpvp, 1, "Â§6\u27a1 Â§cPvP", "Â§aA stronger version of the Basic kit!");
+/*  43 */     createButton(Material.BOW, kitpvp, 2, "Â§6\u27a1 Â§cArcher", "Â§aStarts with swords and bow and arrows!");
+/*  44 */     createButton(Material.FLINT_AND_STEEL, kitpvp, 3, "Â§6\u27a1 Â§cPyro", "Â§aStart with fire sword and fire bow!");
+/*  45 */     createButton(Material.DIAMOND_CHESTPLATE, kitpvp, 4, "Â§6\u27a1 Â§cTank", "Â§aStarts with diamond armor but are slow!");
+/*  46 */     createButton(Material.SNOW_BALL, kitpvp, 5, "Â§6\u27a1 Â§cSwitcher", "Â§aThrow a snowball to change places with your enemy!");
+/*  47 */     createButton(Material.MAGMA_CREAM, kitpvp, 6, "Â§6\u27a1 Â§cJumper", "Â§aJump all you can!");
+/*  48 */     createButton(Material.CACTUS, kitpvp, 7, "Â§6\u27a1 Â§cCactus", "Â§aGet armor with thorns!");
+/*  49 */     createButton(Material.TNT, kitpvp, 8, "Â§6\u27a1 Â§cBomber", "Â§aThrow tnt on your enemy!");
+/*  50 */     createButton(Material.ENDER_PEARL, kitpvp, 9, "Â§6\u27a1 Â§cWarper", "Â§aStarts with swords and ender pearls!");
+/*  51 */     createButton(Material.BLAZE_ROD, kitpvp, 10, "Â§6\u27a1 Â§cWasp", "Â§aStarts with sharp IV blaze rod!");
+/*  52 */     createButton(Material.STRING, kitpvp, 11, "Â§6\u27a1 Â§cSpiderman", "Â§aCan wall clamber!");
+/*  53 */     createButton(Material.FEATHER, kitpvp, 12, "Â§6\u27a1 Â§cAirman", "Â§aFly fly");
+/*  54 */     createButton(Material.FISHING_ROD, kitpvp, 13, "Â§6\u27a1 Â§cFisherman", "Â§aCatch a big cod!");
 /*  55 */     
-              createButton(Material.IRON_BOOTS, kitpvp, 14, "§6\u27a1 §cStomper", "§aSmash your enemies!");
-              createButton(Material.REDSTONE_BLOCK, kitpvp, 15, "§6\u27a1 §cDeshfire", "§aGot a boost and burn your enemies!");
-              createButton(Material.SPIDER_EYE, kitpvp, 16, "§6\u27a1 §cViper", "§aHave a 33% chance to poison on each hit!");
-              createButton(Material.IRON_FENCE, kitpvp, 17, "§6\u27a1 §cGladiator", "§aChallenge someone into a glass arena!");
-              createButton(Material.FIREWORK, kitpvp, 18, "§6\u27a1 §cKangaroo", "§aDo double-jump with your firework!");
-              createButton(Material.COAL, kitpvp, 19, "§6\u27a1 §cNinja", "§aSneak and you teleport to the last player that you hurt!");
-              createButton(Material.WATCH, kitpvp, 20, "§6\u27a1 §cTimelord", "§aWith this kit you can freeze players with your Clock!");
-              createButton(Material.GOLDEN_APPLE, kitpvp, 21, "§6\u27a1 §cCritical", "§aHave 10% chance to do more damage on each hit!");
-              createButton(Material.BLAZE_ROD, kitpvp, 22, "§6\u27a1 §cMonk", "§aClick in you enemy with blaze hod to mix they inventory!");
-              createButton(Material.CHAINMAIL_BOOTS, kitpvp, 23, "§6\u27a1 §cDoubleJump", "§aPress space two times to do a double jump!");
-              createButton(Material.BOOK_AND_QUILL, kitpvp, 49, "§3§l\u27a1 §b§lTip", "§aWrite §e/kitpvp §ato view kitpvp commands!");
-/*  56 */     createButton(Material.BARRIER, kitpvp, 53, "§4§l\u2716 §cClose", "§bClose the menu!");
+              createButton(Material.IRON_BOOTS, kitpvp, 14, "Â§6\u27a1 Â§cStomper", "Â§aSmash your enemies!");
+              createButton(Material.REDSTONE_BLOCK, kitpvp, 15, "Â§6\u27a1 Â§cDeshfire", "Â§aGot a boost and burn your enemies!");
+              createButton(Material.SPIDER_EYE, kitpvp, 16, "Â§6\u27a1 Â§cViper", "Â§aHave a 33% chance to poison on each hit!");
+              createButton(Material.IRON_FENCE, kitpvp, 17, "Â§6\u27a1 Â§cGladiator", "Â§aChallenge someone into a glass arena!");
+              createButton(Material.FIREWORK, kitpvp, 18, "Â§6\u27a1 Â§cKangaroo", "Â§aDo double-jump with your firework!");
+              createButton(Material.COAL, kitpvp, 19, "Â§6\u27a1 Â§cNinja", "Â§aSneak and you teleport to the last player that you hurt!");
+              createButton(Material.WATCH, kitpvp, 20, "Â§6\u27a1 Â§cTimelord", "Â§aWith this kit you can freeze players with your Clock!");
+              createButton(Material.GOLDEN_APPLE, kitpvp, 21, "Â§6\u27a1 Â§cCritical", "Â§aHave 10% chance to do more damage on each hit!");
+              createButton(Material.BLAZE_ROD, kitpvp, 22, "Â§6\u27a1 Â§cMonk", "Â§aClick in you enemy with blaze hod to mix they inventory!");
+              createButton(Material.CHAINMAIL_BOOTS, kitpvp, 23, "Â§6\u27a1 Â§cDoubleJump", "Â§aPress space two times to do a double jump!");
+              createButton(Material.GOLD_AXE, kitpvp, 23, "Â§6\u27a1 Â§cThor", "Â§aThunderbolts with your axe and be immune to them!");
+
+              createButton(Material.BOOK_AND_QUILL, kitpvp, 49, "Â§3Â§l\u27a1 Â§bÂ§lTip", "Â§aWrite Â§e/kitpvp Â§ato view kitpvp commands!");
+/*  56 */     createButton(Material.BARRIER, kitpvp, 53, "Â§4Â§l\u2716 Â§cClose", "Â§bClose the menu!");
 /*  57 */     
 /*  58 */     
 /*     */   }
@@ -90,6 +94,7 @@ import me.RafaelAulerDeMeloAraujo.X1.X1;
                 Deshfire.cooldownm.remove(p);
                 Join.game.remove(p.getName());
                 Cooldown.remove(p);
+                Streak.killstreak.put(p.getName(), Integer.valueOf(0));
                
                 World world = p.getWorld();
                 	  p.teleport(world.getSpawnLocation());
@@ -98,7 +103,20 @@ import me.RafaelAulerDeMeloAraujo.X1.X1;
 /*  91 */         p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.Join")), 1.0F, 1.0F);
 /*     */       }
                 }
-                
+/*     */   @EventHandler
+/*     */   public void onJoinr(PlayerJoinEvent e) {
+	  
+	      
+	Player p = e.getPlayer();
+	 int kills = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".kills");
+	 int deaths = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes");
+	
+	if (kills == 0 && deaths == 0) {
+		Main.plugin.getConfig().set("status." + p.getName().toLowerCase() + ".kills", Integer.valueOf(kills + 1));
+		Main.plugin.getConfig().set("status." + p.getName().toLowerCase() + ".mortes", Integer.valueOf(deaths + 1));
+	}
+	}
+
 /*     */     
 /*     */   
 /*     */   @EventHandler
@@ -150,10 +168,10 @@ import me.RafaelAulerDeMeloAraujo.X1.X1;
  
     
        
-       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "§aKit menu §7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
+       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "Â§aKit menu Â§7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "Â§") }))) });
   ItemStack kits = new ItemStack(Material.EMERALD);
   ItemMeta kits2 = kits.getItemMeta();
-  kits2.setDisplayName("§b§lShop Menu");
+  kits2.setDisplayName("Â§bÂ§lShop Menu");
   kits.setItemMeta(kits2);
   p.getInventory().addItem(kits); 
 
@@ -202,7 +220,7 @@ import me.RafaelAulerDeMeloAraujo.X1.X1;
 			  (	
 					
 	  (e.getAction() == Action.RIGHT_CLICK_AIR) || 
-	  (e.getAction() == Action.RIGHT_CLICK_BLOCK)   && (Join.game.contains(p.getName()) && (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§aKit menu §7(Right click)")))))) {
+	  (e.getAction() == Action.RIGHT_CLICK_BLOCK)   && (Join.game.contains(p.getName()) && (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("Â§aKit menu Â§7(Right click)")))))) {
 	  p.openInventory(Menu.kitpvp);
 	}
 	
@@ -265,19 +283,19 @@ import me.RafaelAulerDeMeloAraujo.X1.X1;
 
 
 
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cAirman"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cAirman"))){
 /* 164 */       e.setCancelled(true);
 /* 165 */       p.closeInventory();
 /* 166 */       p.performCommand("airman");
 /* 167 */       return;
 /*     */      }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cViper"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cViper"))){
 /* 164 */       e.setCancelled(true);
 /* 165 */       p.closeInventory();
 /* 166 */       p.performCommand("viper");
 /* 167 */       return;
 /*     */      }
-/* 169 */    if  ((inv.getName().equals("Kit Menu")) && ((e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cSpiderman")))){
+/* 169 */    if  ((inv.getName().equals("Kit Menu")) && ((e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cSpiderman")))){
 /* 158 */       e.setCancelled(true);
 /* 159 */       p.closeInventory();
 /* 160 */       p.performCommand("spiderman");
@@ -285,11 +303,18 @@ import me.RafaelAulerDeMeloAraujo.X1.X1;
 /* 161 */       return;
 
 /*     */     }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cFreezer"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cFreezer"))){
 
 /* 170 */       e.setCancelled(true);
 /* 171 */       p.closeInventory();
 /* 172 */       p.performCommand("freezer");
+/* 173 */       return;
+/*     */      }
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cThor"))){
+
+/* 170 */       e.setCancelled(true);
+/* 171 */       p.closeInventory();
+/* 172 */       p.performCommand("kthor");
 /* 173 */       return;
 /*     */      }
 /* 169 */    if ((inv.getName().equals("Kit Menu")) && (clicked.getType() == null)){
@@ -303,19 +328,19 @@ import me.RafaelAulerDeMeloAraujo.X1.X1;
 
     
 {
-if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cBasic"))){
+if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cBasic"))){
 /* 176 */       e.setCancelled(true);
 /* 177 */       p.closeInventory();
 /* 178 */       p.performCommand("basic");
 /* 179 */       return;
 /*     */     }
-if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cCritical"))){
+if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cCritical"))){
 /* 176 */       e.setCancelled(true);
 /* 177 */       p.closeInventory();
 /* 178 */       p.performCommand("critical");
 /* 179 */       return;
 /*     */     }
-if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cFisherman"))){
+if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cFisherman"))){
 /* 176 */       e.setCancelled(true);
 /* 177 */       p.closeInventory();
 /* 178 */       p.performCommand("fisherman");
@@ -325,127 +350,127 @@ if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getD
 /* 182 */       e.setCancelled(true);
 /* 183 */       return;
 /*     */     }
-/* 185 */     if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cMonk"))){
+/* 185 */     if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cMonk"))){
 /* 186 */       e.setCancelled(true);
 /* 187 */       p.closeInventory();
 /* 188 */       p.performCommand("monk");
 /* 189 */       return;
 /*     */     }
-/* 185 */     if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cWasp"))){
+/* 185 */     if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cWasp"))){
 /* 186 */       e.setCancelled(true);
 /* 187 */       p.closeInventory();
 /* 188 */       p.performCommand("wasp");
 /* 189 */       return;
 /*     */     }
-/* 185 */      if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cTimelord"))){
+/* 185 */      if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cTimelord"))){
 /* 186 */       e.setCancelled(true);
 /* 187 */       p.closeInventory();
 /* 188 */       p.performCommand("timelord");
 /* 189 */       return;
 /*     */     }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cKangaroo"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cKangaroo"))){
 /* 186 */       e.setCancelled(true);
 /* 187 */       p.closeInventory();
 /* 188 */       p.performCommand("kangaroo");
 /* 189 */       return;
 /*     */     }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cNinja"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cNinja"))){
 /* 186 */       e.setCancelled(true);
 /* 187 */       p.closeInventory();
 /* 188 */       p.performCommand("ninja");
 /* 189 */       return;
 /*     */     }
-/* 191 */    /* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cPvP"))){
+/* 191 */    /* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cPvP"))){
 /* 192 */       e.setCancelled(true);
 /* 193 */       p.closeInventory();
 /* 194 */       p.performCommand("kpvp");
 /* 195 */       return;
 /*     */     }
-/* 197 */    /* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cWarper"))){
+/* 197 */    /* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cWarper"))){
 /* 198 */       e.setCancelled(true);
 /* 199 */       p.closeInventory();
 /* 200 */       p.performCommand("warper");
 /* 201 */       return;
 /*     */     }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cArcher"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cArcher"))){
 	/* 204 */       e.setCancelled(true);
 	/* 205 */       p.closeInventory();
 	/* 206 */       p.performCommand("archer");
 	/* 207 */       return;
 	/*     */     }
 {
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cGladiator"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cGladiator"))){
 /* 204 */       e.setCancelled(true);
 /* 205 */       p.closeInventory();
 /* 206 */       p.performCommand("gladiator");
 /* 207 */       return;
 /*     */     }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cDeshfire"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cDeshfire"))){
 /* 204 */       e.setCancelled(true);
 /* 205 */       p.closeInventory();
 /* 206 */       p.performCommand("deshfire");
 /* 207 */       return;
 /*     */     }
 
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cPyro"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cPyro"))){
 /* 211 */         e.setCancelled(true);
 /* 212 */         p.closeInventory();
 /* 213 */         p.performCommand("Pyro");
 /* 214 */         return;
 /*     */       }
-/* 216 */       /* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cTank"))){
+/* 216 */       /* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cTank"))){
 /* 217 */         e.setCancelled(true);
 /* 218 */         p.closeInventory();
 /* 219 */         p.performCommand("Tank");
 /* 220 */         return;
 /*     */       }
-/* 222 */      /* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cSwitcher"))){
+/* 222 */      /* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cSwitcher"))){
 /* 223 */         e.setCancelled(true);
 /* 224 */         p.closeInventory();
 /* 225 */         p.performCommand("Switcher");
 /* 226 */         return;
 /*     */       }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cJumper"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cJumper"))){
 /* 229 */         e.setCancelled(true);
 /* 230 */         p.closeInventory();
 /* 231 */         p.performCommand("jumper");
 /* 232 */         return;
 /*     */       }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cDoubleJump"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cDoubleJump"))){
 /* 229 */         e.setCancelled(true);
 /* 230 */         p.closeInventory();
 /* 231 */         p.performCommand("doublejump");
 /* 232 */         return;
 /*     */       }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cCactus"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cCactus"))){
 /* 235 */         e.setCancelled(true);
 /* 236 */         p.closeInventory();
 /* 237 */         p.performCommand("Cactus");
 /* 238 */         return;
 /*     */       }
-/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§4§l\u2716 §cClose"))){
+/* 169 */    if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§4Â§l\u2716 Â§cClose"))){
 /* 241 */         e.setCancelled(true);
 /* 242 */         p.closeInventory();
-                  p.sendMessage("§2§l\u2714 §aYou close the Kit Menu Successfully!");
+                  p.sendMessage("Â§2Â§l\u2714 Â§aYou close the Kit Menu Successfully!");
 /* 243 */         return;
 /*     */       }
-if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cStomper"))){
+if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cStomper"))){
 /* 241 */         e.setCancelled(true);
                   p.performCommand("stomper");
 /* 242 */         p.closeInventory();
 /* 243 */         return;
 /*     */       }
-              if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§a§k==="))) {
+              if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§aÂ§k==="))) {
                 e.setCancelled(true);
                 	                  
                 return;
                 	      }
-              if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§3§l\u27a1 §b§lTip"))) {
+              if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§3Â§l\u27a1 Â§bÂ§lTip"))) {
                   e.setCancelled(true);
                   	                  
                   return;
                   	      }
-              if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cBomber"))){
+              if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cBomber"))){
 /* 246 */         e.setCancelled(true);
 /* 247 */         p.closeInventory();
 /* 248 */         p.performCommand("bomber");
@@ -473,7 +498,7 @@ if ((inv.getName().equals("Kit Menu")) && (e.getCurrentItem().getItemMeta().getD
 
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("§cYou must be in game to open kit menu!");
+	e.getPlayer().sendMessage("Â§cYou must be in game to open kit menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 }
@@ -487,7 +512,7 @@ if (!Join.game.contains(e.getPlayer().getName()))
 /* 266 */       openMenu(e.getPlayer());
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("§cYou must be in game to open kit menu!");
+	e.getPlayer().sendMessage("Â§cYou must be in game to open kit menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 /*     */   }
@@ -501,7 +526,7 @@ if (!Join.game.contains(e.getPlayer().getName()))
 /* 274 */       openMenu(e.getPlayer());
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("§cYou must be in game to open kit menu!");
+	e.getPlayer().sendMessage("Â§cYou must be in game to open kit menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 /*     */   }
@@ -515,7 +540,7 @@ if (!Join.game.contains(e.getPlayer().getName()))
 /* 274 */       openMenu(e.getPlayer());
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("§cYou must be in game to open kit menu!");
+	e.getPlayer().sendMessage("Â§cYou must be in game to open kit menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 /*     */   }
@@ -528,7 +553,7 @@ if (!Join.game.contains(e.getPlayer().getName()))
 /* 274 */       openMenu(e.getPlayer());
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("§cYou must be in game to open kit menu!");
+	e.getPlayer().sendMessage("Â§cYou must be in game to open kit menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 /*     */   }
@@ -546,7 +571,7 @@ if (!Join.game.contains(e.getPlayer().getName()))
  {
 	 ItemStack vidro = new ItemStack(Material.THIN_GLASS);
 		ItemMeta vidro2 = vidro.getItemMeta();
-		vidro2.setDisplayName("§a§k===");
+		vidro2.setDisplayName("Â§aÂ§k===");
 		vidro.setItemMeta(vidro2);
 ItemStack[] arrayOfItemStack;
 int descpyro1 = (arrayOfItemStack = kitpvp.getContents()).length;

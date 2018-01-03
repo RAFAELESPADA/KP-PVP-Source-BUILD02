@@ -19,19 +19,18 @@ import org.bukkit.entity.Player;
 				String[] args) {
 			Player p = (Player) sender;
 			if(label.equalsIgnoreCase("dev")) {
-				p.sendMessage("§4§l\u2716 §2§lCREDITS §f§lAND §e§lINFORMATION §4§l\u2716");
-				p.sendMessage("§6\u27a1 §cPlugin Name: §eKP-PVP"); 
-				p.sendMessage("§6\u27a1 §cPlugin Version: §eBUILD-02"); 
-				p.sendMessage("§6\u27a1 §cAuthor: §ezEnderX5_ , Rafael Auler");
-				p.sendMessage("§6\u27a1 §cAuthor Channel: http://bit.ly/2kC345B");
-				p.sendMessage("§6\u27a1 §cSpigot Profile: http://bit.ly/2j5qvnM");
-				p.sendMessage("§6\u27a1 §cPlugin Page: http://bit.ly/2BZCtLE");
-				p.sendMessage("§cThanks for use this plugin i really appreaciate IT");
-				p.sendMessage("§cIf you like it consider giving a §e§l\u2730\u2730\u2730\u2730\u2730 §cReview");
-				p.sendMessage("§cPS: §eSubscribe to my channel and follow me on Spigot Thanks! §9§l\u263B");
+				p.sendMessage("Â§4Â§l\u2716 Â§2Â§lCREDITS Â§fÂ§lAND Â§eÂ§lINFORMATION Â§4Â§l\u2716");
+				p.sendMessage("Â§6\u27a1 Â§cPlugin Name: Â§eKP-PVP"); 
+				p.sendMessage("Â§6\u27a1 Â§cPlugin Version: Â§eBUILD-05"); 
+				p.sendMessage("Â§6\u27a1 Â§cAuthor: Â§ezEnderX5_ , Rafael Auler");
+				p.sendMessage("Â§6\u27a1 Â§cAuthor Channel: http://bit.ly/2kC345B");
+				p.sendMessage("Â§6\u27a1 Â§cSpigot Profile: http://bit.ly/2j5qvnM");
+				p.sendMessage("Â§6\u27a1 Â§cPlugin Page: http://bit.ly/2BZCtLE");
+				p.sendMessage("Â§cThanks for use this plugin i really appreaciate IT");
+				p.sendMessage("Â§cIf you like it consider giving a Â§eÂ§l\u2730\u2730\u2730\u2730\u2730 Â§cReview");
+				p.sendMessage("Â§cPS: Â§eSubscribe to my channel and follow me on Spigot Thanks! Â§9Â§l\u263B");
 				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 12.0F, 12.0F);
 			}
 			return false;
 		}
 	}
-		

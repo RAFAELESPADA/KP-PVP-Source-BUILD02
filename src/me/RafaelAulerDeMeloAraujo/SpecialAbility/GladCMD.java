@@ -27,30 +27,40 @@ public class GladCMD implements CommandExecutor {
 
  if (cmd.getName().equalsIgnoreCase("gladiator"))
  {
- if (!p.hasPermission("kitpvp.gladiator")) {
-	 p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", commandLabel));
+	  if (!Join.game.contains(p.getName()))
+      {
+          p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eYou are not in kitpvp to do choose this kit!");
+          return true;
+      }
+ if (!p.hasPermission("kitpvp.kit.gladiator")) {
+	 p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Permission").replace("&", "Â§").replaceAll("%permisson%", commandLabel));
    return true;
  }
 	  
  
  
         if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-          p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
+          p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "Â§"));
           p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
          return true;
        }
+        if (!Join.game.contains(p.getName()))
+        {
+            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eYou are not in kitpvp to do choose this kit!");
+            return true;
+        }
         p.getInventory().clear();
         ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta souperaa = dima.getItemMeta();
-        souperaa.setDisplayName("§cSword");
+        souperaa.setDisplayName("Â§cSword");
         dima.setItemMeta(souperaa);
         ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
         ItemMeta sopas = sopa.getItemMeta();
-        sopas.setDisplayName("§6Soup");
+        sopas.setDisplayName("Â§6Soup");
         sopa.setItemMeta(sopas);
         ItemStack especial = new ItemStack(Material.IRON_FENCE);
         ItemMeta especial2 = especial.getItemMeta();
-        especial2.setDisplayName("§bGladiator Arena");
+        especial2.setDisplayName("Â§bGladiator Arena");
         especial.setItemMeta(especial2);
 
         
@@ -67,7 +77,7 @@ public class GladCMD implements CommandExecutor {
         p.getInventory().setLeggings(calca0);
         p.getInventory().setBoots(Bota0);
    
-        p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Gladiator").replace("&", "§"));
+        p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Gladiator").replace("&", "Â§"));
   
    p.getInventory().addItem(new ItemStack[] { dima });
    p.getInventory().addItem(new ItemStack[] { especial });
@@ -81,7 +91,7 @@ public class GladCMD implements CommandExecutor {
    
  }
  if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-	  /*  94 */        p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Gladiator").replace("&", "§"));
+	  /*  94 */        p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "Â§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Gladiator").replace("&", "Â§"));
 	  /*     */       }
 	  /*  96 */       return false; }{
  

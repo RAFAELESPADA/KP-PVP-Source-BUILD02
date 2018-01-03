@@ -1,10 +1,11 @@
 name: KP-PVP
 main: me.RafaelAulerDeMeloAraujo.main.Main
-version: BUILD-02
+version: BUILD-05
 author: zEnderX5_ , Rafael Auler
-description: KitPvP Plugin what have much features like kits,shop with Custom Economy Support,A Unique 1v1 system to players fight,Coins System,Scoreboard,Stats kills,deaths,streak,Varius commands, and are very customisable,Support with others Gamemodes like Skywars and have everything to control your KITPVP Server. And the best part its is free to Download. If you want to support the developer subscribe to his channel.
+description: KitPvP Plugin what have much features like kits,shop with Custom Economy Support,A Unique 1v1 system to players fight,Coins System,Scoreboard,Stats kills,deaths,streak,Sponges acts like launchpads,Varius commands, and are very customisable,Support with others Gamemodes like Skywars and have everything to control your KITPVP Server. And the best part its is free to Download. If you want to support the developer subscribe to his channel.
 website: http://bit.ly/2kC345B , http://bit.ly/2j5qvnM
-
+#PERMISSIONS ARENT HERE
+#SEE ALL PERMISSIONS HERE: https://pastebin.com/JuMPHpRD
 commands:
    kitpvp:
         description: Main Command
@@ -18,6 +19,8 @@ commands:
         description: Kit PvP
    viper:
         description: Kit Viper to poison your enemies
+   kthor:
+        description: Kit Thor to striking
    gladiator:
         description: My favorite kit from this plugin    
    basic:
@@ -102,52 +105,3 @@ commands:
    kitclear:
         description: Clears yours kit 
   
-        
-         
-                 
-  
-   
-   
-      
-permission:
-   kitpvp.pvp
-   kitpvp.archer
-   kitpvp.pyro
-   kitpvp.tank
-   kitpvp.switcher
-   kitpvp.tiggertoo
-   kitpvp.cactus
-   kitpvp.bomber
-   kitpvp.warper
-   kitpvp.wasp
-   kitpvp.spiderman
-   kitpvp.airman
-   kitpvp.fisherman
-   kitpvp.stomper
-   kitpvp.freezer
-   kitpvp.deshfire
-   kitpvp.gladiator
-   kitpvp.kangaroo
-   kitpvp.ninja
-   kitpvp.critical
-   kitpvp.timelord
-   kitpvp.monk
-   kitpvp.doublejump
-   kitpvp.kitreload
-   kitpvp.kitclear
-   kitpvp.stats.see.other
-   kitpvp.staffchat
-   kitpvp.coins.add
-   kitpvp.coins.remove
-   kitpvp.coins.set
-   kitpvp.adminmode
-   kitpvp.setspawn
-   kitpvp.set1v1
-   kitpvp.build
-   kitpvp.createsigns
-   
-
-
-  
-   
-   

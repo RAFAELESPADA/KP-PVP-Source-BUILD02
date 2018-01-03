@@ -37,7 +37,7 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 /* 29 */       Player p = e.getPlayer();
 /* 30 */       Player k = p.getKiller();
 /* 31 */       if (this.main.getConfig().getString("CustomDeathTitleMessage").equalsIgnoreCase("true") && (Join.game.contains(p.getName()))) {
-/* 32 */         p.sendTitle(this.main.getConfig().getString("Title.DeathTitle").replace("&", "ง").replaceAll("%player%", k.getName()), this.main.getConfig().getString("Title.DeathSubTitle").replace("&", "ง").replaceAll("%player%", k.getName()));
+/* 32 */         p.sendTitle(this.main.getConfig().getString("Title.DeathTitle").replace("&", "ยง").replaceAll("%player%", k.getName()), this.main.getConfig().getString("Title.DeathSubTitle").replace("&", "ยง").replaceAll("%player%", k.getName()));
 /* 33 */         if (this.main.getConfig().getString("RespawnParticle").equalsIgnoreCase("true")) {
 /* 34 */           Location loc = p.getLocation();
 /* 35 */           ParticleKitPvP.sendParticle(EnumParticle.valueOf(this.main.getConfig().getString("Effect.Respawn")), loc, 0.5F, 0.5F, 0.5F, 0.07F, 20);
@@ -70,20 +70,30 @@ if (Join.game.contains(p.getName())) {
 }
 /* 57 */       e.getDrops().clear();
 /* 58 */       e.setDeathMessage("");
-p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Death.Tell").replace("&", "ง").replaceAll("%player%", k.getName()));
-/* 64 */           k.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Kill.Tell").replace("&", "ง").replaceAll("%player%", p.getName()));
+p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Death.Tell").replace("&", "ยง").replaceAll("%player%", k.getName()));
+/* 64 */           k.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Kill.Tell").replace("&", "ยง").replaceAll("%player%", p.getName()));
                Coins.addCoins(k.getName(), Main.customization.getDouble("Earned-Coins-Per-Kill"));
                Coins.removeCoins(p.getName(), Main.customization.getDouble("Lost-Coins-Per-Death"));
                Coins.saveCoins();
                Coins.loadCoins();
-
+               int mortes = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes");
                
-               Bukkit.getConsoleSender().sendMessage("งe" + p.getName() + " has been killed by " + k.getName() + " on kitpvp");
+               
+               
+               
+               Main.plugin.getConfig().set("status." + p.getName().toLowerCase() + ".mortes", Integer.valueOf(mortes + 1));
+              
+               
+               
+         	  int kills = Main.plugin.getConfig().getInt("status." + k.getName().toLowerCase() + ".kills");
+           Main.plugin.getConfig().set("status." + k.getName().toLowerCase() + ".kills", Integer.valueOf(kills + 1));
+           Main.plugin.saveConfig();
+               Bukkit.getConsoleSender().sendMessage("ยงe" + p.getName() + " has been killed by " + k.getName() + " on kitpvp");
 }
                else {
 /* 59 */       if (this.main.getConfig().getString("CustomKillAndDeathMessage").equalsIgnoreCase("true")&& (Join.game.contains(p.getName())) || (Join.game.contains(k.getName())))  { {
-/* 60 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Death").replace("&", "ง").replaceAll("%player%", k.getName()));
-/* 61 */         k.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kill").replace("&", "ง").replaceAll("%player%", p.getName()));
+/* 60 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Death").replace("&", "ยง").replaceAll("%player%", k.getName()));
+/* 61 */         k.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kill").replace("&", "ยง").replaceAll("%player%", p.getName()));
 /* 62 */        
 /* 63 */           
 /* 65 */           

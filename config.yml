@@ -1,14 +1,17 @@
-#KitPvP Version BUILD-02 | Author: zEnderX5_ , Rafael Auler
+#KitPvP Version BUILD-05 | Author: zEnderX5_ , Rafael Auler
 #Author Channel: https://www.youtube.com/channel/UCb1kjbiQj2B4KnRQpgeUwmQ
 #Subscribe to help me to improve the plugin. Thanks =D
 #PS: use /kp for view the plugin command list
 
+#ALL MESSAGES SUPPORT COLORS! 
+#View all colors here: http://minecraft.tools/en/color-code.php
+
 #Prefix settings
 Prefix: '&8[&cKitPvP&8] '
 
-#No Permission Message
-#ALL PERMISSION IS LISTED HERE: https://pastebin.com/iFwurRwP
-Permission: 'Sorry you dont have the permission kitpvp.%permisson%'
+#No Permission Message 
+#ALL PERMISSIONS IS LISTED HERE: https://pastebin.com/JuMPHpRD
+Permission: '&cSorry, but you dont have the permission to use this.'
 
 #Kill & Death settings
 CustomKillAndDeathMessage: true
@@ -28,10 +31,7 @@ JoinItem:
   Spawn: 'spawn %player%'
   OpenKitMenu: 'false'
   JoinSound: 'true'
-  
-  
-#Should we disable hunger while in game? default: true
-DisableHunger: true  
+   
   
 #Spiderman settings
 SidermanKit:
@@ -51,8 +51,8 @@ Title:
   DeathTitle: '&cYou are killed'
   DeathSubTitle: '&cby &7%player%'
 #Respawn settings
-RespawnParticle: true'
-RespawnSound: 'true'
+RespawnParticle: true
+RespawnSound: true
 
 #Sound list https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
 Sound:
@@ -91,6 +91,10 @@ ScoreKills: '&e&lKills:&f'
 ScoreDeaths: '&e&lDeaths:&f' 
 #Score Coins
 ScoreCoins: '&e&lCoins:&f'
+#Score Streak
+ScoreStreak: '&e&lStreak:&f'
+#Scoreboard Arrow Color. Use: '&'
+ScoreArrowColor: '&b&l'
 status:
   retaliado1:
     kills: 2
@@ -105,6 +109,4 @@ Spawn:
   Z: -91.71575866737658
   Pitch: 42.90001
   Yaw: -9.5999975
- 
-
   

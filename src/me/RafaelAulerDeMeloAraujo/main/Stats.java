@@ -21,13 +21,14 @@ public class Stats implements CommandExecutor
             	/* 149 */      int kills = Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".kills").toString());
             	/* 130 */       int deaths = Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".mortes").toString());
             	
-            	p.sendMessage("§b");
+            	p.sendMessage("Â§b");
                 
-            	p.sendMessage("§bKills §8\u27a1§e " + kills);
-            	p.sendMessage("§bDeaths §8\u27a1§e " + deaths);
+            	p.sendMessage("Â§bKills Â§8\u27a1Â§e " + kills);
+            	p.sendMessage("Â§bDeaths Â§8\u27a1Â§e " + deaths);
             	
-            	p.sendMessage("§bCoins §8\u27a1§e " + Coins.getCoins(p.getName()));
-            	p.sendMessage("§b");
+            	p.sendMessage("Â§bCoins Â§8\u27a1Â§e " + Coins.getCoins(p.getName()));
+            	p.sendMessage("Â§bStreak Â§8\u27a1Â§e " + me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak.killstreak.get(p.getName()));
+            	p.sendMessage("Â§b");
                 return true;
             }
            
@@ -36,13 +37,14 @@ public class Stats implements CommandExecutor
                 if (t != null) {
                 	/* 149 */      int kills = Main.plugin.getConfig().getInt(new StringBuilder("status.").append(t.getName().toLowerCase()).append(".kills").toString());
                 	/* 130 */       int deaths = Main.plugin.getConfig().getInt(new StringBuilder("status.").append(t.getName().toLowerCase()).append(".mortes").toString());
-                    p.sendMessage("§b");
-                    p.sendMessage("§bPlayer §8\u27a1§e " + t.getName());
-                	p.sendMessage("§bKills §8\u27a1§e " + kills);
-                	p.sendMessage("§bDeaths §8\u27a1§e " + deaths);
+                    p.sendMessage("Â§b");
+                    p.sendMessage("Â§bPlayer Â§8\u27a1Â§e " + t.getName());
+                	p.sendMessage("Â§bKills Â§8\u27a1Â§e " + kills);
+                	p.sendMessage("Â§bDeaths Â§8\u27a1Â§e " + deaths);
                 	
-                	p.sendMessage("§bCoins §8\u27a1§e " + Coins.getCoins(t.getName()));
-                	p.sendMessage("§b");
+                	p.sendMessage("Â§bCoins Â§8\u27a1Â§e " + Coins.getCoins(t.getName()));
+                	p.sendMessage("Â§bStreak Â§8\u27a1Â§e " + me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak.killstreak.get(t.getName()));
+                	p.sendMessage("Â§b");
                     return true;
                 }
             }

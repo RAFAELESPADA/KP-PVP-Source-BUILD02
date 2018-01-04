@@ -58,7 +58,7 @@ ArrayList<String> naofugir = new ArrayList();
 	     {
 	       event.setCancelled(true);
 	       if (Gladiator.lutando.containsKey(p.getName())) {
-               p.sendMessage(String.valueOf("Â§cYou enter in a gladiator arena! You win a Speed Effect"));
+               p.sendMessage(String.valueOf("§cYou enter in a gladiator arena! You win a Speed Effect"));
                
                Main.darEfeito(p, PotionEffectType.SPEED, 10, 2);
                
@@ -97,7 +97,7 @@ ArrayList<String> naofugir = new ArrayList();
 	       }
 	      
 	       if (this.naofugir.contains(p.getName())) {
-	         p.sendMessage("Â§cYou cannot use this kit while in PvP!");
+	         p.sendMessage("§cYou cannot use this kit while in PvP!");
 	       }
 	     }
 	     }
@@ -185,36 +185,36 @@ ArrayList<String> naofugir = new ArrayList();
 	    Player p = (Player)sender;
 	    ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
 	    ItemMeta souperaa = dima.getItemMeta();
-	    souperaa.setDisplayName("Â§cSword");
+	    souperaa.setDisplayName("§cSword");
 	    dima.setItemMeta(souperaa);
 	    ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
 	    ItemMeta sopas = sopa.getItemMeta();
-	    sopas.setDisplayName("Â§6Soup");
+	    sopas.setDisplayName("§6Soup");
 	    sopa.setItemMeta(sopas);
 	    ItemStack monk = new ItemStack(Material.FIREWORK);
 	    ItemMeta ims = monk.getItemMeta();
-	    ims.setDisplayName("Â§bDouble-Jump");
+	    ims.setDisplayName("§bDouble-Jump");
 	    monk.setItemMeta(ims);
 
 	  
 	    
 	    if (cmd.equalsIgnoreCase("kangaroo")) {
-	    	if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-	            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "Â§"));
+	    	if (Habilidade.ContainsAbility(p)) { 
+	            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
 	            p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 	           return true;
 	         }
 	    	  if (!Join.game.contains(p.getName()))
 	          {
-	              p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eYou are not in kitpvp to do choose this kit!");
+	              p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to do choose this kit!");
 	              return true;
 	          }
 	      if (!p.hasPermission("kitpvp.kit.kangaroo")) {
-	    	  p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Permission").replace("&", "Â§").replaceAll("%permisson%", cmd));
+	    	  p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", cmd));
 	        return true;
 	      }
 	      p.getInventory().clear();
-	      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Kangaroo").replace("&", "Â§"));
+	      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Kangaroo").replace("&", "§"));
 	      p.setGameMode(GameMode.ADVENTURE);
 	      
 	      Habilidade.setAbility(p, "Kangaroo");
@@ -239,7 +239,7 @@ ArrayList<String> naofugir = new ArrayList();
 	      }
 	    }
 	    if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-	  	  /*  94 */        p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "Â§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Kangaroo").replace("&", "Â§"));
+	  	  /*  94 */        p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Kangaroo").replace("&", "§"));
 	  	  /*     */       }
 	  	  /*  96 */       return false; }{
 	    

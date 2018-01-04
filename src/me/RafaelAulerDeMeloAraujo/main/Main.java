@@ -3,6 +3,7 @@
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.AirmanFly;
 import me.RafaelAulerDeMeloAraujo.Listeners.ConfigUtils;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.Fisherman;
+import me.RafaelAulerDeMeloAraujo.Listeners.InteractEvent;
 import me.RafaelAulerDeMeloAraujo.Listeners.JoinSign;
 import me.RafaelAulerDeMeloAraujo.Listeners.LeaveSign;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.NoDrops;
@@ -10,6 +11,7 @@ import me.RafaelAulerDeMeloAraujo.Listeners.LeaveSign;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.Switcher;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.ThrowTnt;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.WallClamber;
+import me.RafaelAulerDeMeloAraujo.PluginHooks.PlaceHolderAPIHook;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Basic;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Critical;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Deshfire;
@@ -21,7 +23,10 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Kangaroo;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Monk;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.MonkCMD;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Naruto;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.NewKitMenu;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Ninja;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Snail;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Sponge;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Stomper;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.StomperKITCOMMAND;
@@ -124,7 +129,13 @@ FileConfiguration config;
 /*  45 */     getLogger().info("KP-PVP plugin is now enable [By zEnderX5_]");
               getLogger().info("Website: http://bit.ly/2kC345B");
               Metrics metrics = new Metrics(this);
- 
+              if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            	  getLogger().info("Hooking into PlaceHolderAPI");
+              new PlaceHolderAPIHook(this).hook();
+              getLogger().info("PlaceHolderAPI Hooked Sucefully");
+              }
+
+              
         		
 
 
@@ -165,13 +176,15 @@ FileConfiguration config;
         		} catch (IOException | InvalidConfigurationException e1) {
         			System.out.println(e1.getMessage());
         		}
-
+              }
           		
           		
-}
-{
 
-}
+
+
+
+
+
       	    
       	    
 
@@ -193,7 +206,7 @@ public ConfigUtils getConfigHandler()
 	    getCommand("kitcredits").setExecutor(new KitCredits());
 	    getCommand("dev").setExecutor(new Dev());
 	    getCommand("ksc").setExecutor(new BSC());
-	    getCommand("stats").setExecutor(new Stats());
+	    getCommand("kpstats").setExecutor(new Stats());
 	    getCommand("kp").setExecutor(new KITPVP());
 	    getCommand("adminmode").setExecutor(new AdminMode());
 	   
@@ -209,6 +222,7 @@ public ConfigUtils getConfigHandler()
 	    getCommand("kthor").setExecutor(new ThorKITCOMMAND(this));
 	    getCommand("switcher").setExecutor(new Kits(this));
 	    getCommand("viper").setExecutor(new Viper(this));
+	    getCommand("snail").setExecutor(new Snail(this));
 	    getCommand("warper").setExecutor(new Kits(this));
 	    getCommand("jumper").setExecutor(new Kits(this));
 	    getCommand("wasp").setExecutor(new Kits(this));
@@ -216,12 +230,14 @@ public ConfigUtils getConfigHandler()
 	    getCommand("bomber").setExecutor(new Kits(this));
 	    getCommand("spiderman").setExecutor(new Kits(this));
 	    getCommand("stats").setExecutor(new Stats());
+	    getCommand("kpstats").setExecutor(new KPStats());
 	    getCommand("kitmenu").setExecutor(new Menu(this));
+	    getCommand("kitpvp").setExecutor(new KPStats());
 	    getCommand("kpkits").setExecutor(new Menu(this));
 	    getCommand("kpshop").setExecutor(new Shop(this));
 	    getCommand("kploja").setExecutor(new Shop(this));
 	    getCommand("shopmenu").setExecutor(new Shop(this));
-	    
+	    getCommand("kpkitmenu").setExecutor(new NewKitMenu());
 	    getCommand("kitsc").setExecutor(new StaffChat());
 	    getCommand("kpkit").setExecutor(new Menu(this));
 	    getCommand("kpsetspawn").setExecutor(new kpsetspawn());
@@ -236,6 +252,7 @@ public ConfigUtils getConfigHandler()
 	    getCommand("kitclear").setExecutor(new Kits(this));
 	    getCommand("critical").setExecutor(new Critical(this));
 	    getCommand("kitpvp").setExecutor(new Join(this));
+	    getCommand("naruto").setExecutor(new Naruto(this));
 	    getCommand("monk").setExecutor(new MonkCMD(this));
 	    getCommand("set1v1").setExecutor(new SetX1());
 /*     */   }
@@ -244,8 +261,10 @@ public ConfigUtils getConfigHandler()
 /*  87 */     this.pm.registerEvents(new ThrowTnt(this), this);
 this.pm.registerEvents(new Dublejump(this), this);
               this.pm.registerEvents(new Monk(this), this);
-              
+              this.pm.registerEvents(new InteractEvent(), this);
+              this.pm.registerEvents(new NewKitMenu(), this);
               this.pm.registerEvents(new Sponge(), this);
+              this.pm.registerEvents(new Naruto(this), this);
               this.pm.registerEvents(new Critical(this), this);
 /*  88 */     this.pm.registerEvents(new Menu(this), this);
               this.pm.registerEvents(new NoBreakEvent(), this);
@@ -263,12 +282,12 @@ this.pm.registerEvents(new Dublejump(this), this);
               this.pm.registerEvents(new TimeLord(), this);
 /*  91 */     this.pm.registerEvents(new Soup(this), this);
 /*  92 */     this.pm.registerEvents(new NoDrops(this), this);
-              this.pm.registerEvents(new NoHunger(this), this);
+              this.pm.registerEvents(new NoHunger(), this);
               this.pm.registerEvents(new Gladiator(), this);
               this.pm.registerEvents(new Join(this), this);
               this.pm.registerEvents(new Shop(this), this);
               this.pm.registerEvents(new Stomper(), this);
-              
+              this.pm.registerEvents(new Snail(this), this);
               this.pm.registerEvents(new X1(), this);
               this.pm.registerEvents(new Streak(), this);
               this.pm.registerEvents(new me.RafaelAulerDeMeloAraujo.Listeners.NoExplosion(), this);
@@ -365,7 +384,22 @@ public void save() {
 	 customization = YamlConfiguration.loadConfiguration(Main.customizationf);
  }
 
+public boolean IsOnKitPvP(String name) {
+	return Join.game.contains(name);
 }
+}
+ 
+
+
+
+	
+	
+
+
+
+
+
+
 
 
 

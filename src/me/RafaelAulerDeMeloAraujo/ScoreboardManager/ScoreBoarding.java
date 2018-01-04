@@ -40,18 +40,18 @@ public static void setScoreBoard(Player p)
 
  
   {
-	  SimpleScoreboard scoreboard = new SimpleScoreboard(Main.getPlugin().getConfig().getString("ScorePrefix").replace("&", "ยง"));
+	  SimpleScoreboard scoreboard = new SimpleScoreboard(Main.getPlugin().getConfig().getString("ScorePrefix").replace("&", "ง"));
     
     
 	scoreboard.blankLine();
 	
 	
 	
-    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ยง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreKills").replace("&", "ยง")) + " " + Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".kills").toString()));
-    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ยง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreDeaths").replace("&", "ยง")) + " " + Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".mortes").toString()));
-    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ยง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreStreak").replace("&", "ยง")) + " " + Streak.killstreak.get(p.getName()));
-    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ยง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreCoins").replace("&", "ยง")) + " " + Coins.getCoins(p.getName()));
-    
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreKills").replace("&", "ง")) + " " + Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".kills").toString()));
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreDeaths").replace("&", "ง")) + " " + Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".mortes").toString()));
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreStreak").replace("&", "ง")) + " " + Streak.killstreak.get(p.getName()));
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreCoins").replace("&", "ง")) + " " + Coins.getCoins(p.getName()));
+    scoreboard.add(String.valueOf(Main.getPlugin().getConfig().getString("ScoreArrowColor").replace("&", "ง")) + "\u2794 " + String.valueOf(Main.getPlugin().getConfig().getString("ScoreKit").replace("&", "ง")) + " " + Habilidade.getAbility(p));
    
     
 
@@ -60,7 +60,7 @@ public static void setScoreBoard(Player p)
     
     
     
-    scoreboard.add("ยงc/togglescore");
+    scoreboard.add("งc/togglescore");
     scoreboard.build();
    
     scoreboard.send(new Player[] { p });

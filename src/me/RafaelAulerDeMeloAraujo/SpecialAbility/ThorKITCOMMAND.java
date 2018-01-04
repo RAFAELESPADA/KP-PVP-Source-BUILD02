@@ -1,6 +1,5 @@
 package me.RafaelAulerDeMeloAraujo.SpecialAbility;
 
-
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -16,11 +15,11 @@ import me.RafaelAulerDeMeloAraujo.main.Main;
 
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
 
-public class TimelordCMD implements CommandExecutor {
+public class ThorKITCOMMAND implements CommandExecutor {
 	 private Main main;
 	 /*     */   static Main plugin;
 	 /*     */   
-	 /*     */   public TimelordCMD(Main main) {
+	 /*     */   public ThorKITCOMMAND(Main main) {
 	 /*  27 */     this.main = main;
 	 /*  28 */     plugin = main;
 	 /*     */   }
@@ -30,14 +29,14 @@ public class TimelordCMD implements CommandExecutor {
 
   Player p = (Player)sender;
  
-  if (cmd.getName().equalsIgnoreCase("timelord"))
+  if (cmd.getName().equalsIgnoreCase("kthor"))
   {
 	  if (!Join.game.contains(p.getName()))
       {
           p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to do choose this kit!");
           return true;
-      } 
-    if (!p.hasPermission("kitpvp.kit.timelord"))
+      }  
+    if (!p.hasPermission("kitpvp.kit.thor"))
     {
     	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", commandLabel));
       return true;
@@ -49,7 +48,7 @@ public class TimelordCMD implements CommandExecutor {
           return true;
         }
          p.getInventory().clear();
-         ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
+         ItemStack dima = new ItemStack(Material.IRON_SWORD);
          ItemMeta souperaa = dima.getItemMeta();
          souperaa.setDisplayName("§cSword");
          dima.setItemMeta(souperaa);
@@ -57,9 +56,9 @@ public class TimelordCMD implements CommandExecutor {
          ItemMeta sopas = sopa.getItemMeta();
          sopas.setDisplayName("§6Soup");
          sopa.setItemMeta(sopas);
-         ItemStack especial = new ItemStack(Material.WATCH);
+         ItemStack especial = new ItemStack(Material.GOLD_AXE);
          ItemMeta especial2 = especial.getItemMeta();
-         especial2.setDisplayName("§bFreeze the Time!");
+         especial2.setDisplayName("§cThor Axe!");
          especial.setItemMeta(especial2);
          
          ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
@@ -75,8 +74,8 @@ public class TimelordCMD implements CommandExecutor {
          p.getInventory().setLeggings(calca0);
          p.getInventory().setBoots(Bota0);
     
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "TimeLord").replace("&", "§"));
-    Habilidade.setAbility(p, "TimeLord");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Thor").replace("&", "§"));
+    Habilidade.setAbility(p, "Thor");
     p.getInventory().addItem(new ItemStack[] { dima });
     p.getInventory().addItem(new ItemStack[] { especial });
     
@@ -89,7 +88,7 @@ public class TimelordCMD implements CommandExecutor {
     
   }
   if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "TimeLord").replace("&", "§"));
+	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Thor").replace("&", "§"));
 	  /*     */       }
 	  /*  96 */       return false; }{
   

@@ -33,19 +33,23 @@ public class StomperKITCOMMAND implements CommandExecutor {
   if (cmd.getName().equalsIgnoreCase("stomper"))
   {
 	  
-    if (!p.hasPermission("kitpvp.stomper"))
+    if (!p.hasPermission("kitpvp.kit.stomper"))
     {
     	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", commandLabel));
       return true;
     }
-  
-         if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
+    if (!Join.game.contains(p.getName()))
+    {
+        p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to choose this kit!");
+        return true;
+    }
+         if (Habilidade.ContainsAbility(p)) { 
            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
            p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
           return true;
         }
          p.getInventory().clear();
-         ItemStack dima = new ItemStack(Material.IRON_SWORD);
+         ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
          ItemMeta souperaa = dima.getItemMeta();
          souperaa.setDisplayName("§cSword");
          dima.setItemMeta(souperaa);
@@ -91,3 +95,4 @@ public class StomperKITCOMMAND implements CommandExecutor {
   
 }
 }
+

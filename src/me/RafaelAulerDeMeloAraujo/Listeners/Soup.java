@@ -3,6 +3,8 @@
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 /*    */ 
 /*    */ import me.RafaelAulerDeMeloAraujo.main.Main;
+
+import org.bukkit.Effect;
 /*    */ 
 /*    */ import org.bukkit.Material;
 /*    */ import org.bukkit.Sound;
@@ -23,7 +25,8 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 /* 22 */     this.main = main;
 /*    */   }
 /*    */   
-/*    */   @EventHandler
+/*    */   @SuppressWarnings("deprecation")
+@EventHandler
 /*    */   public void UsarSopa(PlayerInteractEvent e) {
 /* 27 */     if (e.getItem() == null) {
 /* 28 */       return;
@@ -36,11 +39,15 @@ Player p = e.getPlayer();
 /* 35 */        
 /* 36 */         
 /* 37 */         p.setHealth(p.getHealth() + this.vida >= 20.0D ? 20.0D : p.getHealth() + this.vida);
+p.setFoodLevel(20);
+p.getWorld().playEffect(p.getLocation().add(0.0D, 1.5D, 0.0D), Effect.HEART, 7);
 /* 38 */         e.getItem().setType(Material.BOWL);
-                
+
+	
 /*    */       }
 /*    */     }
 /*    */   }
+
 /*    */ 
 
 

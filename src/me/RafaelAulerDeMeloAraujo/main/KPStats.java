@@ -12,11 +12,11 @@ import me.RafaelAulerDeMeloAraujo.Coins.Coins;
 
 import org.bukkit.*;
 
-public class Stats implements CommandExecutor
+public class KPStats implements CommandExecutor
 {
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         final Player p = (Player)sender;
-        /* 21 */     if (cmd.getName().equalsIgnoreCase("stats")) {
+        /* 21 */     if (cmd.getName().equalsIgnoreCase("kpstats")) {
 			
 		    {
             if (args.length == 0) {
@@ -67,6 +67,14 @@ public class Stats implements CommandExecutor
 } {
 		
 }
+  {      
+          
+            
+        
+        
+
+		
+} {
+		
 }
-
-
+}

@@ -78,7 +78,7 @@ implements Listener, CommandExecutor
 					}, 7 * 20L);
 		            return;
 		          }else{
-		        	  p.sendMessage("Â§cThe last player that you hurt are very distant!");
+		        	  p.sendMessage("§cThe last player that you hurt are very distant!");
 		        	  return;
 		          }
 		    }
@@ -88,11 +88,11 @@ implements Listener, CommandExecutor
 		    Player p = (Player)sender;
 		    ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
 		    ItemMeta souperaa = dima.getItemMeta();
-		    souperaa.setDisplayName("Â§cSword");
+		    souperaa.setDisplayName("§cSword");
 		    dima.setItemMeta(souperaa);
 		    ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
 		    ItemMeta sopas = sopa.getItemMeta();
-		    sopas.setDisplayName("Â§6Soup");
+		    sopas.setDisplayName("§6Soup");
 		    sopa.setItemMeta(sopas);
 		    
 		    ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
@@ -106,22 +106,22 @@ implements Listener, CommandExecutor
 		  
 		    
 		    if (cmd.equalsIgnoreCase("ninja")) {
-		    	if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-		            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "Â§"));
+		    	if (Habilidade.ContainsAbility(p)) { 
+		            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
 		            p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 		           return true;
 		         }
 		    	  if (!Join.game.contains(p.getName()))
 		          {
-		              p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eYou are not in kitpvp to choose this kit!");
+		              p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to choose this kit!");
 		              return true;
 		          }
 		      if (!p.hasPermission("kitpvp.kit.ninja")) {
-		    	  p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Permission").replace("&", "Â§").replaceAll("%permisson%", cmd));
+		    	  p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", cmd));
 		        return true;
 		      }
 		      
-		      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Ninja").replace("&", "Â§"));
+		      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Ninja").replace("&", "§"));
 		      p.setGameMode(GameMode.ADVENTURE);
 		      p.getInventory().clear();
 		      Habilidade.setAbility(p, "Ninja");
@@ -139,7 +139,7 @@ implements Listener, CommandExecutor
 		      }
 		    }
 		    if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-			  	  /*  94 */        p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "Â§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Ninja").replace("&", "Â§"));
+			  	  /*  94 */        p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Ninja").replace("&", "§"));
 			  	  /*     */       }
 			  	  /*  96 */       return false; }{
 		    

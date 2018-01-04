@@ -31,10 +31,38 @@ public class Habilidade
     
     public static void setAbility(final Player player, final String ability) {
         Habilidade.powerMap.put(player.getName(), ability);
+       
+        
     }
+    public static boolean ContainsAbility(final Player player) {
+    
+    		 if (Habilidade.getAbility(player) != "None") {
+    			 return true;
+    	            
+    	        }
+			return false;
+    	
+		
+    }
+
+    
+    
+
+    	
+    	
+
+
+    
+
+    		
+    	
+    	
+        
+    
     
     public static void removeAbility(final Player p) {
         Habilidade.powerMap.remove(p.getName());
+        
     }
 }
 

@@ -40,32 +40,35 @@ private Main main;
 
 /*     */   static {
 /*  33 */    
-/*  42 */     createButton(Material.DIAMOND_SWORD, shop, 0, "Â§6\u27a1 Â§cPvP", "Â§ePrice: 4500");
-/*  43 */     createButton(Material.BOW, shop, 1, "Â§6\u27a1 Â§cArcher", "Â§ePrice: 3000");
-/*  44 */     createButton(Material.FLINT_AND_STEEL, shop, 2, "Â§6\u27a1 Â§cPyro", "Â§ePrice: 6000");
-/*  45 */     createButton(Material.DIAMOND_CHESTPLATE, shop, 3, "Â§6\u27a1 Â§cTank", "Â§ePrice: 7000");
-/*  46 */     createButton(Material.SNOW_BALL, shop, 4, "Â§6\u27a1 Â§cSwitcher", "Â§ePrice: 6500");
-/*  47 */     createButton(Material.MAGMA_CREAM, shop, 5, "Â§6\u27a1 Â§cJumper", "Â§ePrice: 8000");
-/*  48 */     createButton(Material.CACTUS, shop, 6, "Â§6\u27a1 Â§cCactus", "Â§ePrice: 4000");
-/*  49 */     createButton(Material.TNT, shop, 7, "Â§6\u27a1 Â§cBomber", "Â§ePrice: 9000");
-/*  50 */     createButton(Material.ENDER_PEARL, shop, 8, "Â§6\u27a1 Â§cWarper", "Â§ePrice: 8000");
+/*  42 */     createButton(Material.DIAMOND_SWORD, shop, 0, "§6\u27a1 §cPvP", "§ePrice: 4500");
+/*  43 */     createButton(Material.BOW, shop, 1, "§6\u27a1 §cArcher", "§ePrice: 3000");
+/*  44 */     createButton(Material.FLINT_AND_STEEL, shop, 2, "§6\u27a1 §cPyro", "§ePrice: 6000");
+/*  45 */     createButton(Material.DIAMOND_CHESTPLATE, shop, 3, "§6\u27a1 §cTank", "§ePrice: 7000");
+/*  46 */     createButton(Material.SNOW_BALL, shop, 4, "§6\u27a1 §cSwitcher", "§ePrice: 6500");
+/*  47 */     createButton(Material.MAGMA_CREAM, shop, 5, "§6\u27a1 §cJumper", "§ePrice: 8000");
+/*  48 */     createButton(Material.CACTUS, shop, 6, "§6\u27a1 §cCactus", "§ePrice: 4000");
+/*  49 */     createButton(Material.TNT, shop, 7, "§6\u27a1 §cBomber", "§ePrice: 9000");
+/*  50 */     createButton(Material.ENDER_PEARL, shop, 8, "§6\u27a1 §cWarper", "§ePrice: 4000");
 /*  51 */     
 /*  52 */     
-/*  54 */     createButton(Material.FISHING_ROD, shop, 9, "Â§6\u27a1 Â§cFisherman", "Â§ePrice: 5000");
+/*  54 */     createButton(Material.FISHING_ROD, shop, 9, "§6\u27a1 §cFisherman", "§ePrice: 5000");
 /*  55 */     
-              createButton(Material.IRON_BOOTS, shop, 10, "Â§6\u27a1 Â§cStomper", "Â§ePrice: 17500");
-              createButton(Material.REDSTONE_BLOCK, shop, 11, "Â§6\u27a1 Â§cDeshfire", "Â§ePrice: 8500");
-              createButton(Material.SPIDER_EYE, shop, 12, "Â§6\u27a1 Â§cViper", "Â§ePrice: 7000");
-              createButton(Material.STRING, shop, 13, "Â§6\u27a1 Â§cSpiderman", "Â§ePrice: 6000");
-              createButton(Material.IRON_FENCE, shop, 14, "Â§6\u27a1 Â§cGladiator", "Â§ePrice: 16000");
-              createButton(Material.FIREWORK, shop, 15, "Â§6\u27a1 Â§cKangaroo", "Â§ePrice: 5000");
-              createButton(Material.COAL, shop, 16, "Â§6\u27a1 Â§cNinja", "Â§ePrice: 6500");
-              createButton(Material.WATCH, shop, 17, "Â§6\u27a1 Â§cTimelord", "Â§ePrice: 7000");
-              createButton(Material.GOLDEN_APPLE, shop, 18, "Â§6\u27a1 Â§cCritical", "Â§ePrice: 8000");
-              createButton(Material.BLAZE_ROD, shop, 19, "Â§6\u27a1 Â§cMonk", "Â§ePrice: 5000");
-              createButton(Material.CHAINMAIL_BOOTS, shop, 20, "Â§6\u27a1 Â§cDoubleJump", "Â§ePrice: 6000");
-              createButton(Material.GOLD_AXE, shop, 21, "Â§6\u27a1 Â§cThor", "Â§ePrice: 7000");
-/*  56 */     createButton(Material.BARRIER, shop, 53, "Â§4Â§l\u2716 Â§cClose", "Â§bClose the menu!");
+              createButton(Material.IRON_BOOTS, shop, 10, "§6\u27a1 §cStomper", "§ePrice: 17500");
+              createButton(Material.REDSTONE_BLOCK, shop, 11, "§6\u27a1 §cDeshfire", "§ePrice: 8500");
+              createButton(Material.SPIDER_EYE, shop, 12, "§6\u27a1 §cViper", "§ePrice: 7000");
+              createButton(Material.STRING, shop, 13, "§6\u27a1 §cSpiderman", "§ePrice: 6000");
+              createButton(Material.IRON_FENCE, shop, 14, "§6\u27a1 §cGladiator", "§ePrice: 16000");
+              createButton(Material.FIREWORK, shop, 15, "§6\u27a1 §cKangaroo", "§ePrice: 5000");
+              createButton(Material.COAL, shop, 16, "§6\u27a1 §cNinja", "§ePrice: 6500");
+              createButton(Material.WATCH, shop, 17, "§6\u27a1 §cTimelord", "§ePrice: 7000");
+              createButton(Material.GOLDEN_APPLE, shop, 18, "§6\u27a1 §cCritical", "§ePrice: 8000");
+              createButton(Material.BLAZE_ROD, shop, 19, "§6\u27a1 §cMonk", "§ePrice: 5000");
+              createButton(Material.CHAINMAIL_BOOTS, shop, 20, "§6\u27a1 §cDoubleJump", "§ePrice: 9500");
+              createButton(Material.GOLD_AXE, shop, 21, "§6\u27a1 §cThor", "§ePrice: 7000");
+              createButton(Material.FERMENTED_SPIDER_EYE, shop, 22, "§6\u27a1 §cSnail", "§ePrice: 6000");
+              createButton(Material.BLAZE_ROD, shop, 23, "§6\u27a1 §cWasp", "§ePrice: 6000");
+              createButton(Material.NETHER_STAR, shop, 24, "§6\u27a1 §cNaruto", "§ePrice: 12500");
+/*  56 */     createButton(Material.BARRIER, shop, 53, "§4§l\u2716 §cClose", "§bClose the menu!");
 /*  57 */     
 /*  58 */     
 /*     */   }
@@ -90,7 +93,7 @@ private Main main;
 /* 258 */       openMenu(e.getPlayer());
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("Â§cYou must be in game to open shop menu!");
+	e.getPlayer().sendMessage("§cYou must be in game to open shop menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 /*     */   }
@@ -104,7 +107,7 @@ if (!Join.game.contains(e.getPlayer().getName()))
 /* 266 */       openMenu(e.getPlayer());
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("Â§cYou must be in game to open shop menu!");
+	e.getPlayer().sendMessage("§cYou must be in game to open shop menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 /*     */   }
@@ -119,7 +122,7 @@ if (!Join.game.contains(e.getPlayer().getName()))
 /* 274 */       openMenu(e.getPlayer());
 /*     */   if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("Â§cYou must be in game to open shop menu!");
+	e.getPlayer().sendMessage("§cYou must be in game to open shop menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 }
@@ -131,7 +134,7 @@ if (!Join.game.contains(e.getPlayer().getName()))
 /* 274 */       openMenu(e.getPlayer());
 /*     */   if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("Â§cYou must be in game to open shop menu!");
+	e.getPlayer().sendMessage("§cYou must be in game to open shop menu!");
 	e.getPlayer().closeInventory();
 /*     */     }
 /*     */   }
@@ -171,15 +174,17 @@ public void kit(InventoryClickEvent e)
 	     
 	      ItemStack clicked = e.getCurrentItem();
 	  {
-		  if (e.getCurrentItem() == null){
-		  }
+	  }
+	  if (((inv.getName().equals(shop.getName())) && e.getCurrentItem() == null))
+			return;
+	  if (((inv.getName().equals(shop.getName()))  &&  e.getCurrentItem().getType()  == (Material.AIR)))
+			return;
 	      if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.BARRIER)) {
 	      p.closeInventory();
-	      p.sendMessage("Â§2Â§l\u2714 Â§aYou close the Shop Menu Successfully!");
+	      p.sendMessage("§2§l\u2714 §aYou close the Shop Menu Successfully!");
 
 	      }
-	      if (e.getCurrentItem() == null){
-          }
+	     
 	      if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.BOW)) {
 	          if (Coins.getCoins(p.getName())  >= 3000)
 	          {
@@ -188,19 +193,41 @@ public void kit(InventoryClickEvent e)
 		        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.archer global");  
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.archer");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.archer true");
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the Archer kit Â§e-3000 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the Archer kit §e-3000 coins");
 	            Coins.removeCoins(p.getName(), 3000);
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
 	          
-	          else if (Coins.getCoins(p.getName()) < 3000)
+	          else if (Coins.getCoins(p.getName()) < 9000)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
 	        }
+	      if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.NETHER_STAR)) {
+	          if (Coins.getCoins(p.getName())  >= 12500)
+	          {
+	        	  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "permissions player " + p.getName() + " set kitpvp.kit.naruto");  
+	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.naruto local");
+		        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.naruto global");  
+	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.naruto");
+	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.naruto true");
+	            p.sendMessage("§6\u27a1 §cYou buy the Naruto kit §e-12500 coins");
+	            Coins.removeCoins(p.getName(), 12500);
+	            e.setCancelled(true);
+	            p.closeInventory();
+	          }
+	          
+	          else if (Coins.getCoins(p.getName()) < 12500)
+	          {
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
+	            e.setCancelled(true);
+	            p.closeInventory();
+	          }
+	        }
+	 
 	 
 	      if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.DIAMOND_SWORD)) {
 	          if (Coins.getCoins(p.getName())  >= 4500)
@@ -210,7 +237,7 @@ public void kit(InventoryClickEvent e)
 		        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.pvp global");  
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.pvp");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.pvp true");
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the PvP kit Â§e-3500 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the PvP kit §e-3500 coins");
 	            Coins.removeCoins(p.getName(), 4500);
 	            e.setCancelled(true);
 	            p.closeInventory();
@@ -218,7 +245,7 @@ public void kit(InventoryClickEvent e)
 	          
 	          else if (Coins.getCoins(p.getName()) < 4500)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
@@ -232,7 +259,7 @@ public void kit(InventoryClickEvent e)
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.ninja");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.ninja true");
 	            
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the Ninja kit Â§e-6500 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the Ninja kit §e-6500 coins");
 	            Coins.removeCoins(p.getName(), 6500);
 	            e.setCancelled(true);
 	            p.closeInventory();
@@ -240,18 +267,13 @@ public void kit(InventoryClickEvent e)
 	          
 	          else if (Coins.getCoins(p.getName()) < 6500)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
 	        }
-	      /* 169 */    if ((inv.getName().equals(shop.getName())) && (clicked.getType() == null)){
 
-	    	  /* 170 */       e.setCancelled(true);
-	    	  /* 171 */      
-	    	  /* 173 */       return;
-	    	  /*     */      }
-	      if ((inv.getName().equals(shop.getName())) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("Â§6\u27a1 Â§cMonk"))) {
+	      if ((inv.getName().equals(shop.getName())) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cMonk"))) {
 	          if (Coins.getCoins(p.getName())  >= 5000)
 	          {
 	        	  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "permissions player " + p.getName() + " set kitpvp.kit.monk");  
@@ -260,7 +282,7 @@ public void kit(InventoryClickEvent e)
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.monk");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.monk true");
 	            
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the Monk kit Â§e-5000 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the Monk kit §e-5000 coins");
 	            Coins.removeCoins(p.getName(), 5000);
 	            e.setCancelled(true);
 	            p.closeInventory();
@@ -268,7 +290,29 @@ public void kit(InventoryClickEvent e)
 	          
 	          else if (Coins.getCoins(p.getName()) < 5000)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
+	            e.setCancelled(true);
+	            p.closeInventory();
+	          }
+	        }
+	      if ((inv.getName().equals(shop.getName())) && (e.getCurrentItem().getItemMeta().getDisplayName().equals("§6\u27a1 §cWasp"))) {
+	          if (Coins.getCoins(p.getName())  >= 6000)
+	          {
+	        	  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "permissions player " + p.getName() + " set kitpvp.kit.wasp");  
+	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.wasp local");
+		        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.wasp global");  
+	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.wasp");
+	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.wasp true");
+	            
+	            p.sendMessage("§6\u27a1 §cYou buy the Wasp kit §e-6000 coins");
+	            Coins.removeCoins(p.getName(), 6000);
+	            e.setCancelled(true);
+	            p.closeInventory();
+	          }
+	          
+	          else if (Coins.getCoins(p.getName()) < 6000)
+	          {
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
@@ -282,7 +326,7 @@ public void kit(InventoryClickEvent e)
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.gladiator");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.gladiator true");
 	            
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the Gladiator kit Â§e-16000 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the Gladiator kit §e-16000 coins");
 	            Coins.removeCoins(p.getName(), 16000);
 	            e.setCancelled(true);
 	            p.closeInventory();
@@ -290,7 +334,7 @@ public void kit(InventoryClickEvent e)
 	          
 	          else if (Coins.getCoins(p.getName()) < 16000)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
@@ -304,7 +348,7 @@ public void kit(InventoryClickEvent e)
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.kangaroo");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.kangaroo true");
 	            
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the Kangaroo kit Â§e-5000 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the Kangaroo kit §e-5000 coins");
 	            Coins.removeCoins(p.getName(), 5000);
 	            e.setCancelled(true);
 	            p.closeInventory();
@@ -312,7 +356,7 @@ public void kit(InventoryClickEvent e)
 	          
 	          else if (Coins.getCoins(p.getName()) < 5000)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
@@ -326,7 +370,7 @@ public void kit(InventoryClickEvent e)
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.spiderman");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.spiderman true");
 	            
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the PvP kit Â§e-6000 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the PvP kit §e-6000 coins");
 	            Coins.removeCoins(p.getName(), 6000);
 	            e.setCancelled(true);
 	            p.closeInventory();
@@ -334,7 +378,7 @@ public void kit(InventoryClickEvent e)
 	          
 	          else if (Coins.getCoins(p.getName()) < 6000)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
@@ -348,7 +392,7 @@ public void kit(InventoryClickEvent e)
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.viper");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.viper true");
 	            
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the Viper kit Â§e-7000 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the Viper kit §e-7000 coins");
 	            Coins.removeCoins(p.getName(), 7000);
 	            e.setCancelled(true);
 	            p.closeInventory();
@@ -356,7 +400,7 @@ public void kit(InventoryClickEvent e)
 	          
 	          else if (Coins.getCoins(p.getName()) < 7000)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
@@ -370,7 +414,7 @@ public void kit(InventoryClickEvent e)
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.thor");
 	            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.thor true");
 	            
-	            p.sendMessage("Â§6\u27a1 Â§cYou buy the Thor kit Â§e-7000 coins");
+	            p.sendMessage("§6\u27a1 §cYou buy the Thor kit §e-7000 coins");
 	            Coins.removeCoins(p.getName(), 7000);
 	            e.setCancelled(true);
 	            p.closeInventory();
@@ -378,14 +422,14 @@ public void kit(InventoryClickEvent e)
 	          
 	          else if (Coins.getCoins(p.getName()) < 7000)
 	          {
-	            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+	            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 	            e.setCancelled(true);
 	            p.closeInventory();
 	          }
 	        }
 	      if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.BARRIER)) {
 		      p.closeInventory();
-		      p.sendMessage("Â§2Â§l\u2714 Â§aYou close the Shop Menu Successfully!");
+		      p.sendMessage("§2§l\u2714 §aYou close the Shop Menu Successfully!");
 
 		      }
 		      if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.REDSTONE_BLOCK)) {
@@ -397,7 +441,7 @@ public void kit(InventoryClickEvent e)
 		            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.deshfire");
 		            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.deshfire true");
 		            
-		            p.sendMessage("Â§6\u27a1 Â§cYou buy the Deshfire kit Â§e-8500 coins");
+		            p.sendMessage("§6\u27a1 §cYou buy the Deshfire kit §e-8500 coins");
 		            Coins.removeCoins(p.getName(), 8500);
 		            e.setCancelled(true);
 		            p.closeInventory();
@@ -405,7 +449,7 @@ public void kit(InventoryClickEvent e)
 		          
 		          else if (Coins.getCoins(p.getName()) < 8500)
 		          {
-		            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+		            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 		            e.setCancelled(true);
 		            p.closeInventory();
 		          }
@@ -427,18 +471,40 @@ public void kit(InventoryClickEvent e)
 		            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.pyro");
 		            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.pyro true");
 		            
-		            p.sendMessage("Â§6\u27a1 Â§cYou buy the Pyro kit Â§e-6000 coins");
+		            p.sendMessage("§6\u27a1 §cYou buy the Pyro kit §e-6000 coins");
 		            Coins.removeCoins(p.getName(), 6000);
 		            e.setCancelled(true);
 		            p.closeInventory();
 		          }
 		          else if (Coins.getCoins(p.getName()) < 6000)
 		          {
-		            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+		            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 		            e.setCancelled(true);
 		            p.closeInventory();
 		          }
 		        }
+		   {
+			   if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.FERMENTED_SPIDER_EYE)) {
+			          if (Coins.getCoins(p.getName())  >= 6000)
+			          {
+			        	  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "permissions player " + p.getName() + " set kitpvp.kit.snail");  
+			            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.snail local");
+				        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.snail global");  
+			            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.snail");
+			            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.snail true");
+			            
+			            p.sendMessage("§6\u27a1 §cYou buy the Snail kit §e-6000 coins");
+			            Coins.removeCoins(p.getName(), 6000);
+			            e.setCancelled(true);
+			            p.closeInventory();
+			          }
+			          else if (Coins.getCoins(p.getName()) < 6000)
+			          {
+			            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
+			            e.setCancelled(true);
+			            p.closeInventory();
+			          }
+			        }
 		   {
 			   if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.DIAMOND_CHESTPLATE)) {
 			          if (Coins.getCoins(p.getName())  >= 7000)
@@ -449,14 +515,14 @@ public void kit(InventoryClickEvent e)
 			            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.tank");
 			            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.tank true");
 			            
-			            p.sendMessage("Â§6\u27a1 Â§cYou buy the Tank kit Â§e-7000 coins");
+			            p.sendMessage("§6\u27a1 §cYou buy the Tank kit §e-7000 coins");
 			            Coins.removeCoins(p.getName(), 7000);
 			            e.setCancelled(true);
 			            p.closeInventory();
 			          }
 			          else if (Coins.getCoins(p.getName()) < 7000)
 			          {
-			            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+			            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 			            e.setCancelled(true);
 			            p.closeInventory();
 			          }
@@ -471,14 +537,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.timelord");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.timelord true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Timelord kit Â§e-7000 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the Timelord kit §e-7000 coins");
 				            Coins.removeCoins(p.getName(), 7000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 7000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -493,14 +559,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.switcher");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.switcher true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Switcher kit Â§e-6000 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the Switcher kit §e-6000 coins");
 				            Coins.removeCoins(p.getName(), 6000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 6000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -514,14 +580,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.jumper");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.jumper true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the JUMPER kit Â§e-8000 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the JUMPER kit §e-8000 coins");
 				            Coins.removeCoins(p.getName(), 8000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 8000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -535,14 +601,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.cactus");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.cactus true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Cactus kit Â§e-4000 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the Cactus kit §e-4000 coins");
 				            Coins.removeCoins(p.getName(), 4000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 4000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -556,20 +622,20 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.bomber");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.bomber true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Bomber kit Â§e-9000 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the Bomber kit §e-9000 coins");
 				            Coins.removeCoins(p.getName(), 9000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 9000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				        }
 				   if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.ENDER_PEARL)) {
-				          if (Coins.getCoins(p.getName())  >= 8000)
+				          if (Coins.getCoins(p.getName())  >= 4000)
 				          {
 				        	  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "permissions player " + p.getName() + " set kitpvp.kit.warper");  
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.warper local");
@@ -577,14 +643,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.warper");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.warper true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Warper kit Â§e-8000 coins");
-				            Coins.removeCoins(p.getName(), 8000);
+				            p.sendMessage("§6\u27a1 §cYou buy the Warper kit §e-4000 coins");
+				            Coins.removeCoins(p.getName(), 4000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
-				          else if (Coins.getCoins(p.getName()) < 8000)
+				          else if (Coins.getCoins(p.getName()) < 4000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -598,14 +664,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.critical");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.critical true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Critical kit Â§e-8000 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the Critical kit §e-8000 coins");
 				            Coins.removeCoins(p.getName(), 8000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 8000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -619,14 +685,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.fisherman");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.fisherman true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Fisherman kit Â§e-5000 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the Fisherman kit §e-5000 coins");
 				            Coins.removeCoins(p.getName(), 5000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 5000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -640,20 +706,20 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.freezer");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.freezer true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Freezer kit Â§e-5000 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the Freezer kit §e-5000 coins");
 				            Coins.removeCoins(p.getName(), 6000);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 6000)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				        }
 				   if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.CHAINMAIL_BOOTS)) {
-				          if (Coins.getCoins(p.getName())  >= 6000)
+				          if (Coins.getCoins(p.getName())  >= 9500)
 				          {
 				        	  Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "permissions player " + p.getName() + " set kitpvp.kit.doublejump");  
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.doublejump local");
@@ -661,14 +727,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.doublejump");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.doublejump true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the DoubleJump kit Â§e-6000 coins");
-				            Coins.removeCoins(p.getName(), 6000);
+				            p.sendMessage("§6\u27a1 §cYou buy the DoubleJump kit §e-9500 coins");
+				            Coins.removeCoins(p.getName(), 9500);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
-				          else if (Coins.getCoins(p.getName()) < 6000)
+				          else if (Coins.getCoins(p.getName()) < 9500)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -682,14 +748,14 @@ public void kit(InventoryClickEvent e)
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.stomper");
 				            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.stomper true");
 				            
-				            p.sendMessage("Â§6\u27a1 Â§cYou buy the Stomper kit Â§e-17500 coins");
+				            p.sendMessage("§6\u27a1 §cYou buy the Stomper kit §e-17500 coins");
 				            Coins.removeCoins(p.getName(), 17500);
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
 				          else if (Coins.getCoins(p.getName()) < 17500)
 				          {
-				            p.sendMessage("Â§4Â§l\u2716 You dont have Money to buy this kit!");
+				            p.sendMessage("§4§l\u2716 You dont have Money to buy this kit!");
 				            e.setCancelled(true);
 				            p.closeInventory();
 				          }
@@ -700,7 +766,8 @@ public void kit(InventoryClickEvent e)
 	      }
 	      }
 	      }
-	  }
+	      }
+	  
 
 	   
 
@@ -712,9 +779,9 @@ public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[]
 	return false;
 }
   {
- ItemStack vidro = new ItemStack(Material.THIN_GLASS);
+ ItemStack vidro = new ItemStack(Material.STAINED_GLASS_PANE,1,(short)5);
 	ItemMeta vidro2 = vidro.getItemMeta();
-	vidro2.setDisplayName("Â§bÂ§k===");
+	vidro2.setDisplayName("§bIf you buy a kit you need to relog to receive them");
 	vidro.setItemMeta(vidro2);
 ItemStack[] arrayOfItemStack;
 int descpyro1 = (arrayOfItemStack = shop.getContents()).length;

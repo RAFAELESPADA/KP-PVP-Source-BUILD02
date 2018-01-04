@@ -7,6 +7,8 @@
 /*    */ import org.bukkit.entity.Player;
 /*    */ import org.bukkit.entity.Snowball;
 /*    */ import org.bukkit.event.entity.EntityDamageByEntityEvent;
+
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
 /*    */ 
 /*    */ public class Switcher implements org.bukkit.event.Listener
 /*    */ {
@@ -14,7 +16,7 @@
 /*    */   public void playerDamage(EntityDamageByEntityEvent e)
 /*    */   {
 /*    */     Snowball s;
-/* 17 */     if (((e.getEntity() instanceof Player)) && ((e.getEntity() instanceof Player)) && ((e.getDamager() instanceof Snowball)) && (((s = (Snowball)e.getDamager()).getShooter() instanceof Player))) {
+/* 17 */     if (((e.getEntity() instanceof Player)) && ((e.getEntity() instanceof Player)) && ((e.getDamager() instanceof Snowball)) && (((s = (Snowball)e.getDamager()).getShooter() instanceof Player) && Habilidade.getAbility((Player)s.getShooter()) == "Switcher")) {
 /* 18 */       Player p = (Player)s.getShooter();
 /* 19 */       Player p2 = (Player)e.getEntity();
 /* 20 */       p2.playSound(p2.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);

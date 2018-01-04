@@ -86,7 +86,7 @@ public class Join implements CommandExecutor, Listener {
 	    {
 	      if (args.length == 0)
 	      {
-	        sender.sendMessage(ChatColor.DARK_AQUA + " ----------" + ChatColor.AQUA + " KP-PVP COMMANDS " + ChatColor.DARK_AQUA + ChatColor.STRIKETHROUGH + "----------");
+	        sender.sendMessage(ChatColor.DARK_AQUA +  "§m-----------" + ChatColor.AQUA + " KP-PVP COMMANDS " + ChatColor.DARK_AQUA + ChatColor.STRIKETHROUGH + "-------------");
 	        sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Main command");
 	        sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "join" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Join the kitpvp!");
 	        sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "leave" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Leave the kitpvp!");
@@ -95,8 +95,9 @@ public class Join implements CommandExecutor, Listener {
 	        sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "1v1" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Join kitpvp 1v1!");
 	       
 	        sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "score" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Toggle scoreboard on or off");
+	        
 	        sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kp" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "View command list");
-	        sender.sendMessage(ChatColor.DARK_AQUA + " --------------------------");
+	        sender.sendMessage(ChatColor.DARK_AQUA + "§m------------------------------------------");
 	        return true;
 	      }
 	      if (!this.commands.contains(args[0].toLowerCase()))
@@ -110,14 +111,14 @@ public class Join implements CommandExecutor, Listener {
 	        {
 	            if (Join.game.contains(sender.getName()))
 	            {
-	                sender.sendMessage(String.valueOf((this.main.getConfig().getString("Prefix").replace("&", "Â§")) + "Â§cYou are already on kitpvp!"));
+	                sender.sendMessage(String.valueOf((this.main.getConfig().getString("Prefix").replace("&", "§")) + "§cYou are already on kitpvp!"));
 	                return true;
 	            }
 	          Player p = (Player)sender;
 	        
 	          
-	            p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eYou join on the kitpvp"));
-	            p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eType /kitpvp to view commands"));
+	            p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou join on the kitpvp"));
+	            p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eType /kitpvp to view commands"));
 	            
 	           
 	           	  
@@ -157,10 +158,10 @@ public class Join implements CommandExecutor, Listener {
 	              
 		            p.getInventory().clear();
 		              p.getInventory().setArmorContents(null);
-		       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "Â§aKit menu Â§7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "Â§") }))) });
+		       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "§aKit menu §7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
 		        ItemStack kits = new ItemStack(Material.EMERALD);
 		        ItemMeta kits2 = kits.getItemMeta();
-		        kits2.setDisplayName("Â§bÂ§lShop Menu");
+		        kits2.setDisplayName("§b§lShop Menu");
 		        kits.setItemMeta(kits2);
 		        p.getInventory().addItem(kits);  
 		       
@@ -216,7 +217,7 @@ Habilidade.removeAbility(p);
   
 
   Cooldown.remove(p);
-  p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§aYou leave the kitpvp"));
+  p.sendMessage((String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §aYou leave the kitpvp"));
 p.getInventory().clear();
 p.teleport(saveworld.get(p.getName()));
 p.getInventory().setContents(saveinv.get(p.getName()));
@@ -240,7 +241,7 @@ return false;
 X1.entrar1v1(p);
 if (!Join.game.contains(e.getPlayer().getName()))
 {
-	e.getPlayer().sendMessage("Â§cYou must be in game to join 1v1!");
+	e.getPlayer().sendMessage("§cYou must be in game to join 1v1!");
 	e.setCancelled(true);
 }
 

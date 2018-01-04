@@ -1,4 +1,5 @@
 /*    */ package me.RafaelAulerDeMeloAraujo.Listeners;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
 /*    */ 
 /*    */ import me.RafaelAulerDeMeloAraujo.main.Main;
 /*    */ import org.bukkit.Location;
@@ -31,7 +32,7 @@
 /* 31 */     handLocation.setY(handLocation.getY() + 1.0D);
 /* 32 */     Vector direction = handLocation.getDirection();
 /* 33 */     Entity entity = null;
-/* 34 */     if (((a.equals(Action.RIGHT_CLICK_AIR)) || (a.equals(Action.RIGHT_CLICK_BLOCK))) && (p.getItemInHand().getType() == Material.TNT)) {
+/* 34 */     if (((a.equals(Action.RIGHT_CLICK_AIR)) || (a.equals(Action.RIGHT_CLICK_BLOCK))) && (p.getItemInHand().getType() == Material.TNT) && Habilidade.getAbility(p) == "Bomber") {
 /* 35 */       entity = world.spawn(handLocation, TNTPrimed.class);
 /* 36 */       entity.setVelocity(direction.multiply(speedFactor));
 /* 37 */       player.getInventory().removeItem(new ItemStack[] { new ItemStack(Material.TNT, 1) });

@@ -127,7 +127,7 @@ import me.RafaelAulerDeMeloAraujo.main.Main;
 	    {
 	      this.killstreak.put(name, Integer.valueOf(1));
 	      killer.playSound(killer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
-	      killer.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " You're on a " + ChatColor.RED + "1" + ChatColor.WHITE + " Killstreak.");
+	      killer.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " You're on a " + ChatColor.RED + "1" + ChatColor.WHITE + " Killstreak.");
 	    }
 	  }
 	}

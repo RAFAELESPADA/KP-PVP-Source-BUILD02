@@ -22,13 +22,13 @@ import me.RafaelAulerDeMeloAraujo.main.Main;
 
 
 
-public class Viper 
+public class Snail 
 implements Listener, CommandExecutor
 {
 	 private Main main;
 	 /*     */   static Main plugin;
 	 /*     */   
-	 /*     */   public Viper(Main main) {
+	 /*     */   public Snail(Main main) {
 	 /*  27 */     this.main = main;
 	 /*  28 */     plugin = main;
 	 /*     */   }
@@ -40,12 +40,12 @@ implements Listener, CommandExecutor
 	    {
 	      LivingEntity entity = (LivingEntity)e.getEntity();
 	      Player p = (Player)e.getDamager();
-	      if (Habilidade.getAbility(p).equalsIgnoreCase("Viper"))
+	      if (Habilidade.getAbility(p).equalsIgnoreCase("Snail"))
 	      {
 	        Random rand = new Random();
 	        int percent = rand.nextInt(100);
 	        if (percent <= 33){
-		          entity.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 160, 1));
+		          entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 160, 1));
 	          return;
 	        }
 	        return;
@@ -68,7 +68,7 @@ implements Listener, CommandExecutor
 	    
 	    
 	    
-	    if (cmd.equalsIgnoreCase("viper")) {
+	    if (cmd.equalsIgnoreCase("snail")) {
 	    	if (Habilidade.ContainsAbility(p)) { 
 	            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
 	            p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
@@ -79,15 +79,15 @@ implements Listener, CommandExecutor
 	              p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to do choose this kit!");
 	              return true;
 	          }
-	      if (!p.hasPermission("kitpvp.kit.viper")) {
+	      if (!p.hasPermission("kitpvp.kit.snail")) {
 	    	  p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", cmd));
 	        return true;
 	      }
 	     
-	      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Viper").replace("&", "§"));
+	      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Snail").replace("&", "§"));
 	      p.setGameMode(GameMode.ADVENTURE);
 	      p.getInventory().clear();
-	      Habilidade.setAbility(p, "Viper");
+	      Habilidade.setAbility(p, "Snail");
 	      ItemStack capacete0 = new ItemStack(Material.LEATHER_HELMET);
 		    
 		    ItemStack peitoral0 = new ItemStack(Material.IRON_CHESTPLATE);
@@ -108,7 +108,7 @@ implements Listener, CommandExecutor
 	      }
 	    }
 	    if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-	  	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Viper").replace("&", "§"));
+	  	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Snail").replace("&", "§"));
 	  	  /*     */       }
 	  	  /*  96 */
 		return false;      
@@ -120,4 +120,3 @@ implements Listener, CommandExecutor
 }
 
 	  
-		  

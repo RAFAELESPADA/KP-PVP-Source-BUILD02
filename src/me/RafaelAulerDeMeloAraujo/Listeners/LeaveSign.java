@@ -35,7 +35,7 @@ public class LeaveSign
   @EventHandler
   public void onSignChange(SignChangeEvent e)
   {
-    if (e.getLine(0).equalsIgnoreCase("[kp]") && (e.getLine(1).equalsIgnoreCase("leave") && e.getPlayer().hasPermission("kitpvp.createsigns")))
+    if (e.getLine(0).equalsIgnoreCase("[kp]") && (e.getLine(1).equalsIgnoreCase("leave")) && e.getPlayer().hasPermission("kitpvp.createsigns"))
     {
       e.setLine(0, "§4=-=()=-=");
       e.setLine(1, "§2Leave");
@@ -59,7 +59,7 @@ public class LeaveSign
 		        (lines.length > 1) && (lines[1].equals("§2Leave")) && 
 		        (lines.length > 2) && (lines[2].equals("§bKitPvP!")) && 
 		        (lines.length > 3) && (lines[3].equals("§4=-=()=-="))) {
-		    	  p.performCommand("kitpvp leave");
+		    	  p.chat("/kitpvp leave");
 		      }
   }
   }

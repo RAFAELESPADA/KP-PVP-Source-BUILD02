@@ -45,7 +45,7 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 /*     */   {
 	 ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
      ItemMeta sopas = sopa.getItemMeta();
-     sopas.setDisplayName("ยง6Soup");
+     sopas.setDisplayName("ง6Soup");
      sopa.setItemMeta(sopas);
 /*  34 */     if (!(sender instanceof Player)) {
 /*  35 */       sender.sendMessage("[KitPvP] This command is only for players");
@@ -56,18 +56,18 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 /*  40 */     if (cmd.getName().equalsIgnoreCase("kitclear")) {
     if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf("ยงcYou are not in kitpvp to do this!"));
+    p.sendMessage(String.valueOf("งcYou are not in kitpvp to do this!"));
     return true;
 }
     {
 /*  41 */       if (!sender.hasPermission("kitpvp.kitclear")) {
-/*  42 */        p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/*  42 */        p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /*  43 */         return true;
 /*     */       }
 /*  45 */       for (PotionEffect effect : s.getActivePotionEffects()) {
 /*  46 */         s.removePotionEffect(effect.getType());
 /*     */       }
-/*  48 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Clear").replace("&", "ยง"));
+/*  48 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Clear").replace("&", "ง"));
 /*  49 */       p.getInventory().clear();
 /*  50 */       s.getInventory().setHelmet(new ItemStack(Material.AIR));
 /*  51 */       s.getInventory().setChestplate(new ItemStack(Material.AIR));
@@ -89,10 +89,10 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
                 
 /*  52 */       s.getInventory().setLeggings(new ItemStack(Material.AIR));
 /*  53 */       s.getInventory().setBoots(new ItemStack(Material.AIR));
-p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "ยงaKit menu ยง7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "ยง") }))) });
+p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "งaKit menu ง7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "ง") }))) });
 ItemStack kits = new ItemStack(Material.EMERALD);
 ItemMeta kits2 = kits.getItemMeta();
-kits2.setDisplayName("ยงbยงlShop Menu");
+kits2.setDisplayName("งbงlShop Menu");
 kits.setItemMeta(kits2);
 p.getInventory().addItem(kits);
 
@@ -106,20 +106,20 @@ p.getInventory().addItem(kits);
   
 /*  58 */     if (cmd.getName().equalsIgnoreCase("kpvp")) {
 /*  59 */       if (!sender.hasPermission("kitpvp.kit.pvp")) {
-/*  60 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/*  60 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /*  61 */         return true;
 /*     */       }
-/*  63 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/*  64 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/*  63 */       if (Habilidade.ContainsAbility(p)) {
+/*  64 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /*  65 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /*  66 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to choose this kit!");
+    s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to choose this kit!");
     return true;
 }
-/*  68 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "PvP").replace("&", "ยง"));
+/*  68 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "PvP").replace("&", "ง"));
 /*  69 */       s.getInventory().clear();
 /*  70 */       s.setHealth(20.0D);
 /*  71 */       s.setFoodLevel(20);
@@ -134,7 +134,7 @@ colete.addEnchantment(Enchantment.DURABILITY, 3);
 /*  75 */       ItemStack colete1 = new ItemStack(Material.IRON_HELMET);
 /*  76 */       colete1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
 colete1.addEnchantment(Enchantment.DURABILITY, 3);
-/*  77 */      
+/*  77 */      Habilidade.setAbility(s, "PvP");
 /*  75 */       ItemStack calcinhasuja = new ItemStack(Material.IRON_LEGGINGS);
 
 calcinhasuja.addEnchantment(Enchantment.DURABILITY, 3);
@@ -154,29 +154,30 @@ for (int i = 0; i <= 34; i++) {
 /*  91 */       
 /*  92 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /*  93 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/*  94 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "PvP").replace("&", "ยง"));
+/*  94 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "PvP").replace("&", "ง"));
 /*     */       }
 /*  96 */       return true; }
 /*     */     Object meta;
 /*  98 */     if (cmd.getName().equalsIgnoreCase("warper")) {
 /*  99 */       if (!sender.hasPermission("kitpvp.kit.warper")) {
-/* 100 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 100 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 101 */         return true;
 /*     */       }
-/* 103 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 104 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 103 */       if (Habilidade.ContainsAbility(p)) {
+/* 104 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 105 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 106 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 108 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Warper").replace("&", "ยง"));
+/* 108 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Warper").replace("&", "ง"));
 /* 109 */       s.getInventory().clear();
 /* 110 */       s.setHealth(20.0D);
 /* 111 */       s.setFoodLevel(20);
+Habilidade.setAbility(s, "Warper");
 /* 112 */       for (PotionEffect effect : s.getActivePotionEffects()) {
 /* 113 */         s.removePotionEffect(effect.getType());
 /*     */       }
@@ -198,29 +199,30 @@ for (int i = 0; i <= 34; i++) {
 /* 133 */       s.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
 /* 134 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 135 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 136 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Warper").replace("&", "ยง"));
+/* 136 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Warper").replace("&", "ง"));
 /*     */       }
 /* 138 */       return true; }
 /*     */     Object meta1;
 /* 140 */     if (cmd.getName().equalsIgnoreCase("Switcher")) {
 /* 141 */       if (!sender.hasPermission("kitpvp.kit.switcher")) {
-/* 142 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 142 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 143 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 145 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 146 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 145 */       if (Habilidade.ContainsAbility(p)) {
+/* 146 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 147 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 148 */         return true;
 /*     */       }
-/* 150 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Switcher").replace("&", "ยง"));
+/* 150 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Switcher").replace("&", "ง"));
 /* 151 */       s.getInventory().clear();
 /* 152 */       s.setHealth(20.0D);
 /* 153 */       s.setFoodLevel(20);
+Habilidade.setAbility(s, "Switcher");
 /* 154 */       for (meta1 = s.getActivePotionEffects().iterator(); ((Iterator)meta1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta1).next();
 /* 155 */         s.removePotionEffect(effect.getType());
 /*     */       }
@@ -241,28 +243,29 @@ for (int i = 0; i <= 34; i++) {
 /* 174 */       s.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
 /* 175 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 176 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 177 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Switcher").replace("&", "ยง"));
+/* 177 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Switcher").replace("&", "ง"));
 /*     */       }
 /* 179 */       return true; }
 /*     */     Object bow;
 /* 181 */     if (cmd.getName().equalsIgnoreCase("archer")) {
 /* 182 */       if (!sender.hasPermission("kitpvp.kit.archer")) {
-/* 183 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 183 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 184 */         return true;
 /*     */       }
-/* 186 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 187 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 186 */       if (Habilidade.ContainsAbility(p)) {
+/* 187 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 188 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 189 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 191 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Archer").replace("&", "ยง"));
+/* 191 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Archer").replace("&", "ง"));
 /* 192 */       s.getInventory().clear();
 /* 193 */       s.setHealth(20.0D);
+Habilidade.setAbility(s, "Archer");
 /* 194 */       s.setFoodLevel(20);
 /* 195 */       for (meta1 = s.getActivePotionEffects().iterator(); ((Iterator)meta1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta1).next();
 /* 196 */         s.removePotionEffect(effect.getType());
@@ -294,26 +297,26 @@ Peitoral.setItemMeta(kPeitoral);
 s.getInventory().setChestplate(Peitoral);
 /* 216 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 217 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 218 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Archer").replace("&", "ยง"));
+/* 218 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Archer").replace("&", "ง"));
 /*     */       }
 /* 220 */       return true; }
 /*     */     Object bow1; 
 /* 222 */     if (cmd.getName().equalsIgnoreCase("pyro")) {
 /* 223 */       if (!sender.hasPermission("kitpvp.kit.pyro")) {
-/* 224 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 224 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 225 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 227 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 228 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 227 */       if (Habilidade.ContainsAbility(p)) {
+/* 228 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 229 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 230 */         return true;
 /*     */       }
-/* 232 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Pyro").replace("&", "ยง"));
+/* 232 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Pyro").replace("&", "ง"));
 /* 233 */       s.getInventory().clear();
 /* 234 */       s.setHealth(20.0D);
 /* 235 */       s.setFoodLevel(20);
@@ -342,46 +345,47 @@ for (int i = 0; i <= 33; i++) {
 /* 257 */       LeatherArmorMeta meta11 = (LeatherArmorMeta)tunic.getItemMeta();
 /* 258 */       meta11.setColor(Color.YELLOW);
 /* 259 */       tunic.setItemMeta(meta11);
+Habilidade.setAbility(s, "Pyro");
 /* 260 */       s.getEquipment().setHelmet(tunic);
 /* 261 */       s.getInventory().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 /* 262 */       s.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 /* 263 */       s.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
 /* 264 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 265 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 266 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Pyro").replace("&", "ยง"));
+/* 266 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Pyro").replace("&", "ง"));
 /*     */       }
 /* 268 */       return true;
 /*     */     }
 /* 270 */     if (cmd.getName().equalsIgnoreCase("Tank")) {
 /* 271 */       if (!sender.hasPermission("kitpvp.kit.tank")) {
-/* 272 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 272 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 273 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 275 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 276 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 275 */       if (Habilidade.ContainsAbility(p)) {
+/* 276 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 277 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 278 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 280 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Tank").replace("&", "ยง"));
+/* 280 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Tank").replace("&", "ง"));
 /* 281 */       s.getInventory().clear();
 /* 282 */       s.setHealth(20.0D);
 /* 283 */       s.setFoodLevel(20);
 /* 284 */       for (bow1 = s.getActivePotionEffects().iterator(); ((Iterator)bow1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)bow1).next();
 /* 285 */         s.removePotionEffect(effect.getType());
 /*     */       }
-/* 287 */       ItemStack sword4 = new ItemStack(Material.WOOD_SWORD);
+/* 287 */       ItemStack sword4 = new ItemStack(Material.IRON_SWORD);
 /* 288 */       sword4.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 289 */       sword4.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
+/* 289 */       
 /* 290 */       s.getInventory().addItem(new ItemStack[] { sword4 });
 for (int i = 0; i <= 34; i++) {
     s.getInventory().addItem(new ItemStack[] { sopa });
@@ -391,29 +395,30 @@ for (int i = 0; i <= 34; i++) {
 /* 300 */       s.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
 /* 301 */       s.getInventory().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
 /* 302 */       s.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
+Habilidade.setAbility(s, "Tank");
 /* 303 */       s.addPotionEffect(new PotionEffect(org.bukkit.potion.PotionEffectType.SLOW, 999999999, 2));
 /* 304 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 305 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 306 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Tank").replace("&", "รยง"));
+/* 306 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Tank").replace("&", "ง"));
 /*     */       }
 /* 308 */       return true; }
 /*     */     Object helmet;
 /* 310 */     if (cmd.getName().equalsIgnoreCase("jumper")) {
 /* 311 */       if (!sender.hasPermission("kitpvp.kit.jumper")) {
-/* 312 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 312 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 313 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 315 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 316 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 315 */       if (Habilidade.ContainsAbility(p)) {
+/* 316 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 317 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 318 */         return true;
 /*     */       }
-/* 320 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Jumper").replace("&", "ยง"));
+/* 320 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Jumper").replace("&", "ง"));
 /* 321 */       s.getInventory().clear();
 /* 322 */       s.setHealth(20.0D);
 /* 323 */       s.setFoodLevel(20);
@@ -427,19 +432,17 @@ for (int i = 0; i <= 34; i++) {
     s.getInventory().addItem(new ItemStack[] { sopa });
     
   }
-/* 338 */       helmet = new ItemStack(Material.LEATHER_HELMET);
+/* 338 */       helmet = new ItemStack(Material.IRON_HELMET);
 /* 339 */       ((ItemStack)helmet).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
 /* 340 */       ((ItemStack)helmet).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 341 */       LeatherArmorMeta meta11 = (LeatherArmorMeta)((ItemStack)helmet).getItemMeta();
-/* 342 */       meta11.setColor(Color.YELLOW);
-/* 343 */       ((ItemStack)helmet).setItemMeta(meta11);
+/* 341 */       
+/* 343 */       
 /* 344 */       s.getEquipment().setHelmet((ItemStack)helmet);
-/* 345 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 345 */       ItemStack tunic1 = new ItemStack(Material.IRON_CHESTPLATE);
 /* 346 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
 /* 347 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 348 */       LeatherArmorMeta meta111 = (LeatherArmorMeta)tunic1.getItemMeta();
-/* 349 */       meta111.setColor(Color.BLACK);
-/* 350 */       tunic1.setItemMeta(meta111);
+/* 348 */      
+/* 350 */      
 /* 351 */       s.getEquipment().setChestplate(tunic1);
 /* 352 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
 /* 353 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
@@ -453,33 +456,34 @@ for (int i = 0; i <= 34; i++) {
 /* 361 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
 /* 362 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic111.getItemMeta();
 /* 363 */       meta11111.setColor(Color.YELLOW);
+Habilidade.setAbility(s, "Jumper");
 /* 364 */       tunic111.setItemMeta(meta11111);
 /* 365 */       s.getEquipment().setBoots(tunic111);
 /* 366 */       s.addPotionEffect(new PotionEffect(org.bukkit.potion.PotionEffectType.SPEED, 999999999, 1));
 /* 367 */       s.addPotionEffect(new PotionEffect(org.bukkit.potion.PotionEffectType.JUMP, 999999999, 3));
 /* 368 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 369 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 370 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Jumper").replace("&", "ยง"));
+/* 370 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Jumper").replace("&", "ง"));
 /* 371 */         return true;
 /*     */       }
 /* 373 */       return true; }
 /*     */     Object helmet1;
 /* 375 */     if (cmd.getName().equalsIgnoreCase("Cactus")) {
 /* 376 */       if (!sender.hasPermission("kitpvp.kit.cactus")) {
-/* 377 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 377 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 378 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 380 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 381 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 380 */       if (Habilidade.ContainsAbility(p)) {
+/* 381 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 382 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 383 */         return true;
 /*     */       }
-/* 385 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Cactus").replace("&", "ยง"));
+/* 385 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Cactus").replace("&", "ง"));
 /* 386 */       s.getInventory().clear();
 /* 387 */       s.setHealth(20.0D);
 /* 388 */       s.setFoodLevel(20);
@@ -504,33 +508,34 @@ for (int i = 0; i <= 34; i++) {
 /* 411 */       tunic11.addEnchantment(Enchantment.THORNS, 3);
 /* 412 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
 /* 413 */       s.getEquipment().setLeggings(tunic11);
+Habilidade.setAbility(s, "Cactus");
 /* 414 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
 /* 415 */       tunic111.addEnchantment(Enchantment.THORNS, 3);
 /* 416 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
 /* 417 */       s.getEquipment().setBoots(tunic111);
 /* 418 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 419 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 420 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Cactus").replace("&", "ยง"));
+/* 420 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Cactus").replace("&", "ง"));
 /* 421 */         return true;
 /*     */       }
 /* 423 */       return true; }
 /*     */     Object meta11;
 /* 425 */     if (cmd.getName().equalsIgnoreCase("bomber")) {
 /* 426 */       if (!sender.hasPermission("kitpvp.kit.bomber")) {
-/* 427 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 427 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 428 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 430 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 431 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 430 */       if (Habilidade.ContainsAbility(p)) {
+/* 431 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 432 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 433 */         return true;
 /*     */       }
-/* 435 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Bomber").replace("&", "ยง"));
+/* 435 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Bomber").replace("&", "ง"));
 /* 436 */       s.getInventory().clear();
 /* 437 */       s.setHealth(20.0D);
 /* 438 */       s.setFoodLevel(20);
@@ -571,30 +576,31 @@ for (int i = 0; i <= 34; i++) {
 /* 476 */       meta11111.setColor(Color.WHITE);
 /* 477 */       tunic111.setItemMeta(meta11111);
 /* 478 */       s.getEquipment().setBoots(tunic111);
+Habilidade.setAbility(s, "Bomber");
 /* 479 */       s.addPotionEffect(new PotionEffect(org.bukkit.potion.PotionEffectType.SPEED, 999999999, 1));
 /* 480 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 481 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 482 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Bomber").replace("&", "ยง"));
+/* 482 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Bomber").replace("&", "ง"));
 /* 483 */         return true;
 /*     */       }
 /* 485 */       return true; }
 /*     */     Object helmet11;
 /* 487 */     if (cmd.getName().equalsIgnoreCase("wasp")) {
 /* 488 */       if (!sender.hasPermission("kitpvp.kit.wasp")) {
-/* 489 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 489 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 490 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 492 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 493 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 492 */       if (Habilidade.ContainsAbility(p)) {
+/* 493 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 494 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 495 */         return true;
 /*     */       }
-/* 497 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Wasp").replace("&", "ยง"));
+/* 497 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Wasp").replace("&", "ง"));
 /* 498 */       s.getInventory().clear();
 /* 499 */       s.setHealth(20.0D);
 /* 500 */       s.setFoodLevel(20);
@@ -636,36 +642,37 @@ for (int i = 0; i <= 34; i++) {
 /* 540 */       meta111111.setColor(Color.YELLOW);
 /* 541 */       tunic111.setItemMeta(meta111111);
 /* 542 */       s.getEquipment().setBoots(tunic111);
+Habilidade.setAbility(s, "Wasp");
 /* 543 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 544 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 545 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Wasp").replace("&", "ยง"));
+/* 545 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Wasp").replace("&", "ง"));
 /* 546 */         return true;
 /*     */       }
 /* 548 */       return true; }
 /*     */     Object meta111;
 /* 550 */     if (cmd.getName().equalsIgnoreCase("spiderman")) {
 /* 551 */       if (!sender.hasPermission("kitpvp.kit.spiderman")) {
-/* 552 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 552 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 553 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 555 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 556 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 555 */       if (Habilidade.ContainsAbility(p)) {
+/* 556 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 557 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 558 */         return true;
 /*     */       }
-/* 560 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Spiderman").replace("&", "ยง"));
+/* 560 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Spiderman").replace("&", "ง"));
 /* 561 */       s.getInventory().clear();
 /* 562 */       s.setHealth(20.0D);
 /* 563 */       s.setFoodLevel(20);
 /* 564 */       for (helmet11 = s.getActivePotionEffects().iterator(); ((Iterator)helmet11).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet11).next();
 /* 565 */         s.removePotionEffect(effect.getType());
 /*     */       }
-/* 567 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.DIAMOND_SWORD, 1, 0, this.main.getConfig().getString("SidermanKit.Name").replace("&", "ยง"), java.util.Arrays.asList(new String[] { this.main.getConfig().getString("SidermanKit.Lore").replace("&", "ยง") }))) });
+/* 567 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.DIAMOND_SWORD, 1, 0, this.main.getConfig().getString("SidermanKit.Name").replace("&", "ง"), java.util.Arrays.asList(new String[] { this.main.getConfig().getString("SidermanKit.Lore").replace("&", "ง") }))) });
 for (int i = 0; i <= 34; i++) {
     s.getInventory().addItem(new ItemStack[] { sopa });
     
@@ -705,27 +712,27 @@ Habilidade.setAbility(s, "Spiderman");
 tunic111.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
 /* 604 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 605 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 606 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Spiderman").replace("&", "ยง"));
+/* 606 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Spiderman").replace("&", "ง"));
 /* 607 */         return true;
 /*     */       }
 /* 609 */       return true; }
 /*     */     Object helmet111;
 /* 611 */     if (cmd.getName().equalsIgnoreCase("airman")) {
 /* 612 */       if (!sender.hasPermission("kitpvp.kit.airman")) {
-/* 613 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 613 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 614 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 616 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 617 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 616 */       if (Habilidade.ContainsAbility(p)) {
+/* 617 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 618 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 619 */         return true;
 /*     */       }
-/* 621 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "AirMan").replace("&", "ยง"));
+/* 621 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "AirMan").replace("&", "ง"));
 /* 622 */       s.getInventory().clear();
 /* 623 */       s.setHealth(20.0D);
 /* 624 */       s.setFoodLevel(20);
@@ -736,7 +743,7 @@ if (!Join.game.contains(p.getName()))
 /* 629 */       sword8.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
 Habilidade.setAbility(s, "Airman");
 /* 630 */       s.getInventory().addItem(new ItemStack[] { sword8 });
-/* 631 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.FEATHER, 1, 0, this.main.getConfig().getString("AirmanKit.Name").replace("&", "ยง"), java.util.Arrays.asList(new String[] { this.main.getConfig().getString("AirmanKit.Lore").replace("&", "ยง") }))) });
+/* 631 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.FEATHER, 1, 0, this.main.getConfig().getString("AirmanKit.Name").replace("&", "ง"), java.util.Arrays.asList(new String[] { this.main.getConfig().getString("AirmanKit.Lore").replace("&", "ง") }))) });
 for (int i = 0; i <= 34; i++) {
     s.getInventory().addItem(new ItemStack[] { sopa });
     
@@ -771,27 +778,27 @@ for (int i = 0; i <= 34; i++) {
 /* 666 */       s.getEquipment().setBoots(tunic111);
 /* 667 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 668 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 669 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "AriMan").replace("&", "ยง"));
+/* 669 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "AriMan").replace("&", "ง"));
 /* 670 */         return true;
 /*     */       }
 /* 672 */       return true; }
 /*     */     Object helmet1111;
 /* 674 */     if (cmd.getName().equalsIgnoreCase("fisherman")) {
 /* 675 */       if (!sender.hasPermission("kitpvp.kit.fisherman")) {
-/* 676 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 676 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 677 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 679 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 680 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 679 */       if (Habilidade.ContainsAbility(p)) {
+/* 680 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 681 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 682 */         return true;
 /*     */       }
-/* 684 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "FisherMan").replace("&", "ยง"));
+/* 684 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "FisherMan").replace("&", "ง"));
 /* 685 */       s.getInventory().clear();
                 Habilidade.setAbility(p, "Fisherman");
 /* 686 */       s.setHealth(20.0D);
@@ -841,27 +848,27 @@ for (int i = 0; i <= 34; i++) {
 /* 729 */       s.getEquipment().setBoots(tunic111);
 /* 730 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 731 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 732 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "FisherMan").replace("&", "ยง"));
+/* 732 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "FisherMan").replace("&", "ง"));
 /* 733 */         return true;
 /*     */       }
 /* 735 */       return true;
 /*     */     }
 /* 737 */     if (cmd.getName().equalsIgnoreCase("freezer")) {
 /* 738 */       if (!sender.hasPermission("kitpvp.kit.freezer")) {
-/* 739 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 739 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
 /* 740 */         return true;
 /*     */       }
 if (!Join.game.contains(p.getName()))
 {
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
     return true;
 }
-/* 742 */       if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-/* 743 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 742 */       if (Habilidade.ContainsAbility(p)) { 
+/* 743 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
 /* 744 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
 /* 745 */         return true;
 /*     */       }
-/* 747 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Freezer").replace("&", "ยง"));
+/* 747 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Freezer").replace("&", "ง"));
 /* 748 */       s.getInventory().clear();
 /* 749 */       s.setHealth(20.0D);
 /* 750 */       s.setFoodLevel(20);
@@ -907,13 +914,32 @@ for (int i = 0; i <= 34;) {
     s.getInventory().addItem(new ItemStack[] { sopa });
 /* 793 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
 /* 794 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 795 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ยง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Freezer").replace("&", "ยง"));
+/* 795 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Freezer").replace("&", "ง"));
 /* 796 */         return true;
 /*     */       }
 /* 798 */       return true;
 /*     */     }
 }
 return false;} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

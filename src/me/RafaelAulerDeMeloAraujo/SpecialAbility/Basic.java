@@ -30,14 +30,14 @@ public class Basic implements CommandExecutor {
 	  
  
  
-        if ((p.getInventory().contains(Material.MUSHROOM_SOUP)) || (p.getInventory().contains(Material.BOWL))) {
-          p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
-          p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-         return true;
-       }
+	 if (Habilidade.ContainsAbility(p)) { 
+         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
+         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+        return true;
+	 }
         if (!Join.game.contains(p.getName()))
         {
-            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to do choose this kit!");
+            p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to choose this kit!");
             return true;
         }
         p.getInventory().clear();
@@ -63,7 +63,7 @@ public class Basic implements CommandExecutor {
         p.getInventory().setChestplate(peitoral0);
         p.getInventory().setLeggings(calca0);
         p.getInventory().setBoots(Bota0);
-   
+   Habilidade.setAbility(p, "Basic");
    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Basic").replace("&", "§"));
   
    p.getInventory().addItem(new ItemStack[] { dima });
@@ -86,5 +86,8 @@ public class Basic implements CommandExecutor {
 }
 return false;
 }
+
 }
+	 
+
 

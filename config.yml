@@ -1,4 +1,4 @@
-#KitPvP Version BUILD-05 | Author: zEnderX5_ , Rafael Auler
+#KitPvP Version BUILD-08 | Author: zEnderX5_ , Rafael Auler
 #Author Channel: https://www.youtube.com/channel/UCb1kjbiQj2B4KnRQpgeUwmQ
 #Subscribe to help me to improve the plugin. Thanks =D
 #PS: use /kp for view the plugin command list
@@ -51,7 +51,6 @@ Title:
   DeathTitle: '&cYou are killed'
   DeathSubTitle: '&cby &7%player%'
 #Respawn settings
-RespawnParticle: true
 RespawnSound: true
 
 #Sound list https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
@@ -64,12 +63,6 @@ Sound:
   Respawn: 'ENTITY_PLAYER_LEVELUP'
   Join: 'ENTITY_PLAYER_LEVELUP'
 
-
-#Effect list https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Effect.html
-Effect:
-  Fisherman: 'WATERDRIP'
-  Spiderman: 'FIREWORKS_SPARK'
-  Respawn: 'FIREWORKS_SPARK'
   
 Death:
 #Custom death message
@@ -93,6 +86,8 @@ ScoreDeaths: '&e&lDeaths:&f'
 ScoreCoins: '&e&lCoins:&f'
 #Score Streak
 ScoreStreak: '&e&lStreak:&f'
+#Score Kit
+ScoreKit: '&e&lKit:&f'
 #Scoreboard Arrow Color. Use: '&'
 ScoreArrowColor: '&b&l'
 status:
@@ -109,4 +104,5 @@ Spawn:
   Z: -91.71575866737658
   Pitch: 42.90001
   Yaw: -9.5999975
+ 
   

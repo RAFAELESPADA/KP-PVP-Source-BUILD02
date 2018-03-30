@@ -1,80 +1,62 @@
-package me.RafaelAulerDeMeloAraujo.main;
+/*    */ package me.RafaelAulerDeMeloAraujo.main;
+/*    */ 
+/*    */ import java.util.Map;
+/*    */ import me.RafaelAulerDeMeloAraujo.Coins.Coins;
+/*    */ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
+/*    */ import org.bukkit.Server;
+/*    */ import org.bukkit.command.Command;
+/*    */ import org.bukkit.command.CommandExecutor;
+/*    */ import org.bukkit.command.CommandSender;
+/*    */ import org.bukkit.configuration.file.FileConfiguration;
+/*    */ import org.bukkit.entity.Player;
+/*    */ import org.bukkit.plugin.Plugin;
+/*    */ 
+/*    */ public class KPStats implements CommandExecutor
+/*    */ {
+/*    */   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+/*    */   {
+/* 18 */     Player p = (Player)sender;
+/* 19 */     if (cmd.getName().equalsIgnoreCase("kpstats"))
+/*    */     {
+/*    */ 
+/* 22 */       if (args.length == 0) {
+/* 23 */         int kills = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".kills");
+/* 24 */         int deaths = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes");
+/*    */         
+/* 26 */         p.sendMessage("Â§b");
+/*    */         
+/* 28 */         p.sendMessage("Â§bKills Â§8\u279CÂ§e " + kills);
+/* 29 */         p.sendMessage("Â§bDeaths Â§8\u279CÂ§e " + deaths);
+/*    */         
+/* 31 */         p.sendMessage("Â§bCoins Â§8\u279CÂ§e " + Coins.getCoins(p.getName()));
+/* 32 */         p.sendMessage("Â§bStreak Â§8\u279CÂ§e " + Streak.killstreak.get(p.getName()));
+/* 33 */         p.sendMessage("Â§b");
+/* 34 */         return true;
+/*    */       }
+/*    */       
+/* 37 */       if ((args.length > 0) && (args.length < 2) && (p.hasPermission("kitpvp.stats.see.other"))) {
+/* 38 */         Player t = org.bukkit.Bukkit.getServer().getPlayer(args[0]);
+/* 39 */         if (t != null) {
+/* 40 */           int kills = Main.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".kills");
+/* 41 */           int deaths = Main.plugin.getConfig().getInt("status." + t.getName().toLowerCase() + ".mortes");
+/* 42 */           p.sendMessage("Â§b");
+/* 43 */           p.sendMessage("Â§bPlayer Â§8\u279CÂ§e " + t.getName());
+/* 44 */           p.sendMessage("Â§bKills Â§8\u279CÂ§e " + kills);
+/* 45 */           p.sendMessage("Â§bDeaths Â§8\u279CÂ§e " + deaths);
+/*    */           
+/* 47 */           p.sendMessage("Â§bCoins Â§8\u279CÂ§e " + Coins.getCoins(t.getName()));
+/* 48 */           p.sendMessage("Â§bStreak Â§8\u279CÂ§e " + Streak.killstreak.get(t.getName()));
+/* 49 */           p.sendMessage("Â§b");
+/*    */         }
+/*    */       }
+/*    */     }
+/*    */     
+/* 54 */     return false;
+/*    */   }
+/*    */ }
 
 
-
-import org.bukkit.command.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-
-import me.RafaelAulerDeMeloAraujo.Coins.Coins;
-
-import org.bukkit.*;
-
-public class KPStats implements CommandExecutor
-{
-    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
-        final Player p = (Player)sender;
-        /* 21 */     if (cmd.getName().equalsIgnoreCase("kpstats")) {
-			
-		    {
-            if (args.length == 0) {
-            	/* 149 */      int kills = Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".kills").toString());
-            	/* 130 */       int deaths = Main.plugin.getConfig().getInt(new StringBuilder("status.").append(p.getName().toLowerCase()).append(".mortes").toString());
-            	
-            	p.sendMessage("§b");
-                
-            	p.sendMessage("§bKills §8\u27a1§e " + kills);
-            	p.sendMessage("§bDeaths §8\u27a1§e " + deaths);
-            	
-            	p.sendMessage("§bCoins §8\u27a1§e " + Coins.getCoins(p.getName()));
-            	p.sendMessage("§bStreak §8\u27a1§e " + me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak.killstreak.get(p.getName()));
-            	p.sendMessage("§b");
-                return true;
-            }
-           
-            if (args.length > 0 && args.length < 2 && p.hasPermission("kitpvp.stats.see.other")) {
-            	  final Player t = Bukkit.getServer().getPlayer(args[0]);
-                if (t != null) {
-                	/* 149 */      int kills = Main.plugin.getConfig().getInt(new StringBuilder("status.").append(t.getName().toLowerCase()).append(".kills").toString());
-                	/* 130 */       int deaths = Main.plugin.getConfig().getInt(new StringBuilder("status.").append(t.getName().toLowerCase()).append(".mortes").toString());
-                    p.sendMessage("§b");
-                    p.sendMessage("§bPlayer §8\u27a1§e " + t.getName());
-                	p.sendMessage("§bKills §8\u27a1§e " + kills);
-                	p.sendMessage("§bDeaths §8\u27a1§e " + deaths);
-                	
-                	p.sendMessage("§bCoins §8\u27a1§e " + Coins.getCoins(t.getName()));
-                	p.sendMessage("§bStreak §8\u27a1§e " + me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak.killstreak.get(t.getName()));
-                	p.sendMessage("§b");
-                }
-            }
-		    }
-        }
-		return false;}
-
-                    
-                
- {
-       
-            
-          
-            
-        
-        
-
-		
-} {
-		
-}
-  {      
-          
-            
-        
-        
-
-		
-} {
-		
-}
-}
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\main\KPStats.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

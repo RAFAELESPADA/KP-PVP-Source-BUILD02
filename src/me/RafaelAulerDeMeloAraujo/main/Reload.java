@@ -12,36 +12,40 @@
 /*    */ public class Reload implements CommandExecutor
 /*    */ {
 /*    */   private Main main;
-/*    */   /*     */   static Main plugin;
-/*     */   
-/*     */   public Reload(Main main) {
-/*  27 */     this.main = main;
-/*  28 */     plugin = main;
-
-/*     */   }
+/*    */   static Main plugin;
 /*    */   
+/*    */   public Reload(Main main)
+/*    */   {
+/* 19 */     this.main = main;
+/* 20 */     plugin = main;
+/*    */   }
 /*    */   
+/*    */ 
+/*    */ 
 /*    */   public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 /*    */   {
-/* 20 */     Player p = (Player)sender;
-/* 21 */     if (command.getName().equalsIgnoreCase("kitreload")) {
-	
-/* 22 */       if (!sender.hasPermission("kitpvp.reload")) {
-/* 23 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", label));
-/* 24 */         return true;
+/* 27 */     Player p = (Player)sender;
+/* 28 */     if (command.getName().equalsIgnoreCase("kitreload"))
+/*    */     {
+/* 30 */       if (!sender.hasPermission("kitpvp.reload")) {
+/* 31 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Permission").replace("&", "Â§").replaceAll("%permisson%", label));
+/* 32 */         p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 33 */         return true;
 /*    */       }
-/* 26 */       p.sendTitle("§6\u27a1 §aThe config is now", "§areloaded!");
-/* 27 */       Plugin plugin = p.getServer().getPluginManager().getPlugin("KP-PVP");
-/* 28 */       plugin.reloadConfig();
-/* 29 */       p.getServer().getPluginManager().disablePlugin(plugin);
-/* 30 */       p.getServer().getPluginManager().enablePlugin(plugin);
-/* 31 */       p.playSound(p.getLocation(), org.bukkit.Sound.BLOCK_NOTE_PLING, 1.0F, 1.0F);
-/* 32 */       return true;
+/*    */       
+/* 36 */       Plugin plugin = p.getServer().getPluginManager().getPlugin("KP-PVP");
+/* 37 */       plugin.reloadConfig();
+/* 38 */       p.getServer().getPluginManager().disablePlugin(plugin);
+/* 39 */       p.getServer().getPluginManager().enablePlugin(plugin);
+/* 40 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eThe plugin Config has been sucefully reloaded.");
+/* 41 */       return true;
 /*    */     }
-/* 34 */     return false;
+/* 43 */     return false;
+/*    */   }
+/*    */ }
 
 
-}
- {
-}
-}
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\main\Reload.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

@@ -1,120 +1,100 @@
-package me.RafaelAulerDeMeloAraujo.SpecialAbility;
+/*    */ package me.RafaelAulerDeMeloAraujo.SpecialAbility;
+/*    */ 
+/*    */ import java.util.ArrayList;
+/*    */ import me.RafaelAulerDeMeloAraujo.main.Main;
+/*    */ import org.bukkit.Material;
+/*    */ import org.bukkit.Sound;
+/*    */ import org.bukkit.command.Command;
+/*    */ import org.bukkit.command.CommandExecutor;
+/*    */ import org.bukkit.command.CommandSender;
+/*    */ import org.bukkit.configuration.file.FileConfiguration;
+/*    */ import org.bukkit.entity.Player;
+/*    */ import org.bukkit.inventory.ItemStack;
+/*    */ import org.bukkit.inventory.PlayerInventory;
+/*    */ import org.bukkit.inventory.meta.ItemMeta;
+/*    */ 
+/*    */ public class ThorKITCOMMAND implements CommandExecutor
+/*    */ {
+/*    */   private Main main;
+/*    */   static Main plugin;
+/*    */   
+/*    */   public ThorKITCOMMAND(Main main)
+/*    */   {
+/* 23 */     this.main = main;
+/* 24 */     plugin = main;
+/*    */   }
+/*    */   
+/*    */ 
+/*    */   public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+/*    */   {
+/* 30 */     Player p = (Player)sender;
+/*    */     
+/* 32 */     if (cmd.getName().equalsIgnoreCase("kthor"))
+/*    */     {
+/* 34 */       if (!Join.game.contains(p.getName()))
+/*    */       {
+/* 36 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to do choose this kit!");
+/* 37 */         return true;
+/*    */       }
+/* 39 */       if (!p.hasPermission("kitpvp.kit.thor"))
+/*    */       {
+/* 41 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", commandLabel));
+/* 42 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 43 */         return true;
+/*    */       }
+/*    */       
+/* 46 */       if (Habilidade.ContainsAbility(p)) {
+/* 47 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
+/* 48 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 49 */         return true;
+/*    */       }
+/* 51 */       p.getInventory().clear();
+/* 52 */       ItemStack dima = new ItemStack(Material.IRON_SWORD);
+/* 53 */       ItemMeta souperaa = dima.getItemMeta();
+/* 54 */       souperaa.setDisplayName("§cSword");
+/* 55 */       dima.setItemMeta(souperaa);
+/* 56 */       ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
+/* 57 */       ItemMeta sopas = sopa.getItemMeta();
+/* 58 */       sopas.setDisplayName("§6Soup");
+/* 59 */       sopa.setItemMeta(sopas);
+/* 60 */       ItemStack especial = new ItemStack(Material.GOLD_AXE);
+/* 61 */       ItemMeta especial2 = especial.getItemMeta();
+/* 62 */       especial2.setDisplayName("§cThor Axe!");
+/* 63 */       especial.setItemMeta(especial2);
+/*    */       
+/* 65 */       ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
+/*    */       
+/* 67 */       ItemStack peitoral0 = new ItemStack(Material.IRON_CHESTPLATE);
+/*    */       
+/* 69 */       ItemStack calca0 = new ItemStack(Material.IRON_LEGGINGS);
+/*    */       
+/* 71 */       ItemStack Bota0 = new ItemStack(Material.IRON_BOOTS);
+/*    */       
+/* 73 */       p.getInventory().setHelmet(capacete0);
+/* 74 */       p.getInventory().setChestplate(peitoral0);
+/* 75 */       p.getInventory().setLeggings(calca0);
+/* 76 */       p.getInventory().setBoots(Bota0);
+/*    */       
+/* 78 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Thor").replace("&", "§"));
+/* 79 */       Habilidade.setAbility(p, "Thor");
+/* 80 */       p.getInventory().addItem(new ItemStack[] { dima });
+/* 81 */       p.getInventory().addItem(new ItemStack[] { especial });
+/*    */       
+/*    */ 
+/*    */ 
+/* 85 */       for (int i = 0; i <= 34; i++) {
+/* 86 */         p.getInventory().addItem(new ItemStack[] { sopa });
+/* 87 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 88 */         me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Thor"));
+/*    */       }
+/*    */     }
+/*    */     
+/* 92 */     return false;
+/*    */   }
+/*    */ }
 
 
-import org.bukkit.event.player.*;
-
-import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
-import me.RafaelAulerDeMeloAraujo.main.Main;
-
-
-import org.bukkit.event.block.*;
-
-import java.util.*;
-
-import org.bukkit.entity.*;
-import org.bukkit.*;
-import org.bukkit.event.*;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockIgniteEvent.IgniteCause;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-
-
-public class Thor implements Listener
-{
-
-	public Main plugin;
-	  
-	  public Thor(Main main)
-	  {
-	    plugin = main;
-	  }
-	  
-	  public static ArrayList<String> cooldown = new ArrayList();
-	
-	  @EventHandler
-	  public void onPlayerThor(PlayerInteractEvent e)
-	  {
-	    final Player p = e.getPlayer();
-	    
-	    if (e.getAction() != Action.RIGHT_CLICK_BLOCK) {
-	      return;
-	    }
-	    if ((p.getItemInHand().getType() == Material.GOLD_AXE) && 
-	    		(Habilidade.getAbility(p) == "Thor"))
-	    {
-	    	  if (Cooldown.add(p))
-	          {
-	    		  e.setCancelled(true);
-	        	API.MensagemCooldown(p);
-	            return;
-	          }
-	      
-	      e.setCancelled(true);
- Block b = e.getClickedBlock();
-	      
-	      World w = p.getWorld();
-	     
-	      final Location loc = w.getHighestBlockAt(b.getLocation()).getLocation();
-          p.getWorld().strikeLightning(loc);
-	      
-	      Cooldown.add(p , 5);
-	      Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
-	      {
-	        public void run()
-	        {
-	        	  Cooldown.remove(p);
-	          p.sendMessage(API.fimcooldown);
-	        }
-	      }, 100L);
-	    }
-	  }
-
-@EventHandler
-public void OnBlock(BlockIgniteEvent e) {
-	
-	if (e.getCause() == IgniteCause.LIGHTNING) 
-		e.setCancelled(true);
-			else   
-		e.setCancelled(false);
-	}
-	{
-}
-
-
-
-
-
-
-@EventHandler
-public void OnBlockBB(EntityDamageEvent e) {
-	  if (!(e.getEntity() instanceof Player)) {
-          return;
-      }
-	final Player p = (Player) e.getEntity();
-	if ((Habilidade.getAbility(p) == "Thor") && e.getCause() == EntityDamageEvent.DamageCause.LIGHTNING) {
-		e.setCancelled(true);
-	} else  
-			e.setCancelled(false);
-		
-	}
-}
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\SpecialAbility\ThorKITCOMMAND.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

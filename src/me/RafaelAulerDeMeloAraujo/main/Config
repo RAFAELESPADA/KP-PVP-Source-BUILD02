@@ -1,0 +1,24 @@
+/*    */ package me.RafaelAulerDeMeloAraujo.main;
+/*    */ 
+/*    */ import org.bukkit.configuration.file.FileConfiguration;
+/*    */ 
+/*    */ public class Config
+/*    */ {
+/*    */   private static Main main;
+/*    */   
+/*    */   public Config(Main main)
+/*    */   {
+/* 11 */     main = main;
+/*    */   }
+/*    */   
+/*    */   public static String tr(String s)
+/*    */   {
+/* 16 */     return String.valueOf(main.getConfig().getString("Prefix").replace("&", "§"));
+/*    */   }
+/*    */ }
+
+
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\main\Config.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

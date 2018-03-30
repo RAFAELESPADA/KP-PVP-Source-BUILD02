@@ -1,147 +1,161 @@
-package me.RafaelAulerDeMeloAraujo.SpecialAbility;
- 
-import java.util.ArrayList;
-import java.util.HashMap;
+/*     */ package me.RafaelAulerDeMeloAraujo.SpecialAbility;
+/*     */ 
+/*     */ import java.util.ArrayList;
+/*     */ import java.util.HashMap;
+/*     */ import java.util.List;
+/*     */ import me.RafaelAulerDeMeloAraujo.main.Main;
+/*     */ import org.bukkit.Bukkit;
+/*     */ import org.bukkit.Color;
+/*     */ import org.bukkit.Effect;
+/*     */ import org.bukkit.Location;
+/*     */ import org.bukkit.Material;
+/*     */ import org.bukkit.World;
+/*     */ import org.bukkit.enchantments.Enchantment;
+/*     */ import org.bukkit.entity.Entity;
+/*     */ import org.bukkit.entity.Item;
+/*     */ import org.bukkit.entity.Player;
+/*     */ import org.bukkit.event.EventHandler;
+/*     */ import org.bukkit.event.Listener;
+/*     */ import org.bukkit.event.block.Action;
+/*     */ import org.bukkit.event.player.PlayerDropItemEvent;
+/*     */ import org.bukkit.event.player.PlayerInteractEvent;
+/*     */ import org.bukkit.inventory.ItemStack;
+/*     */ import org.bukkit.inventory.PlayerInventory;
+/*     */ import org.bukkit.inventory.meta.LeatherArmorMeta;
+/*     */ import org.bukkit.scheduler.BukkitScheduler;
+/*     */ import org.bukkit.util.Vector;
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ public class Deshfire
+/*     */   implements Listener
+/*     */ {
+/*  44 */   public int boost = Integer.valueOf(6).intValue();
+/*  45 */  
+/*  46 */   static ArrayList<String> fall = new ArrayList();
+/*  47 */   public static HashMap<String, ItemStack[]> Armadura = new HashMap();
+/*  48 */   public static HashMap<String, ItemStack[]> saveinv = new HashMap();
+/*  49 */   public static HashMap<String, ItemStack[]> armadura = new HashMap();
+/*  50 */   public static HashMap<String, ItemStack[]> Armadura2 = new HashMap();
+/*  51 */   public static List<Player> cooldownm = new ArrayList();
+/*     */   public static Main plugin;
+/*     */   
+/*     */   @EventHandler
+/*     */   public void DeshClick(PlayerInteractEvent event)
+/*     */   {
+/*  57 */     int fire = Integer.valueOf(6).intValue();
+/*     */     
+/*  59 */     final Player p = event.getPlayer();
+/*  60 */     if ((event.getPlayer().getItemInHand().getType() == Material.REDSTONE_BLOCK) && 
+/*  61 */       (Habilidade.getAbility(p).equalsIgnoreCase("Deshfire")))
+/*     */     {
+/*  63 */       if ((event.getAction() == Action.LEFT_CLICK_AIR) || 
+/*  64 */         (event.getAction() == Action.LEFT_CLICK_BLOCK) || 
+/*  65 */         (event.getAction() == Action.RIGHT_CLICK_BLOCK) || 
+/*  66 */         (event.getAction() == Action.RIGHT_CLICK_AIR)) {
+/*  67 */         event.setCancelled(true);
+/*     */       }
+/*  69 */       if (cooldownm.contains(p))
+/*     */       {
+/*  71 */         p.sendMessage("Â§cÂ§lYou are in cooldown!");
+/*  72 */         return;
+/*     */       }
+/*  74 */       cooldownm.add(p);
+/*  75 */       fall.add(p.getName());
+/*  76 */       p.setVelocity(p.getEyeLocation().getDirection().multiply(this.boost).add(new Vector(0, 0, 0)));
+/*  77 */       p.getPlayer().getWorld().playEffect(p.getPlayer().getLocation(), Effect.SMOKE, 10, 0);
+/*  78 */       Location loc = p.getLocation();
+/*  79 */       for (Entity pertos : p.getNearbyEntities(8.0D, 8.0D, 8.0D)) {
+/*  80 */         if ((pertos instanceof Player))
+/*     */         {
+/*  82 */           Player perto = (Player)pertos;
+/*  83 */           ((Player)pertos).damage(10.0D);
+/*  84 */           pertos.setVelocity(new Vector(0.1D, 0.0D, 0.1D));
+/*  85 */           ((Player)pertos).setFireTicks(fire * 20);
+/*     */         }
+/*     */       }
+/*  88 */       ItemStack Capacete = new ItemStack(Material.LEATHER_HELMET);
+/*  89 */       LeatherArmorMeta kCapacete = (LeatherArmorMeta)Capacete.getItemMeta();
+/*  90 */       kCapacete.setColor(Color.RED);
+/*  91 */       Capacete.setItemMeta(kCapacete);
+/*  92 */       Capacete.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
+/*  93 */       ItemStack Peitoral = new ItemStack(Material.LEATHER_CHESTPLATE);
+/*  94 */       LeatherArmorMeta kPeitoral = (LeatherArmorMeta)Peitoral.getItemMeta();
+/*  95 */       kPeitoral.setColor(Color.RED);
+/*  96 */       Peitoral.setItemMeta(kPeitoral);
+/*  97 */       Peitoral.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
+/*  98 */       ItemStack Calss = new ItemStack(Material.LEATHER_LEGGINGS);
+/*  99 */       LeatherArmorMeta kCalss = (LeatherArmorMeta)Calss.getItemMeta();
+/* 100 */       kCalss.setColor(Color.RED);
+/* 101 */       Calss.setItemMeta(kCalss);
+/* 102 */       Calss.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
+/* 103 */       ItemStack Bota = new ItemStack(Material.LEATHER_BOOTS);
+/* 104 */       LeatherArmorMeta kBota = (LeatherArmorMeta)Capacete.getItemMeta();
+/* 105 */       kBota.setColor(Color.RED);
+/* 106 */       Bota.setItemMeta(kBota);
+/* 107 */       Bota.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
+/* 108 */       Armadura.put(p.getName(), p.getInventory().getArmorContents());
+/*     */       
+/* 110 */       p.getInventory().setHelmet(Capacete);
+/* 111 */       p.getInventory().setChestplate(Peitoral);
+/* 112 */       p.getInventory().setLeggings(Calss);
+/* 113 */       p.getInventory().setBoots(Bota);
+/* 114 */       p.updateInventory();
+/*     */       
+/* 116 */       Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 120 */           ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
+/*     */           
+/* 122 */           ItemStack peitoral0 = new ItemStack(Material.IRON_CHESTPLATE);
+/*     */           
+/* 124 */           ItemStack calca0 = new ItemStack(Material.IRON_LEGGINGS);
+/*     */           
+/* 126 */           ItemStack Bota0 = new ItemStack(Material.IRON_BOOTS);
+/* 127 */           p.getInventory().setHelmet(capacete0);
+/* 128 */           p.getInventory().setChestplate(peitoral0);
+/* 129 */           p.getInventory().setLeggings(calca0);
+/* 130 */           p.getInventory().setBoots(Bota0);
+/* 131 */           p.updateInventory();
+/* 132 */           Deshfire.fall.remove(p.getName());
+/*     */         }
+/* 134 */       }, 60L);
+/*     */       
+/* 136 */       Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable()
+/*     */       {
+/*     */         public void run()
+/*     */         {
+/* 140 */           Deshfire.cooldownm.remove(p);
+/*     */           
+/* 142 */           p.sendMessage("Â§3Â§oYou can use the Deshfire again!");
+/*     */         }
+/*     */         
+/* 145 */       }, 700L);
+/*     */     }
+/*     */   }
+/*     */   
+/*     */   @EventHandler
+/*     */   public void onDrop(PlayerDropItemEvent event) {
+/* 151 */     if (event.getItemDrop().getItemStack().getType() == Material.REDSTONE_BLOCK) {
+/* 152 */       event.setCancelled(true);
+/*     */     }
+/*     */   }
+/*     */ }
 
-import org.bukkit.event.EventHandler;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-
-import java.util.List;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Effect;
-
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-
-import org.bukkit.util.Vector;
-
-import me.RafaelAulerDeMeloAraujo.main.Main;
-
-
-public class Deshfire implements Listener {
-
-
-	  public int boost = Integer.valueOf(6).intValue();
-	  public static ArrayList<String> Deshfire = new ArrayList();
-	  static ArrayList<String> fall = new ArrayList();
-	  public static HashMap<String, ItemStack[]> Armadura = new HashMap();
-	  public static HashMap<String, ItemStack[]> saveinv = new HashMap();
-	  public static HashMap<String, ItemStack[]> armadura = new HashMap();
-	  public static HashMap<String, ItemStack[]> Armadura2 = new HashMap();
-	  public static List<Player> cooldownm = new ArrayList();
-	  public static Main plugin; 
-
-	@EventHandler
-	  public void DeshClick(PlayerInteractEvent event)
-	  {
-	    int fire = Integer.valueOf(6).intValue();
-	    
-	    final Player p = event.getPlayer();
-	    if ((event.getPlayer().getItemInHand().getType() == Material.REDSTONE_BLOCK) && 
-	    		(Habilidade.getAbility(p).equalsIgnoreCase("Deshfire")))
-	    {
-	      if ((event.getAction() == Action.LEFT_CLICK_AIR) || 
-	        (event.getAction() == Action.LEFT_CLICK_BLOCK) || 
-	        (event.getAction() == Action.RIGHT_CLICK_BLOCK) || 
-	        (event.getAction() == Action.RIGHT_CLICK_AIR)) {
-	        event.setCancelled(true);
-	      }
-	      if (cooldownm.contains(p))
-	      {
-	        p.sendMessage("§c§lYou are in cooldown!");
-	        return;
-	      }
-	      cooldownm.add(p);
-	      fall.add(p.getName());
-	      p.setVelocity(p.getEyeLocation().getDirection().multiply(this.boost).add(new Vector(0, 0, 0)));
-	      p.getPlayer().getWorld().playEffect(p.getPlayer().getLocation(), Effect.SMOKE, 10, 0);
-	      Location loc = p.getLocation();
-	      for (Entity pertos : p.getNearbyEntities(8.0D, 8.0D, 8.0D)) {
-	        if ((pertos instanceof Player))
-	        {
-	          Player perto = (Player)pertos;
-	          ((Player)pertos).damage(10.0D);
-	          pertos.setVelocity(new Vector(0.1D, 0.0D, 0.1D));
-	          ((Player)pertos).setFireTicks(fire * 20);
-	        }
-	      }
-	      ItemStack Capacete = new ItemStack(Material.LEATHER_HELMET);
-	      LeatherArmorMeta kCapacete = (LeatherArmorMeta)Capacete.getItemMeta();
-	      kCapacete.setColor(Color.RED);
-	      Capacete.setItemMeta(kCapacete);
-	      Capacete.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
-	      ItemStack Peitoral = new ItemStack(Material.LEATHER_CHESTPLATE);
-	      LeatherArmorMeta kPeitoral = (LeatherArmorMeta)Peitoral.getItemMeta();
-	      kPeitoral.setColor(Color.RED);
-	      Peitoral.setItemMeta(kPeitoral);
-	      Peitoral.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
-	      ItemStack Calss = new ItemStack(Material.LEATHER_LEGGINGS);
-	      LeatherArmorMeta kCalss = (LeatherArmorMeta)Calss.getItemMeta();
-	      kCalss.setColor(Color.RED);
-	      Calss.setItemMeta(kCalss);
-	      Calss.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
-	      ItemStack Bota = new ItemStack(Material.LEATHER_BOOTS);
-	      LeatherArmorMeta kBota = (LeatherArmorMeta)Capacete.getItemMeta();
-	      kBota.setColor(Color.RED);
-	      Bota.setItemMeta(kBota);
-	      Bota.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
-	      Armadura.put(p.getName(), p.getInventory().getArmorContents());
-	      
-	      p.getInventory().setHelmet(Capacete);
-	      p.getInventory().setChestplate(Peitoral);
-	      p.getInventory().setLeggings(Calss);
-	      p.getInventory().setBoots(Bota);
-	      p.updateInventory();
-	      
-	      Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable()
-	      {
-	        public void run()
-	        {
-	        	 ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
-	        	  
-	        	  ItemStack peitoral0 = new ItemStack(Material.IRON_CHESTPLATE);
-	        	  
-	        	  ItemStack calca0 = new ItemStack(Material.IRON_LEGGINGS);
-	        	  
-	        	  ItemStack Bota0 = new ItemStack(Material.IRON_BOOTS);
-	        	  p.getInventory().setHelmet(capacete0);
-	        	  p.getInventory().setChestplate(peitoral0);
-	        	  p.getInventory().setLeggings(calca0);
-	        	  p.getInventory().setBoots(Bota0);
-	          p.updateInventory();
-	          fall.remove(p.getName());
-	        }
-	      }, 60L);
-	      
-	      Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable()
-	      {
-	        public void run()
-	        {
-	          cooldownm.remove(p);
-	          
-	          p.sendMessage("§3§oYou can use the Deshfire again!");
-	          p.getWorld().playSound(p.getLocation(), Sound.ENTITY_PLAYER_BURP, 5.0F, 5.0F);
-	        }
-	      }, 700L);
-	    }
-	  }
-	@EventHandler
-	  public void onDrop(PlayerDropItemEvent event)
-	  {
-	    if (event.getItemDrop().getItemStack().getType() == Material.REDSTONE_BLOCK)
-	      event.setCancelled(true);
-	  }
-}
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\SpecialAbility\Deshfire.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

@@ -1,8 +1,8 @@
 name: KP-PVP
 main: me.RafaelAulerDeMeloAraujo.main.Main
-version: BUILD-08
+version: BUILD-14
 author: zEnderX5_ , Rafael Auler
-softdepend: [PlaceholderAPI]
+softdepend: [PlaceholderAPI , MVdWPlaceholderAPI]
 description: KitPvP Plugin what have much features like kits,shop with Custom Economy Support,A Unique 1v1 system to players fight,Coins System,Scoreboard,Stats kills,deaths,streak,Sponges acts like launchpads,Varius commands, and are very customisable,Support with others Gamemodes like Skywars and have everything to control your KITPVP Server. And the best part its is free to Download. If you want to support the developer subscribe to his channel.
 website: http://bit.ly/2kC345B , http://bit.ly/2j5qvnM
 #PERMISSIONS ARENT HERE
@@ -10,12 +10,18 @@ website: http://bit.ly/2kC345B , http://bit.ly/2j5qvnM
 commands:
    kitpvp:
         description: Main Command
+        
    set1v1:
         description: Set the kitpvp 1vs1     
    kpsetspawn:
-        description: Set the kitpvp spawn  
+        description: Set the kitpvp spawn
+   kpkills:
+        description: Manage player kills       
    rektf58942kka:   
-        description: The antibug command     
+        description: The antibug command 
+   skit:   
+        description: Create a kit with items to give to your players      
+       
    kpvp:
         description: Kit PvP
    viper:
@@ -108,10 +114,25 @@ commands:
         description: Enter in adminmode to catch cheaters
    kp:
         description: Display command help menu
-   togglescore:
-        description: Enable or Disable the Scoreboard
+  
    kitclear:
         description: Clears yours kit 
   
         
          
+                 
+  
+   
+   
+      
+
+     
+       
+          
+   
+   
+
+
+  
+   
+   

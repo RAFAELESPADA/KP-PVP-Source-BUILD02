@@ -1,38 +1,42 @@
-package me.RafaelAulerDeMeloAraujo.main;
+/*    */ package me.RafaelAulerDeMeloAraujo.main;
+/*    */ 
+/*    */ import org.bukkit.command.Command;
+/*    */ import org.bukkit.command.CommandSender;
+/*    */ import org.bukkit.entity.Player;
+/*    */ 
+/*    */ public class KITPVP implements org.bukkit.command.CommandExecutor
+/*    */ {
+/*    */   private Main main;
+/*    */   
+/*    */   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+/*    */   {
+/* 13 */     Player p = (Player)sender;
+/* 14 */     if (label.equalsIgnoreCase("kp")) {
+/* 15 */       p.sendMessage("ยงbยงl\u2605 ยงeยงlKP-PVP Command Help Menu ยงbยงl\u2605");
+/* 16 */       p.sendMessage("ยงa<> = Opcional ยงb/ ยงa[] = Required");
+/* 17 */       p.sendMessage("ยงe/kitpvp ยง7(View the main command list)");
+/* 18 */       p.sendMessage("ยงe/kpkits ยง7(Open the kit menu)");
+/* 19 */       p.sendMessage("ยงe/kpshop ยง7(Open the Shop menu)");
+/* 20 */       p.sendMessage("ยงe/kitreload ยง7(Reload the configuration)");
+/* 21 */       p.sendMessage("ยงe/stats <Player> ยง7(View your or other player stats)");
+/* 22 */       p.sendMessage("ยงe/kitclear ยง7(Clear your kit)");
+/* 23 */        p.sendMessage("ยงe/kpkills ยง7(Give or Remove kills from other player)");
+/* 24 */       p.sendMessage("ยงe/kitcredits ยง7(Display some information about the plugin)");
+/* 25 */       p.sendMessage("ยงe/ksc [Message] ยง7(A Custom StaffChat)");
+/* 26 */       p.sendMessage("ยงe/coins add/remove/set/pay ยง7(Manage the players coins)");
+/* 27 */       p.sendMessage("ยงe/adminmode ยง7(Stay invisible and receive items to catch hackers!)");
+/*    */       
+/* 29 */       p.sendMessage("ยงe/kpsetspawn ยง7(Set the kitpvp spawn!)");
+/* 30 */       p.sendMessage("ยงe/set1v1 ยง7(Set the 1VS1 spawn!)");
+/*    */     }
+/*    */     
+/*    */ 
+/* 34 */     return false;
+/*    */   }
+/*    */ }
 
-import org.bukkit.Sound;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
-public class KITPVP implements CommandExecutor {
-
-	public boolean onCommand(CommandSender sender, Command cmd, String label,
-			String[] args) {
-		Player p = (Player) sender;
-		if(label.equalsIgnoreCase("kp")) {
-			p.sendMessage("งbงl\u2716 งeงlKP-PVP Command Help Menu งbงl\u2716");
-			p.sendMessage("งa<> = Opcional งb/ งa[] = Required");
-			p.sendMessage("งe/kitpvp ง7(View the main command list)");
-			p.sendMessage("งe/kpkits ง7(Open the kit menu)");
-			p.sendMessage("งe/kpshop ง7(Open the Shop menu)"); 
-			p.sendMessage("งe/kitreload ง7(Reload the configuration)"); 
-			p.sendMessage("งe/stats <Player> ง7(View your or other player stats)");
-			p.sendMessage("งe/kitclear ง7(Clear your kit)");
-			p.sendMessage("งe/togglescore ง7((Toggle the scoreboard ON or OFF)");
-			p.sendMessage("งe/kitcredits ง7(Display some information about the plugin)");
-			p.sendMessage("งe/ksc [Message] ง7(A Custom StaffChat)");
-			p.sendMessage("งe/coins add/remove/set/pay ง7(Manage the players coins)");
-			p.sendMessage("งe/adminmode ง7(Stay invisible and receive items to catch hackers!)");
-			
-			p.sendMessage("งe/kpsetspawn ง7(Set the kitpvp spawn!)");
-			p.sendMessage("งe/set1v1 ง7(Set the 1VS1 spawn!)");
-			
-			p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 12.0F, 12.0F);
-		}
-		return false;
-	}
-}
-	
-			
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\main\KITPVP.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

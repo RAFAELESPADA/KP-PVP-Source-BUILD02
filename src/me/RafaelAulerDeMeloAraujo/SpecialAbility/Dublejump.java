@@ -1,193 +1,196 @@
-package me.RafaelAulerDeMeloAraujo.SpecialAbility;
+/*     */ package me.RafaelAulerDeMeloAraujo.SpecialAbility;
+/*     */ 
+/*     */ import java.util.ArrayList;
+/*     */ import me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI;
+/*     */ import me.RafaelAulerDeMeloAraujo.main.Main;
+/*     */ import org.bukkit.Effect;
+/*     */ import org.bukkit.GameMode;
+/*     */ import org.bukkit.Location;
+/*     */ import org.bukkit.Material;
+/*     */ import org.bukkit.Sound;
+/*     */ import org.bukkit.World;
+/*     */ import org.bukkit.command.Command;
+/*     */ import org.bukkit.command.CommandExecutor;
+/*     */ import org.bukkit.command.CommandSender;
+/*     */ import org.bukkit.configuration.file.FileConfiguration;
+/*     */ import org.bukkit.entity.Entity;
+/*     */ import org.bukkit.entity.Player;
+/*     */ import org.bukkit.event.EventHandler;
+/*     */ import org.bukkit.event.Listener;
+/*     */ import org.bukkit.event.entity.EntityDamageEvent;
+/*     */ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+/*     */ import org.bukkit.event.entity.PlayerDeathEvent;
+/*     */ import org.bukkit.event.player.PlayerMoveEvent;
+/*     */ import org.bukkit.event.player.PlayerQuitEvent;
+/*     */ import org.bukkit.event.player.PlayerToggleFlightEvent;
+/*     */ import org.bukkit.inventory.ItemStack;
+/*     */ import org.bukkit.inventory.PlayerInventory;
+/*     */ import org.bukkit.inventory.meta.ItemMeta;
+/*     */ import org.bukkit.util.Vector;
+/*     */ 
+/*     */ public class Dublejump implements Listener, CommandExecutor
+/*     */ {
+/*     */   private Main main;
+/*     */   static Main plugin;
+/*     */   
+/*     */   public Dublejump(Main main)
+/*     */   {
+/*  38 */     this.main = main;
+/*  39 */     plugin = main;
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */   @EventHandler
+/*     */   public void onPlayerToggleFly(PlayerToggleFlightEvent e)
+/*     */   {
+/*  47 */     Player p = e.getPlayer();
+/*  48 */     if (Habilidade.getAbility(p).equalsIgnoreCase("DoubleJump"))
+/*     */     {
+/*  50 */       if (p.getGameMode() == GameMode.CREATIVE) {
+/*  51 */         return;
+/*     */       }
+/*  53 */       e.setCancelled(true);
+/*  54 */       p.setFlying(false);
+/*  55 */       p.setAllowFlight(false);
+/*  56 */       Location loc = p.getLocation();
+/*  57 */       if (!p.isSneaking())
+/*     */       {
+/*  59 */         p.setFallDistance(-3.0F);
+/*  60 */         Vector vector = p.getEyeLocation().getDirection();
+/*  61 */         vector.multiply(0.6F);
+/*  62 */         vector.setY(1.0F);
+/*  63 */         p.setVelocity(vector);
+/*     */       }
+/*     */       else
+/*     */       {
+/*  67 */         p.setFallDistance(-3.0F);
+/*  68 */         Vector vector = p.getEyeLocation().getDirection();
+/*  69 */         vector.multiply(1.35F);
+/*  70 */         vector.setY(0.66D);
+/*  71 */         p.setVelocity(vector);
+/*     */       }
+/*  73 */       p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.DoubleJump-Ability")), 1.0F, 1.0F);
+/*  74 */       p.getWorld().playEffect(p.getLocation(), Effect.COLOURED_DUST, 80);
+/*     */     }
+/*     */   }
+/*     */   
+/*     */   @EventHandler
+/*     */   public void onDamage(EntityDamageEvent event)
+/*     */   {
+/*  81 */     Entity e = event.getEntity();
+/*  82 */     if ((e instanceof Player))
+/*     */     {
+/*  84 */       Player player = (Player)e;
+/*  85 */       if ((Habilidade.getAbility(player).equalsIgnoreCase("DoubleJump")) && ((event.getEntity() instanceof Player)) && (event.getCause() == EntityDamageEvent.DamageCause.FALL)) {
+/*  86 */         event.setDamage(2.0D);
+/*     */       }
+/*     */     }
+/*     */   }
+/*     */   
+/*     */   @EventHandler
+/*     */   public void onPlayerMove(PlayerMoveEvent e)
+/*     */   {
+/*  94 */     Player p = e.getPlayer();
+/*  95 */     if (Habilidade.getAbility(p).equalsIgnoreCase("DoubleJump"))
+/*     */     {
+/*  97 */       if (p.getGameMode() == GameMode.CREATIVE) {
+/*  98 */         return;
+/*     */       }
+/* 100 */       if ((p.isOnGround()) && (!p.getAllowFlight())) {
+/* 101 */         p.setAllowFlight(true);
+/*     */       }
+/*     */     }
+/*     */   }
+/*     */   
+/*     */   @EventHandler
+/*     */   public void aomorrer(PlayerDeathEvent e)
+/*     */   {
+/* 109 */     Player p = e.getEntity();
+/* 110 */     if (Habilidade.getAbility(p).equalsIgnoreCase("DoubleJump")) {
+/* 111 */       p.setAllowFlight(false);
+/*     */     }
+/*     */   }
+/*     */   
+/*     */   @EventHandler
+/*     */   public void aomorrer(PlayerQuitEvent e)
+/*     */   {
+/* 118 */     Player p = e.getPlayer();
+/* 119 */     if (Habilidade.getAbility(p).equalsIgnoreCase("DoubleJump")) {
+/* 120 */       p.setAllowFlight(false);
+/*     */     }
+/*     */   }
+/*     */   
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+/*     */   {
+/* 129 */     Player p = (Player)sender;
+/*     */     
+/* 131 */     if (cmd.getName().equalsIgnoreCase("doublejump"))
+/*     */     {
+/* 133 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 135 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + " Â§eYou are not in kitpvp to do choose this kit!");
+/* 136 */         return true;
+/*     */       }
+/* 138 */       if (!p.hasPermission("kitpvp.kit.doublejump"))
+/*     */       {
+/* 140 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Permission").replace("&", "Â§").replaceAll("%permisson%", commandLabel));
+/* 141 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 142 */         return true;
+/*     */       }
+/*     */       
+/*     */ 
+/* 146 */       if (Habilidade.ContainsAbility(p)) {
+/* 147 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "Â§"));
+/* 148 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 149 */         return true;
+/*     */       }
+/* 151 */       p.getInventory().clear();
+/* 152 */       ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
+/* 153 */       ItemMeta souperaa = dima.getItemMeta();
+/* 154 */       souperaa.setDisplayName("Â§cSword");
+/* 155 */       dima.setItemMeta(souperaa);
+/* 156 */       ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
+/* 157 */       ItemMeta sopas = sopa.getItemMeta();
+/* 158 */       sopas.setDisplayName("Â§6Soup");
+/* 159 */       sopa.setItemMeta(sopas);
+/*     */       
+/*     */ 
+/* 162 */       ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
+/*     */       
+/* 164 */       ItemStack peitoral0 = new ItemStack(Material.IRON_CHESTPLATE);
+/*     */       
+/* 166 */       ItemStack calca0 = new ItemStack(Material.IRON_LEGGINGS);
+/*     */       
+/* 168 */       ItemStack Bota0 = new ItemStack(Material.IRON_BOOTS);
+/*     */       
+/* 170 */       p.getInventory().setHelmet(capacete0);
+/* 171 */       p.getInventory().setChestplate(peitoral0);
+/* 172 */       p.getInventory().setLeggings(calca0);
+/* 173 */       p.getInventory().setBoots(Bota0);
+/* 174 */       Habilidade.setAbility(p, "DoubleJump");
+/* 175 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "Â§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "DoubleJump").replace("&", "Â§"));
+/*     */       
+/* 177 */       p.getInventory().addItem(new ItemStack[] { dima });
+/* 178 */       TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "DoubleJump"));
+/*     */       
+/*     */ 
+/*     */ 
+/* 182 */       for (int i = 0; i <= 34; i++) {
+/* 183 */         p.getInventory().addItem(new ItemStack[] { sopa });
+/*     */       }
+/*     */     }
+/*     */     
+/*     */ 
+/* 188 */     return false;
+/*     */   }
+/*     */ }
 
 
-import me.RafaelAulerDeMeloAraujo.main.Main;
-
-import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
-
-import org.bukkit.Effect;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerToggleFlightEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.util.Vector;
-
-public class Dublejump
-  implements Listener, CommandExecutor
-  {
-	 private Main main;
-	 /*     */   static Main plugin;
-	 /*     */   
-	 /*     */   public Dublejump(Main main) {
-	 /*  27 */     this.main = main;
-	 /*  28 */     plugin = main;
-	 /*     */   }
-{
-	
-}
-  @EventHandler
-  public void onPlayerToggleFly(PlayerToggleFlightEvent e)
-  {
-    Player p = e.getPlayer();
-    if (Habilidade.getAbility(p).equalsIgnoreCase("DoubleJump"))
-    {
-      if (p.getGameMode() == GameMode.CREATIVE) {
-        return;
-      }
-      e.setCancelled(true);
-      p.setFlying(false);
-      p.setAllowFlight(false);
-      Location loc = p.getLocation();
-      if (!p.isSneaking())
-      {
-        p.setFallDistance(-3.0F);
-        Vector vector = p.getEyeLocation().getDirection();
-        vector.multiply(0.6F);
-        vector.setY(1.0F);
-        p.setVelocity(vector);
-      }
-      else
-      {
-        p.setFallDistance(-3.0F);
-        Vector vector = p.getEyeLocation().getDirection();
-        vector.multiply(1.35F);
-        vector.setY(0.66D);
-        p.setVelocity(vector);
-      }
-      loc.getWorld().playSound(loc, Sound.ENTITY_FIREWORK_BLAST, 1.0F, 0.2F);
-      p.getWorld().playEffect(p.getLocation(), Effect.COLOURED_DUST, 80);
-    }
-  }
-  
-  @EventHandler
-  public void onDamage(EntityDamageEvent event)
-  {
-    Entity e = event.getEntity();
-    if ((e instanceof Player))
-    {
-      Player player = (Player)e;
-      if ((Habilidade.getAbility(player).equalsIgnoreCase("DoubleJump")) && ((event.getEntity() instanceof Player)) && (event.getCause() == EntityDamageEvent.DamageCause.FALL)) {
-        event.setDamage(2.0D);
-      }
-    }
-  }
-  
-  @EventHandler
-  public void onPlayerMove(PlayerMoveEvent e)
-  {
-    Player p = e.getPlayer();
-    if (Habilidade.getAbility(p).equalsIgnoreCase("DoubleJump"))
-    {
-      if (p.getGameMode() == GameMode.CREATIVE) {
-        return;
-      }
-      if ((p.isOnGround()) && (!p.getAllowFlight())) {
-        p.setAllowFlight(true);
-      }
-    }
-  }
-  
-  @EventHandler
-  public void aomorrer(PlayerDeathEvent e)
-  {
-    Player p = e.getEntity();
-    if (Habilidade.getAbility(p).equalsIgnoreCase("DoubleJump")) {
-      p.setAllowFlight(false);
-    }
-  }
-  
-  @EventHandler
-  public void aomorrer(PlayerQuitEvent e)
-  {
-    Player p = e.getPlayer();
-    if (Habilidade.getAbility(p).equalsIgnoreCase("DoubleJump")) {
-      p.setAllowFlight(false);
-    }
-  }
-
-
-    
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-   	 /*     */   
-
-    Player p = (Player)sender;
-
-    if (cmd.getName().equalsIgnoreCase("doublejump"))
-    {
-    	  if (!Join.game.contains(p.getName()))
-          {
-              p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eYou are not in kitpvp to do choose this kit!");
-              return true;
-          }
-    	 if (!p.hasPermission("kitpvp.kit.doublejump"))
- 	    {
- 	    	p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", commandLabel));
- 	      return true;
- 	    }
-    
-    
-    	 if (Habilidade.ContainsAbility(p)) { 
-             p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.KitUse").replace("&", "§"));
-             p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-            return true;
-          }
-           p.getInventory().clear();
-           ItemStack dima = new ItemStack(Material.DIAMOND_SWORD);
-           ItemMeta souperaa = dima.getItemMeta();
-           souperaa.setDisplayName("§cSword");
-           dima.setItemMeta(souperaa);
-           ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
-           ItemMeta sopas = sopa.getItemMeta();
-           sopas.setDisplayName("§6Soup");
-           sopa.setItemMeta(sopas);
-
-           
-           ItemStack capacete0 = new ItemStack(Material.IRON_HELMET);
-           
-           ItemStack peitoral0 = new ItemStack(Material.IRON_CHESTPLATE);
-           
-           ItemStack calca0 = new ItemStack(Material.IRON_LEGGINGS);
-           
-           ItemStack Bota0 = new ItemStack(Material.IRON_BOOTS);
-           
-           p.getInventory().setHelmet(capacete0);
-           p.getInventory().setChestplate(peitoral0);
-           p.getInventory().setLeggings(calca0);
-           p.getInventory().setBoots(Bota0);
-           Habilidade.setAbility(p, "DoubleJump");
-      p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "DoubleJump").replace("&", "§"));
-     
-      p.getInventory().addItem(new ItemStack[] { dima });
-     
-      
-      
-      
-      for (int i = 0; i <= 34; i++) {
-        p.getInventory().addItem(new ItemStack[] { sopa });
-        
-      }
-      
-    }
-    if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-   	  /*  94 */         p.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "§"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "DoubleJump").replace("&", "§"));
-   	  /*     */       }
-   	  /*  96 */       return false; }{
-    
-   }
-   }
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\SpecialAbility\Dublejump.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

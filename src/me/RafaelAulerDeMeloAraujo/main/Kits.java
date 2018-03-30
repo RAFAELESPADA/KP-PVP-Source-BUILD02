@@ -1,15 +1,21 @@
 /*     */ package me.RafaelAulerDeMeloAraujo.main;
-import java.util.Arrays;
 /*     */ 
+/*     */ import java.util.ArrayList;
+/*     */ import java.util.Arrays;
 /*     */ import java.util.Collection;
+/*     */ import java.util.HashMap;
 /*     */ import java.util.Iterator;
-
-import org.bukkit.Bukkit;
+/*     */ import java.util.List;
+/*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Deshfire;
+/*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Gladiator;
+/*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
+/*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
+/*     */ import me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI;
 /*     */ import org.bukkit.Color;
-import org.bukkit.Location;
+/*     */ import org.bukkit.Location;
 /*     */ import org.bukkit.Material;
+/*     */ import org.bukkit.Server;
 /*     */ import org.bukkit.Sound;
-import org.bukkit.World;
 /*     */ import org.bukkit.command.Command;
 /*     */ import org.bukkit.command.CommandSender;
 /*     */ import org.bukkit.configuration.file.FileConfiguration;
@@ -20,938 +26,929 @@ import org.bukkit.World;
 /*     */ import org.bukkit.inventory.PlayerInventory;
 /*     */ import org.bukkit.inventory.meta.ItemMeta;
 /*     */ import org.bukkit.inventory.meta.LeatherArmorMeta;
+/*     */ import org.bukkit.plugin.Plugin;
 /*     */ import org.bukkit.potion.PotionEffect;
-
-import me.RafaelAulerDeMeloAraujo.SpecialAbility.Cooldown;
-import me.RafaelAulerDeMeloAraujo.SpecialAbility.Deshfire;
-import me.RafaelAulerDeMeloAraujo.SpecialAbility.Gladiator;
-import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
-import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
-
+/*     */ import org.bukkit.potion.PotionEffectType;
 /*     */ 
 /*     */ public class Kits implements org.bukkit.command.CommandExecutor
 /*     */ {
-/*  22 */   java.util.List<Enchantment[]> enchantsList = new java.util.ArrayList();
+/*  35 */   List<Enchantment[]> enchantsList = new ArrayList();
 /*     */   private Main main;
 /*     */   static Main plugin;
 /*     */   
 /*     */   public Kits(Main main) {
-/*  27 */     this.main = main;
-/*  28 */     plugin = main;
+/*  40 */     this.main = main;
+/*  41 */     plugin = main;
 /*     */   }
 /*     */   
-
+/*     */ 
 /*     */   public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
 /*     */   {
-	 ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
-     ItemMeta sopas = sopa.getItemMeta();
-     sopas.setDisplayName("ง6Soup");
-     sopa.setItemMeta(sopas);
-/*  34 */     if (!(sender instanceof Player)) {
-/*  35 */       sender.sendMessage("[KitPvP] This command is only for players");
-/*  36 */       return true;
+/*  47 */     ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
+/*  48 */     ItemMeta sopas = sopa.getItemMeta();
+/*  49 */     sopas.setDisplayName("ยง6Soup");
+/*  50 */     sopa.setItemMeta(sopas);
+/*  51 */     if (!(sender instanceof Player)) {
+/*  52 */       sender.sendMessage("[KitPvP] This command is only for players");
+/*  53 */       return true;
 /*     */     }
-/*  38 */     Player s = (Player)sender;
-/*  39 */     Player p = (Player)sender;
-/*  40 */     if (cmd.getName().equalsIgnoreCase("kitclear")) {
-    if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf("งcYou are not in kitpvp to do this!"));
-    return true;
-}
-    {
-/*  41 */       if (!sender.hasPermission("kitpvp.kitclear")) {
-/*  42 */        p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/*  43 */         return true;
-/*     */       }
-/*  45 */       for (PotionEffect effect : s.getActivePotionEffects()) {
-/*  46 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/*  48 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Clear").replace("&", "ง"));
-/*  49 */       p.getInventory().clear();
-/*  50 */       s.getInventory().setHelmet(new ItemStack(Material.AIR));
-/*  51 */       s.getInventory().setChestplate(new ItemStack(Material.AIR));
-                Habilidade.removeAbility(p);
-                Cooldown.remove(p);
-                Deshfire.cooldownm.remove(p);
-                Deshfire.armadura.remove(p);
-                Gladiator.lutando.remove(p);
-                Gladiator.gladgladiator.remove(p);
-                World w = Bukkit.getServer().getWorld(Main.plugin.getConfig().getString("Spawn.World"));
-                double x =  Main.plugin.getConfig().getDouble("Spawn.X");
-                  double y = Main.plugin.getConfig().getDouble("Spawn.Y");
-                  double z = Main.plugin.getConfig().getDouble("Spawn.Z");
-                  Location lobby = new Location(w, x, y, z);
-                  lobby.setPitch((float)Main.plugin.getConfig().getDouble("Spawn.Pitch"));
-                  lobby.setYaw((float)Main.plugin.getConfig().getDouble("Spawn.Yaw"));
-	              p.getInventory().clear();
-	              p.teleport(lobby);
-                
-/*  52 */       s.getInventory().setLeggings(new ItemStack(Material.AIR));
-/*  53 */       s.getInventory().setBoots(new ItemStack(Material.AIR));
-p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "งaKit menu ง7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "ง") }))) });
-ItemStack kits = new ItemStack(Material.EMERALD);
-ItemMeta kits2 = kits.getItemMeta();
-kits2.setDisplayName("งbงlShop Menu");
-kits.setItemMeta(kits2);
-p.getInventory().addItem(kits);
-
-
-
-                p.updateInventory();
-/*     */       }
-/*     */     }
-
-    
-  
-/*  58 */     if (cmd.getName().equalsIgnoreCase("kpvp")) {
-/*  59 */       if (!sender.hasPermission("kitpvp.kit.pvp")) {
-/*  60 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
+/*  55 */     Player s = (Player)sender;
+/*  56 */     Player p = (Player)sender;
+/*  57 */     double x; if (cmd.getName().equalsIgnoreCase("kitclear")) {
+/*  58 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/*  60 */         p.sendMessage(String.valueOf("ยงcYou are not in kitpvp to do this!"));
 /*  61 */         return true;
 /*     */       }
-/*  63 */       if (Habilidade.ContainsAbility(p)) {
-/*  64 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/*  65 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/*  66 */         return true;
+/*     */       
+/*  64 */       if (!sender.hasPermission("kitpvp.kitclear")) {
+/*  65 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/*  66 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/*  67 */         return true;
 /*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to choose this kit!");
-    return true;
-}
-/*  68 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "PvP").replace("&", "ง"));
-/*  69 */       s.getInventory().clear();
-/*  70 */       s.setHealth(20.0D);
-/*  71 */       s.setFoodLevel(20);
-/*  72 */       for (PotionEffect effect : s.getActivePotionEffects()) {
-/*  73 */         s.removePotionEffect(effect.getType());
+/*  69 */       for (PotionEffect effect : s.getActivePotionEffects()) {
+/*  70 */         s.removePotionEffect(effect.getType());
 /*     */       }
-/*  75 */       ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
-/*  76 */       sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
-/*  75 */       ItemStack colete = new ItemStack(Material.IRON_CHESTPLATE);
-/*  76 */       colete.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-colete.addEnchantment(Enchantment.DURABILITY, 3);
-/*  75 */       ItemStack colete1 = new ItemStack(Material.IRON_HELMET);
-/*  76 */       colete1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-colete1.addEnchantment(Enchantment.DURABILITY, 3);
-/*  77 */      Habilidade.setAbility(s, "PvP");
-/*  75 */       ItemStack calcinhasuja = new ItemStack(Material.IRON_LEGGINGS);
-
-calcinhasuja.addEnchantment(Enchantment.DURABILITY, 3);
-/*  75 */       ItemStack bota = new ItemStack(Material.IRON_BOOTS);
-
-bota.addEnchantment(Enchantment.DURABILITY, 3);
-/*  77 */       s.getInventory().addItem(new ItemStack[] { sword });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-
-/*  87 */       s.getInventory().setHelmet(new ItemStack(colete1));
-/*  88 */       s.getInventory().setChestplate(new ItemStack(colete));
-/*  89 */       s.getInventory().setLeggings(new ItemStack(calcinhasuja));
-/*  90 */       s.getInventory().setBoots(new ItemStack(bota));
-/*  91 */       
-/*  92 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/*  93 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/*  94 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "PvP").replace("&", "ง"));
-/*     */       }
-/*  96 */       return true; }
-/*     */     Object meta;
-/*  98 */     if (cmd.getName().equalsIgnoreCase("warper")) {
-/*  99 */       if (!sender.hasPermission("kitpvp.kit.warper")) {
-/* 100 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 101 */         return true;
-/*     */       }
-/* 103 */       if (Habilidade.ContainsAbility(p)) {
-/* 104 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 105 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 106 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 108 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Warper").replace("&", "ง"));
-/* 109 */       s.getInventory().clear();
-/* 110 */       s.setHealth(20.0D);
-/* 111 */       s.setFoodLevel(20);
-Habilidade.setAbility(s, "Warper");
-/* 112 */       for (PotionEffect effect : s.getActivePotionEffects()) {
-/* 113 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 115 */       ItemStack sword = new ItemStack(Material.IRON_SWORD);
-/* 116 */       s.getInventory().addItem(new ItemStack[] { sword });
-/* 117 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ENDER_PEARL, 8) });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 125 */       ItemStack tunic = new ItemStack(Material.LEATHER_CHESTPLATE);
-/* 126 */       tunic.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 127 */       meta = (LeatherArmorMeta)tunic.getItemMeta();
-/* 128 */       ((LeatherArmorMeta)meta).setColor(Color.BLUE);
-/* 129 */       tunic.setItemMeta((ItemMeta)meta);
-/* 130 */       s.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
-/* 131 */       s.getEquipment().setChestplate(tunic);
-/* 132 */       s.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
-/* 133 */       s.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
-/* 134 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 135 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 136 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Warper").replace("&", "ง"));
-/*     */       }
-/* 138 */       return true; }
-/*     */     Object meta1;
-/* 140 */     if (cmd.getName().equalsIgnoreCase("Switcher")) {
-/* 141 */       if (!sender.hasPermission("kitpvp.kit.switcher")) {
-/* 142 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 143 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 145 */       if (Habilidade.ContainsAbility(p)) {
-/* 146 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 147 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 148 */         return true;
-/*     */       }
-/* 150 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Switcher").replace("&", "ง"));
-/* 151 */       s.getInventory().clear();
-/* 152 */       s.setHealth(20.0D);
-/* 153 */       s.setFoodLevel(20);
-Habilidade.setAbility(s, "Switcher");
-/* 154 */       for (meta1 = s.getActivePotionEffects().iterator(); ((Iterator)meta1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta1).next();
-/* 155 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 157 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.DIAMOND_SWORD) });
-/* 158 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.SNOW_BALL, 16) });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 166 */       ItemStack tunic = new ItemStack(Material.LEATHER_HELMET);
-/* 167 */       tunic.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 168 */       meta1 = (LeatherArmorMeta)tunic.getItemMeta();
-/* 169 */       ((LeatherArmorMeta)meta1).setColor(Color.WHITE);
-/* 170 */       tunic.setItemMeta((ItemMeta)meta1);
-/* 171 */       s.getEquipment().setHelmet(tunic);
-/* 172 */       s.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
-/* 173 */       s.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
-/* 174 */       s.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
-/* 175 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 176 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 177 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Switcher").replace("&", "ง"));
-/*     */       }
-/* 179 */       return true; }
-/*     */     Object bow;
-/* 181 */     if (cmd.getName().equalsIgnoreCase("archer")) {
-/* 182 */       if (!sender.hasPermission("kitpvp.kit.archer")) {
-/* 183 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 184 */         return true;
-/*     */       }
-/* 186 */       if (Habilidade.ContainsAbility(p)) {
-/* 187 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 188 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 189 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 191 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Archer").replace("&", "ง"));
-/* 192 */       s.getInventory().clear();
-/* 193 */       s.setHealth(20.0D);
-Habilidade.setAbility(s, "Archer");
-/* 194 */       s.setFoodLevel(20);
-/* 195 */       for (meta1 = s.getActivePotionEffects().iterator(); ((Iterator)meta1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta1).next();
-/* 196 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 198 */       ItemStack sword2 = new ItemStack(Material.STONE_SWORD);
-                ItemStack flecha = new ItemStack(Material.ARROW);
-/* 199 */       sword2.addEnchantment(Enchantment.KNOCKBACK, 2);
-                sword2.addEnchantment(Enchantment.DAMAGE_ALL, 2); 
-/* 200 */       bow = new ItemStack(Material.BOW);
-/* 201 */       ((ItemStack)bow).addEnchantment(Enchantment.ARROW_DAMAGE, 2);
-                ((ItemStack)bow).addEnchantment(Enchantment.ARROW_INFINITE, 1);
-                ((ItemStack)bow).addEnchantment(Enchantment.ARROW_KNOCKBACK, 1);
-/* 202 */       s.getInventory().addItem(new ItemStack[] { sword2 });
-/* 203 */       s.getInventory().addItem(new ItemStack[] { (ItemStack) bow });
-                s.getInventory().addItem(new ItemStack[] { (ItemStack) flecha });
-for (int i = 0; i <= 33; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-   
-    
-  }
-/* 211 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ARROW, 64) });
-/* 212 */       s.getInventory().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
-/* 213 */       ItemStack Peitoral = new ItemStack(Material.LEATHER_CHESTPLATE);
-LeatherArmorMeta kPeitoral = (LeatherArmorMeta)Peitoral.getItemMeta();
-kPeitoral.setColor(Color.GREEN);
-Peitoral.setItemMeta(kPeitoral);
-/* 214 */       s.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
-/* 215 */       s.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-s.getInventory().setChestplate(Peitoral);
-/* 216 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 217 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 218 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Archer").replace("&", "ง"));
-/*     */       }
-/* 220 */       return true; }
-/*     */     Object bow1; 
-/* 222 */     if (cmd.getName().equalsIgnoreCase("pyro")) {
-/* 223 */       if (!sender.hasPermission("kitpvp.kit.pyro")) {
-/* 224 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 225 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 227 */       if (Habilidade.ContainsAbility(p)) {
-/* 228 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 229 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 230 */         return true;
-/*     */       }
-/* 232 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Pyro").replace("&", "ง"));
-/* 233 */       s.getInventory().clear();
-/* 234 */       s.setHealth(20.0D);
-/* 235 */       s.setFoodLevel(20);
-/* 236 */       for (bow = s.getActivePotionEffects().iterator(); ((Iterator)bow).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)bow).next();
-/* 237 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 239 */       ItemStack sword3 = new ItemStack(Material.STONE_SWORD);
-/* 240 */       sword3.addEnchantment(Enchantment.KNOCKBACK, 2);
-sword3.addEnchantment(Enchantment.DAMAGE_ALL, 1);
-ItemStack flecha = new ItemStack(Material.ARROW , 64);
-/* 241 */       sword3.addEnchantment(Enchantment.FIRE_ASPECT, 1);
-/* 242 */       bow1 = new ItemStack(Material.BOW);
-/* 243 */       ((ItemStack)bow1).addEnchantment(Enchantment.ARROW_DAMAGE, 3);
-/* 244 */       ((ItemStack)bow1).addEnchantment(Enchantment.ARROW_FIRE, 1);
-/* 245 */       s.getInventory().addItem(new ItemStack[] { sword3 });
-
-/* 246 */       s.getInventory().addItem(new ItemStack[] { (ItemStack) bow1 });
-s.getInventory().addItem(new ItemStack[] { flecha });
-for (int i = 0; i <= 33; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 254 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ARROW, 64) });
-/* 255 */       ItemStack tunic = new ItemStack(Material.LEATHER_HELMET);
-/* 256 */       tunic.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 257 */       LeatherArmorMeta meta11 = (LeatherArmorMeta)tunic.getItemMeta();
-/* 258 */       meta11.setColor(Color.YELLOW);
-/* 259 */       tunic.setItemMeta(meta11);
-Habilidade.setAbility(s, "Pyro");
-/* 260 */       s.getEquipment().setHelmet(tunic);
-/* 261 */       s.getInventory().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
-/* 262 */       s.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
-/* 263 */       s.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-/* 264 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 265 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 266 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Pyro").replace("&", "ง"));
-/*     */       }
-/* 268 */       return true;
+/*  72 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Clear").replace("&", "ยง"));
+/*  73 */       p.getInventory().clear();
+/*  74 */       s.getInventory().setHelmet(new ItemStack(Material.AIR));
+/*  75 */       s.getInventory().setChestplate(new ItemStack(Material.AIR));
+/*  76 */       Habilidade.removeAbility(p);
+/*  77 */       me.RafaelAulerDeMeloAraujo.SpecialAbility.Cooldown.remove(p);
+/*  78 */       Deshfire.cooldownm.remove(p);
+/*  79 */       Deshfire.armadura.remove(p);
+/*  80 */       Gladiator.lutando.remove(p);
+/*  81 */       Gladiator.gladgladiator.remove(p);
+/*  82 */       org.bukkit.World w = org.bukkit.Bukkit.getServer().getWorld(Main.plugin.getConfig().getString("Spawn.World"));
+/*  83 */       x = Main.plugin.getConfig().getDouble("Spawn.X");
+/*  84 */       double y = Main.plugin.getConfig().getDouble("Spawn.Y");
+/*  85 */       double z = Main.plugin.getConfig().getDouble("Spawn.Z");
+/*  86 */       Location lobby = new Location(w, x, y, z);
+/*  87 */       lobby.setPitch((float)Main.plugin.getConfig().getDouble("Spawn.Pitch"));
+/*  88 */       lobby.setYaw((float)Main.plugin.getConfig().getDouble("Spawn.Yaw"));
+/*  89 */       p.getInventory().clear();
+/*  90 */       p.teleport(lobby);
+/*     */       
+/*  92 */       s.getInventory().setLeggings(new ItemStack(Material.AIR));
+/*  93 */       s.getInventory().setBoots(new ItemStack(Material.AIR));
+/*  94 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "ยงaKit menu ยง7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "ยง") }))) });
+/*  95 */       ItemStack kits = new ItemStack(Material.EMERALD);
+/*  96 */       ItemMeta kits2 = kits.getItemMeta();
+/*  97 */       kits2.setDisplayName("ยงbยงlShop Menu");
+/*  98 */       kits.setItemMeta(kits2);
+/*  99 */       ItemStack st = new ItemStack(Material.BLAZE_ROD);
+/* 100 */       ItemMeta st2 = st.getItemMeta();
+/* 101 */       st2.setDisplayName("ยงeJOIN 1V1");
+/* 102 */       st.setItemMeta(st2);
+ItemStack stats = new ItemStack(Material.NAME_TAG);
+/* 227 */           ItemMeta stats2 = kits.getItemMeta();
+/* 228 */           stats2.setDisplayName("ยงaYour Stats ยง7(Right click)");
+/* 229 */           stats.setItemMeta(stats2);
+p.getInventory().setItem(3, stats);
+/* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
+/* 104 */       p.getInventory().addItem(new ItemStack[] { st });
+/*     */       
+/*     */ 
+/* 107 */       p.updateInventory();
 /*     */     }
-/* 270 */     if (cmd.getName().equalsIgnoreCase("Tank")) {
-/* 271 */       if (!sender.hasPermission("kitpvp.kit.tank")) {
-/* 272 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 273 */         return true;
+/*     */     
+/*     */ 
+/*     */     ItemStack colete1;
+/*     */     
+/* 113 */     if (cmd.getName().equalsIgnoreCase("kpvp")) {
+/* 114 */       if (!sender.hasPermission("kitpvp.kit.pvp")) {
+/* 115 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 116 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 117 */         return true;
 /*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 275 */       if (Habilidade.ContainsAbility(p)) {
-/* 276 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 277 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 278 */         return true;
+/* 119 */       if (Habilidade.ContainsAbility(p)) {
+/* 120 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 121 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 122 */         return true;
 /*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 280 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Tank").replace("&", "ง"));
-/* 281 */       s.getInventory().clear();
-/* 282 */       s.setHealth(20.0D);
-/* 283 */       s.setFoodLevel(20);
-/* 284 */       for (bow1 = s.getActivePotionEffects().iterator(); ((Iterator)bow1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)bow1).next();
-/* 285 */         s.removePotionEffect(effect.getType());
+/* 124 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 126 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to choose this kit!");
+/* 127 */         return true;
 /*     */       }
-/* 287 */       ItemStack sword4 = new ItemStack(Material.IRON_SWORD);
-/* 288 */       sword4.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 289 */       
-/* 290 */       s.getInventory().addItem(new ItemStack[] { sword4 });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 299 */       s.getInventory().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
-/* 300 */       s.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
-/* 301 */       s.getInventory().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
-/* 302 */       s.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
-Habilidade.setAbility(s, "Tank");
-/* 303 */       s.addPotionEffect(new PotionEffect(org.bukkit.potion.PotionEffectType.SLOW, 999999999, 2));
+/* 129 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "PvP").replace("&", "ยง"));
+/* 130 */       s.getInventory().clear();
+/* 131 */       s.setHealth(20.0D);
+/* 132 */       s.setFoodLevel(20);
+/* 133 */       for (PotionEffect effect : s.getActivePotionEffects()) {
+/* 134 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 136 */       ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
+/* 137 */       sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+/* 138 */       ItemStack colete = new ItemStack(Material.IRON_CHESTPLATE);
+/* 139 */       colete.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+/* 140 */       colete.addEnchantment(Enchantment.DURABILITY, 3);
+/* 141 */       colete1 = new ItemStack(Material.IRON_HELMET);
+/* 142 */       colete1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+/* 143 */       colete1.addEnchantment(Enchantment.DURABILITY, 3);
+/* 144 */       Habilidade.setAbility(s, "PvP");
+/* 145 */       ItemStack calcinhasuja = new ItemStack(Material.IRON_LEGGINGS);
+/*     */       
+/* 147 */       calcinhasuja.addEnchantment(Enchantment.DURABILITY, 3);
+/* 148 */       ItemStack bota = new ItemStack(Material.IRON_BOOTS);
+/*     */       
+/* 150 */       bota.addEnchantment(Enchantment.DURABILITY, 3);
+/* 151 */       s.getInventory().addItem(new ItemStack[] { sword });
+/* 152 */       for (int i = 0; i <= 34; i++) {
+/* 153 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/* 154 */         TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "PvP"));
+/*     */       }
+/*     */       
+/* 157 */       s.getInventory().setHelmet(new ItemStack(colete1));
+/* 158 */       s.getInventory().setChestplate(new ItemStack(colete));
+/* 159 */       s.getInventory().setLeggings(new ItemStack(calcinhasuja));
+/* 160 */       s.getInventory().setBoots(new ItemStack(bota));
+/*     */       
+/* 162 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 164 */       return true;
+/*     */     }
+/* 166 */     if (cmd.getName().equalsIgnoreCase("warper")) {
+/* 167 */       if (!sender.hasPermission("kitpvp.kit.warper")) {
+/* 168 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 169 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 170 */         return true;
+/*     */       }
+/* 172 */       if (Habilidade.ContainsAbility(p)) {
+/* 173 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 174 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 175 */         return true;
+/*     */       }
+/* 177 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 179 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 180 */         return true;
+/*     */       }
+/* 182 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Warper").replace("&", "ยง"));
+/* 183 */       s.getInventory().clear();
+/* 184 */       s.setHealth(20.0D);
+/* 185 */       s.setFoodLevel(20);
+/* 186 */       Habilidade.setAbility(s, "Warper");
+/* 187 */       for (PotionEffect effect : s.getActivePotionEffects()) {
+/* 188 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 190 */       ItemStack sword = new ItemStack(Material.IRON_SWORD);
+/* 191 */       s.getInventory().addItem(new ItemStack[] { sword });
+/* 192 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ENDER_PEARL, 8) });
+/* 193 */       for (int i = 0; i <= 34; i++) {
+/* 194 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/* 195 */         TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Warper"));
+/*     */       }
+/* 197 */       ItemStack tunic = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 198 */       tunic.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 199 */       Object meta = (LeatherArmorMeta)tunic.getItemMeta();
+/* 200 */       ((LeatherArmorMeta)meta).setColor(Color.BLUE);
+/* 201 */       tunic.setItemMeta((ItemMeta)meta);
+/* 202 */       s.getInventory().setHelmet(new ItemStack(Material.IRON_HELMET));
+/* 203 */       s.getEquipment().setChestplate(tunic);
+/* 204 */       s.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+/* 205 */       s.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+/* 206 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 208 */       return true;
+/*     */     }
+/* 210 */     if (cmd.getName().equalsIgnoreCase("Switcher")) {
+/* 211 */       if (!sender.hasPermission("kitpvp.kit.switcher")) {
+/* 212 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 213 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 214 */         return true;
+/*     */       }
+/* 216 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 218 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 219 */         return true;
+/*     */       }
+/* 221 */       if (Habilidade.ContainsAbility(p)) {
+/* 222 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 223 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 224 */         return true;
+/*     */       }
+/* 226 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Switcher").replace("&", "ยง"));
+/* 227 */       s.getInventory().clear();
+/* 228 */       s.setHealth(20.0D);
+/* 229 */       s.setFoodLevel(20);
+/* 230 */       Habilidade.setAbility(s, "Switcher");
+/* 231 */       TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Switcher"));
+/* 232 */       for (Object meta1 = s.getActivePotionEffects().iterator(); ((Iterator)meta1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta1).next();
+/* 233 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 235 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.DIAMOND_SWORD) });
+/* 236 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.SNOW_BALL, 16) });
+/* 237 */       for (int i = 0; i <= 34; i++) {
+/* 238 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/*     */       }
+/*     */       
+/* 241 */       ItemStack tunic = new ItemStack(Material.LEATHER_HELMET);
+/* 242 */       tunic.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 243 */       LeatherArmorMeta meta1 = (LeatherArmorMeta)tunic.getItemMeta();
+/* 244 */       ((LeatherArmorMeta)meta1).setColor(Color.WHITE);
+/* 245 */       tunic.setItemMeta((ItemMeta)meta1);
+/* 246 */       s.getEquipment().setHelmet(tunic);
+/* 247 */       s.getInventory().setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+/* 248 */       s.getInventory().setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+/* 249 */       s.getInventory().setBoots(new ItemStack(Material.IRON_BOOTS));
+/* 250 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 252 */       return true;
+/*     */     }
+/* 254 */     if (cmd.getName().equalsIgnoreCase("archer")) {
+/* 255 */       if (!sender.hasPermission("kitpvp.kit.archer")) {
+/* 256 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 257 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 258 */         return true;
+/*     */       }
+/* 260 */       if (Habilidade.ContainsAbility(p)) {
+/* 261 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 262 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 263 */         return true;
+/*     */       }
+/* 265 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 267 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 268 */         return true;
+/*     */       }
+/* 270 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Archer").replace("&", "ยง"));
+/* 271 */       s.getInventory().clear();
+/* 272 */       s.setHealth(20.0D);
+/* 273 */       Habilidade.setAbility(s, "Archer");
+/* 274 */       TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Archer"));
+/* 275 */       s.setFoodLevel(20);
+/* 276 */       for (Object meta1 = s.getActivePotionEffects().iterator(); ((Iterator)meta1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta1).next();
+/* 277 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 279 */       ItemStack sword2 = new ItemStack(Material.STONE_SWORD);
+/* 280 */       ItemStack flecha = new ItemStack(Material.ARROW);
+/* 281 */       sword2.addEnchantment(Enchantment.KNOCKBACK, 2);
+/* 282 */       sword2.addEnchantment(Enchantment.DAMAGE_ALL, 2);
+/* 283 */       Object bow = new ItemStack(Material.BOW);
+/* 284 */       ((ItemStack)bow).addEnchantment(Enchantment.ARROW_DAMAGE, 2);
+/* 285 */       ((ItemStack)bow).addEnchantment(Enchantment.ARROW_INFINITE, 1);
+/* 286 */       ((ItemStack)bow).addEnchantment(Enchantment.ARROW_KNOCKBACK, 1);
+/* 287 */       s.getInventory().addItem(new ItemStack[] { sword2 });
+/* 288 */       s.getInventory().addItem(new ItemStack[] { (ItemStack)bow });
+/* 289 */       s.getInventory().addItem(new ItemStack[] { flecha });
+/* 290 */       for (int i = 0; i <= 33; i++) {
+/* 291 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/*     */       }
+/*     */       
+/*     */ 
+/* 295 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ARROW, 64) });
+/* 296 */       s.getInventory().setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
+/* 297 */       ItemStack Peitoral = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 298 */       LeatherArmorMeta kPeitoral = (LeatherArmorMeta)Peitoral.getItemMeta();
+/* 299 */       kPeitoral.setColor(Color.GREEN);
+/* 300 */       Peitoral.setItemMeta(kPeitoral);
+/* 301 */       s.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
+/* 302 */       s.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
+/* 303 */       s.getInventory().setChestplate(Peitoral);
 /* 304 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 305 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 306 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Tank").replace("&", "ง"));
+/*     */       
+/* 306 */       return true;
+/*     */     }
+/* 308 */     if (cmd.getName().equalsIgnoreCase("pyro")) {
+/* 309 */       if (!sender.hasPermission("kitpvp.kit.pyro")) {
+/* 310 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 311 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 312 */         return true;
 /*     */       }
-/* 308 */       return true; }
-/*     */     Object helmet;
-/* 310 */     if (cmd.getName().equalsIgnoreCase("jumper")) {
-/* 311 */       if (!sender.hasPermission("kitpvp.kit.jumper")) {
-/* 312 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 313 */         return true;
+/* 314 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 316 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 317 */         return true;
 /*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 315 */       if (Habilidade.ContainsAbility(p)) {
-/* 316 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 317 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 318 */         return true;
+/* 319 */       if (Habilidade.ContainsAbility(p)) {
+/* 320 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 321 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 322 */         return true;
 /*     */       }
-/* 320 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Jumper").replace("&", "ง"));
-/* 321 */       s.getInventory().clear();
-/* 322 */       s.setHealth(20.0D);
-/* 323 */       s.setFoodLevel(20);
-/* 324 */       for (bow1 = s.getActivePotionEffects().iterator(); ((Iterator)bow1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)bow1).next();
-/* 325 */         s.removePotionEffect(effect.getType());
+/* 324 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Pyro").replace("&", "ยง"));
+/* 325 */       s.getInventory().clear();
+/* 326 */       s.setHealth(20.0D);
+/* 327 */       s.setFoodLevel(20);
+/* 328 */       for (Object bow = s.getActivePotionEffects().iterator(); ((Iterator)bow).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)bow).next();
+/* 329 */         s.removePotionEffect(effect.getType());
 /*     */       }
-/* 327 */       ItemStack sword5 = new ItemStack(Material.DIAMOND_SWORD);
-/* 328 */       sword5.addEnchantment(Enchantment.DAMAGE_ALL, 1);
-/* 329 */       s.getInventory().addItem(new ItemStack[] { sword5 });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 338 */       helmet = new ItemStack(Material.IRON_HELMET);
-/* 339 */       ((ItemStack)helmet).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 340 */       ((ItemStack)helmet).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 341 */       
-/* 343 */       
-/* 344 */       s.getEquipment().setHelmet((ItemStack)helmet);
-/* 345 */       ItemStack tunic1 = new ItemStack(Material.IRON_CHESTPLATE);
-/* 346 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 347 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 348 */      
-/* 350 */      
-/* 351 */       s.getEquipment().setChestplate(tunic1);
-/* 352 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
-/* 353 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 354 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 355 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)tunic11.getItemMeta();
-/* 356 */       meta1111.setColor(Color.BLACK);
-/* 357 */       tunic11.setItemMeta(meta1111);
-/* 358 */       s.getEquipment().setLeggings(tunic11);
-/* 359 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
-/* 360 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 361 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 362 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic111.getItemMeta();
-/* 363 */       meta11111.setColor(Color.YELLOW);
-Habilidade.setAbility(s, "Jumper");
-/* 364 */       tunic111.setItemMeta(meta11111);
-/* 365 */       s.getEquipment().setBoots(tunic111);
-/* 366 */       s.addPotionEffect(new PotionEffect(org.bukkit.potion.PotionEffectType.SPEED, 999999999, 1));
-/* 367 */       s.addPotionEffect(new PotionEffect(org.bukkit.potion.PotionEffectType.JUMP, 999999999, 3));
-/* 368 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 369 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 370 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Jumper").replace("&", "ง"));
+/* 331 */       ItemStack sword3 = new ItemStack(Material.STONE_SWORD);
+/* 332 */       sword3.addEnchantment(Enchantment.KNOCKBACK, 2);
+/* 333 */       sword3.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+/* 334 */       ItemStack flecha = new ItemStack(Material.ARROW, 64);
+/* 335 */       sword3.addEnchantment(Enchantment.FIRE_ASPECT, 1);
+/* 336 */       Object bow1 = new ItemStack(Material.BOW);
+/* 337 */       ((ItemStack)bow1).addEnchantment(Enchantment.ARROW_DAMAGE, 3);
+/* 338 */       ((ItemStack)bow1).addEnchantment(Enchantment.ARROW_FIRE, 1);
+/* 339 */       s.getInventory().addItem(new ItemStack[] { sword3 });
+/* 340 */       TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Pyro"));
+/* 341 */       s.getInventory().addItem(new ItemStack[] { (ItemStack)bow1 });
+/* 342 */       s.getInventory().addItem(new ItemStack[] { flecha });
+/* 343 */       for (int i = 0; i <= 33; i++) {
+/* 344 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/*     */       }
+/*     */       
+/* 347 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ARROW, 64) });
+/* 348 */       ItemStack tunic = new ItemStack(Material.LEATHER_HELMET);
+/* 349 */       tunic.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 350 */       LeatherArmorMeta meta11 = (LeatherArmorMeta)tunic.getItemMeta();
+/* 351 */       meta11.setColor(Color.YELLOW);
+/* 352 */       tunic.setItemMeta(meta11);
+/* 353 */       Habilidade.setAbility(s, "Pyro");
+/* 354 */       s.getEquipment().setHelmet(tunic);
+/* 355 */       s.getInventory().setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
+/* 356 */       s.getInventory().setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
+/* 357 */       s.getInventory().setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
+/* 358 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 360 */       return true;
+/*     */     }
+/* 362 */     if (cmd.getName().equalsIgnoreCase("Tank")) {
+/* 363 */       if (!sender.hasPermission("kitpvp.kit.tank")) {
+/* 364 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 365 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 366 */         return true;
+/*     */       }
+/* 368 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 370 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
 /* 371 */         return true;
 /*     */       }
-/* 373 */       return true; }
-/*     */     Object helmet1;
-/* 375 */     if (cmd.getName().equalsIgnoreCase("Cactus")) {
-/* 376 */       if (!sender.hasPermission("kitpvp.kit.cactus")) {
-/* 377 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 378 */         return true;
+/* 373 */       if (Habilidade.ContainsAbility(p)) {
+/* 374 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 375 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 376 */         return true;
 /*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 380 */       if (Habilidade.ContainsAbility(p)) {
-/* 381 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 382 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 383 */         return true;
+/* 378 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 380 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 381 */         return true;
 /*     */       }
-/* 385 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Cactus").replace("&", "ง"));
-/* 386 */       s.getInventory().clear();
-/* 387 */       s.setHealth(20.0D);
-/* 388 */       s.setFoodLevel(20);
-/* 389 */       for (helmet1 = s.getActivePotionEffects().iterator(); ((Iterator)helmet1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet1).next();
-/* 390 */         s.removePotionEffect(effect.getType());
+/* 383 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Tank").replace("&", "ยง"));
+/* 384 */       s.getInventory().clear();
+/* 385 */       s.setHealth(20.0D);
+/* 386 */       s.setFoodLevel(20);
+/* 387 */       for (Object bow1 = s.getActivePotionEffects().iterator(); ((Iterator)bow1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)bow1).next();
+/* 388 */         s.removePotionEffect(effect.getType());
 /*     */       }
-/* 392 */       ItemStack sword6 = new ItemStack(Material.DIAMOND_SWORD);
-/* 393 */       s.getInventory().addItem(new ItemStack[] { sword6 });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 402 */       helmet1 = new ItemStack(Material.IRON_HELMET);
-/* 403 */       ((ItemStack)helmet1).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 404 */       ((ItemStack)helmet1).addEnchantment(Enchantment.THORNS, 3);
-/* 405 */       s.getEquipment().setHelmet((ItemStack)helmet1);
-/* 406 */       ItemStack tunic1 = new ItemStack(Material.IRON_CHESTPLATE);
-/* 407 */       tunic1.addEnchantment(Enchantment.THORNS, 3);
-/* 408 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 409 */       s.getEquipment().setChestplate(tunic1);
-/* 410 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
-/* 411 */       tunic11.addEnchantment(Enchantment.THORNS, 3);
-/* 412 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 413 */       s.getEquipment().setLeggings(tunic11);
-Habilidade.setAbility(s, "Cactus");
-/* 414 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
-/* 415 */       tunic111.addEnchantment(Enchantment.THORNS, 3);
-/* 416 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 417 */       s.getEquipment().setBoots(tunic111);
-/* 418 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 419 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 420 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Cactus").replace("&", "ง"));
-/* 421 */         return true;
+/* 390 */       ItemStack sword4 = new ItemStack(Material.IRON_SWORD);
+/* 391 */       sword4.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 392 */       TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Tank"));
+/* 393 */       s.getInventory().addItem(new ItemStack[] { sword4 });
+/* 394 */       for (int i = 0; i <= 34; i++) {
+/* 395 */         s.getInventory().addItem(new ItemStack[] { sopa });
 /*     */       }
-/* 423 */       return true; }
-/*     */     Object meta11;
-/* 425 */     if (cmd.getName().equalsIgnoreCase("bomber")) {
-/* 426 */       if (!sender.hasPermission("kitpvp.kit.bomber")) {
-/* 427 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 428 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 430 */       if (Habilidade.ContainsAbility(p)) {
-/* 431 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 432 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 433 */         return true;
-/*     */       }
-/* 435 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Bomber").replace("&", "ง"));
-/* 436 */       s.getInventory().clear();
-/* 437 */       s.setHealth(20.0D);
-/* 438 */       s.setFoodLevel(20);
-/* 439 */       for (helmet1 = s.getActivePotionEffects().iterator(); ((Iterator)helmet1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet1).next();
-/* 440 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 442 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.DIAMOND_SWORD) });
-/* 443 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.TNT, 10) });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 451 */       ItemStack helmet11 = new ItemStack(Material.LEATHER_HELMET);
-/* 452 */       helmet11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 453 */       helmet11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
-/* 454 */       meta11 = (LeatherArmorMeta)helmet11.getItemMeta();
-/* 455 */       ((LeatherArmorMeta)meta11).setColor(Color.RED);
-/* 456 */       helmet11.setItemMeta((ItemMeta)meta11);
-/* 457 */       s.getEquipment().setHelmet(helmet11);
-/* 458 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
-/* 459 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 460 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
-/* 461 */       LeatherArmorMeta meta111 = (LeatherArmorMeta)tunic1.getItemMeta();
-/* 462 */       meta111.setColor(Color.WHITE);
-/* 463 */       tunic1.setItemMeta(meta111);
-/* 464 */       s.getEquipment().setChestplate(tunic1);
-/* 465 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
-/* 466 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 467 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
-/* 468 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)tunic11.getItemMeta();
-/* 469 */       meta1111.setColor(Color.RED);
-/* 470 */       tunic11.setItemMeta(meta1111);
-/* 471 */       s.getEquipment().setLeggings(tunic11);
-/* 472 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
-/* 473 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 474 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
-/* 475 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic111.getItemMeta();
-/* 476 */       meta11111.setColor(Color.WHITE);
-/* 477 */       tunic111.setItemMeta(meta11111);
-/* 478 */       s.getEquipment().setBoots(tunic111);
-Habilidade.setAbility(s, "Bomber");
-/* 479 */       s.addPotionEffect(new PotionEffect(org.bukkit.potion.PotionEffectType.SPEED, 999999999, 1));
-/* 480 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 481 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 482 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Bomber").replace("&", "ง"));
-/* 483 */         return true;
-/*     */       }
-/* 485 */       return true; }
-/*     */     Object helmet11;
-/* 487 */     if (cmd.getName().equalsIgnoreCase("wasp")) {
-/* 488 */       if (!sender.hasPermission("kitpvp.kit.wasp")) {
-/* 489 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 490 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 492 */       if (Habilidade.ContainsAbility(p)) {
-/* 493 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 494 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 495 */         return true;
-/*     */       }
-/* 497 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Wasp").replace("&", "ง"));
-/* 498 */       s.getInventory().clear();
-/* 499 */       s.setHealth(20.0D);
-/* 500 */       s.setFoodLevel(20);
-/* 501 */       for (meta11 = s.getActivePotionEffects().iterator(); ((Iterator)meta11).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta11).next();
-/* 502 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 504 */       ItemStack sword7 = new ItemStack(Material.BLAZE_ROD);
-/* 505 */       sword7.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 7);
-/* 506 */       s.getInventory().addItem(new ItemStack[] { sword7 });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 515 */       helmet11 = new ItemStack(Material.LEATHER_HELMET);
-/* 516 */       ((ItemStack)helmet11).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 517 */       ((ItemStack)helmet11).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 518 */       LeatherArmorMeta meta111 = (LeatherArmorMeta)((ItemStack)helmet11).getItemMeta();
-/* 519 */       meta111.setColor(Color.BLACK);
-/* 520 */       ((ItemStack)helmet11).setItemMeta(meta111);
-/* 521 */       s.getEquipment().setHelmet((ItemStack)helmet11);
-/* 522 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
-/* 523 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 524 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 525 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)tunic1.getItemMeta();
-/* 526 */       meta1111.setColor(Color.YELLOW);
-/* 527 */       tunic1.setItemMeta(meta1111);
-/* 528 */       s.getEquipment().setChestplate(tunic1);
-/* 529 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
-/* 530 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 531 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 532 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic11.getItemMeta();
-/* 533 */       meta11111.setColor(Color.BLACK);
-/* 534 */       tunic11.setItemMeta(meta11111);
-/* 535 */       s.getEquipment().setLeggings(tunic11);
-/* 536 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
-/* 537 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 538 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 539 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic111.getItemMeta();
-/* 540 */       meta111111.setColor(Color.YELLOW);
-/* 541 */       tunic111.setItemMeta(meta111111);
-/* 542 */       s.getEquipment().setBoots(tunic111);
-Habilidade.setAbility(s, "Wasp");
-/* 543 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 544 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 545 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Wasp").replace("&", "ง"));
-/* 546 */         return true;
-/*     */       }
-/* 548 */       return true; }
-/*     */     Object meta111;
-/* 550 */     if (cmd.getName().equalsIgnoreCase("spiderman")) {
-/* 551 */       if (!sender.hasPermission("kitpvp.kit.spiderman")) {
-/* 552 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 553 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 555 */       if (Habilidade.ContainsAbility(p)) {
-/* 556 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 557 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 558 */         return true;
-/*     */       }
-/* 560 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Spiderman").replace("&", "ง"));
-/* 561 */       s.getInventory().clear();
-/* 562 */       s.setHealth(20.0D);
-/* 563 */       s.setFoodLevel(20);
-/* 564 */       for (helmet11 = s.getActivePotionEffects().iterator(); ((Iterator)helmet11).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet11).next();
-/* 565 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 567 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.DIAMOND_SWORD, 1, 0, this.main.getConfig().getString("SidermanKit.Name").replace("&", "ง"), java.util.Arrays.asList(new String[] { this.main.getConfig().getString("SidermanKit.Lore").replace("&", "ง") }))) });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 576 */       ItemStack helmet111 = new ItemStack(Material.LEATHER_HELMET);
-/* 577 */       helmet111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 578 */       helmet111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-helmet111.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
-/* 579 */       meta111 = (LeatherArmorMeta)helmet111.getItemMeta();
-/* 580 */       ((LeatherArmorMeta)meta111).setColor(Color.RED);
-/* 581 */       helmet111.setItemMeta((ItemMeta)meta111);
-/* 582 */       s.getEquipment().setHelmet(helmet111);
-/* 583 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
-/* 584 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 585 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-tunic1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
-/* 586 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)tunic1.getItemMeta();
-/* 587 */       meta1111.setColor(Color.RED);
-/* 588 */       tunic1.setItemMeta(meta1111);
-/* 589 */       s.getEquipment().setChestplate(tunic1);
-/* 590 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
-/* 591 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 592 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 593 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic11.getItemMeta();
-tunic11.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
-/* 594 */       meta11111.setColor(Color.RED);
-/* 595 */       tunic11.setItemMeta(meta11111);
-/* 596 */       s.getEquipment().setLeggings(tunic11);
-/* 597 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
-/* 598 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 599 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 600 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic111.getItemMeta();
-/* 601 */       meta111111.setColor(Color.RED);
-/* 602 */       tunic111.setItemMeta(meta111111);
-/* 603 */       s.getEquipment().setBoots(tunic111);
-Habilidade.setAbility(s, "Spiderman");
-tunic111.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
-/* 604 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 605 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 606 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Spiderman").replace("&", "ง"));
-/* 607 */         return true;
-/*     */       }
-/* 609 */       return true; }
-/*     */     Object helmet111;
-/* 611 */     if (cmd.getName().equalsIgnoreCase("airman")) {
-/* 612 */       if (!sender.hasPermission("kitpvp.kit.airman")) {
-/* 613 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 614 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 616 */       if (Habilidade.ContainsAbility(p)) {
-/* 617 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 618 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 619 */         return true;
-/*     */       }
-/* 621 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "AirMan").replace("&", "ง"));
-/* 622 */       s.getInventory().clear();
-/* 623 */       s.setHealth(20.0D);
-/* 624 */       s.setFoodLevel(20);
-/* 625 */       for (meta111 = s.getActivePotionEffects().iterator(); ((Iterator)meta111).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta111).next();
-/* 626 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 628 */       ItemStack sword8 = new ItemStack(Material.IRON_SWORD);
-/* 629 */       sword8.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
-Habilidade.setAbility(s, "Airman");
-/* 630 */       s.getInventory().addItem(new ItemStack[] { sword8 });
-/* 631 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.FEATHER, 1, 0, this.main.getConfig().getString("AirmanKit.Name").replace("&", "ง"), java.util.Arrays.asList(new String[] { this.main.getConfig().getString("AirmanKit.Lore").replace("&", "ง") }))) });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 639 */       helmet111 = new ItemStack(Material.LEATHER_HELMET);
-/* 640 */       ((ItemStack)helmet111).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 641 */       ((ItemStack)helmet111).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 642 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)((ItemStack)helmet111).getItemMeta();
-/* 643 */       meta1111.setColor(Color.BLACK);
-/* 644 */       ((ItemStack)helmet111).setItemMeta(meta1111);
-/* 645 */       s.getEquipment().setHelmet((ItemStack)helmet111);
-/* 646 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
-/* 647 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 648 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 649 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic1.getItemMeta();
-/* 650 */       meta11111.setColor(Color.BLACK);
-/* 651 */       tunic1.setItemMeta(meta11111);
-/* 652 */       s.getEquipment().setChestplate(tunic1);
-/* 653 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
-/* 654 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 655 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 656 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic11.getItemMeta();
-/* 657 */       meta111111.setColor(Color.BLACK);
-/* 658 */       tunic11.setItemMeta(meta111111);
-/* 659 */       s.getEquipment().setLeggings(tunic11);
-/* 660 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
-/* 661 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 662 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 663 */       LeatherArmorMeta meta1111111 = (LeatherArmorMeta)tunic111.getItemMeta();
-/* 664 */       meta1111111.setColor(Color.BLACK);
-/* 665 */       tunic111.setItemMeta(meta1111111);
-/* 666 */       s.getEquipment().setBoots(tunic111);
-/* 667 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 668 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 669 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "AriMan").replace("&", "ง"));
-/* 670 */         return true;
-/*     */       }
-/* 672 */       return true; }
-/*     */     Object helmet1111;
-/* 674 */     if (cmd.getName().equalsIgnoreCase("fisherman")) {
-/* 675 */       if (!sender.hasPermission("kitpvp.kit.fisherman")) {
-/* 676 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 677 */         return true;
-/*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 679 */       if (Habilidade.ContainsAbility(p)) {
-/* 680 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 681 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 682 */         return true;
-/*     */       }
-/* 684 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "FisherMan").replace("&", "ง"));
-/* 685 */       s.getInventory().clear();
-                Habilidade.setAbility(p, "Fisherman");
-/* 686 */       s.setHealth(20.0D);
-/* 687 */       s.setFoodLevel(20);
-/* 688 */       for (helmet1111 = s.getActivePotionEffects().iterator(); ((Iterator)helmet1111).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet1111).next();
-/* 689 */         s.removePotionEffect(effect.getType());
-/*     */       }
-/* 691 */       ItemStack sword9 = new ItemStack(Material.STONE_SWORD);
-/* 692 */       sword9.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
-sword9.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
-/* 693 */       s.getInventory().addItem(new ItemStack[] { sword9 });
-/* 694 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.FISHING_ROD) });
-for (int i = 0; i <= 34; i++) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-    
-  }
-/* 702 */       helmet1111 = new ItemStack(Material.LEATHER_HELMET);
-/* 703 */       ((ItemStack)helmet1111).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 704 */       ((ItemStack)helmet1111).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-((ItemStack)helmet1111).addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
-
-/* 705 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)((ItemStack)helmet1111).getItemMeta();
-/* 706 */       meta1111.setColor(Color.BLUE);
-/* 707 */       ((ItemStack)helmet1111).setItemMeta(meta1111);
-/* 708 */       s.getEquipment().setHelmet((ItemStack)helmet1111);
-/* 709 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
-/* 710 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 711 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 712 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic1.getItemMeta();
-/* 713 */       meta11111.setColor(Color.BLUE);
-/* 714 */       tunic1.setItemMeta(meta11111);
-/* 715 */       s.getEquipment().setChestplate(tunic1);
-/* 716 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
-/* 717 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 718 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-((ItemStack)tunic11).addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
-/* 719 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic11.getItemMeta();
-/* 720 */       meta111111.setColor(Color.BLUE);
-/* 721 */       tunic11.setItemMeta(meta111111);
-/* 722 */       s.getEquipment().setLeggings(tunic11);
-/* 723 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
-/* 724 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 725 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 726 */       LeatherArmorMeta meta1111111 = (LeatherArmorMeta)tunic111.getItemMeta();
-/* 727 */       meta1111111.setColor(Color.BLUE);
-/* 728 */       tunic111.setItemMeta(meta1111111);
-/* 729 */       s.getEquipment().setBoots(tunic111);
-/* 730 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 731 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 732 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "FisherMan").replace("&", "ง"));
-/* 733 */         return true;
-/*     */       }
-/* 735 */       return true;
+/*     */       
+/* 398 */       s.getInventory().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
+/* 399 */       s.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
+/* 400 */       s.getInventory().setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
+/* 401 */       s.getInventory().setBoots(new ItemStack(Material.DIAMOND_BOOTS));
+/* 402 */       Habilidade.setAbility(s, "Tank");
+/* 403 */       s.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 999999999, 2));
+/* 404 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 406 */       return true;
 /*     */     }
-/* 737 */     if (cmd.getName().equalsIgnoreCase("freezer")) {
-/* 738 */       if (!sender.hasPermission("kitpvp.kit.freezer")) {
-/* 739 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Permission").replace("&", "ง").replaceAll("%permisson%", commandLabel));
-/* 740 */         return true;
+/* 408 */     if (cmd.getName().equalsIgnoreCase("jumper")) {
+/* 409 */       if (!sender.hasPermission("kitpvp.kit.jumper")) {
+/* 410 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 411 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 412 */         return true;
 /*     */       }
-if (!Join.game.contains(p.getName()))
-{
-    p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + " งeYou are not in kitpvp to do choose this kit!");
-    return true;
-}
-/* 742 */       if (Habilidade.ContainsAbility(p)) { 
-/* 743 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ง"));
-/* 744 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
-/* 745 */         return true;
+/* 414 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 416 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 417 */         return true;
 /*     */       }
-/* 747 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Freezer").replace("&", "ง"));
-/* 748 */       s.getInventory().clear();
-/* 749 */       s.setHealth(20.0D);
-/* 750 */       s.setFoodLevel(20);
-/* 751 */       for (helmet1111 = s.getActivePotionEffects().iterator(); ((Iterator)helmet1111).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet1111).next();
-/* 752 */         s.removePotionEffect(effect.getType());
+/* 419 */       if (Habilidade.ContainsAbility(p)) {
+/* 420 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 421 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 422 */         return true;
 /*     */       }
-/* 754 */       ItemStack sword10 = new ItemStack(Material.STONE_SWORD);
-/* 755 */       sword10.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
-sword10.addUnsafeEnchantment(Enchantment.DURABILITY, 8);
-		
-/* 756 */       s.getInventory().addItem(new ItemStack[] { sword10 });
-/* 757 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.FISHING_ROD) });
-
-/* 765 */       ItemStack helmet11111 = new ItemStack(Material.LEATHER_HELMET);
-/* 766 */       helmet11111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 767 */       helmet11111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 768 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)helmet11111.getItemMeta();
-/* 769 */       meta1111.setColor(Color.WHITE);
-/* 770 */       helmet11111.setItemMeta(meta1111);
-/* 771 */       s.getEquipment().setHelmet(helmet11111);
-/* 772 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
-/* 773 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 774 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 775 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic1.getItemMeta();
-/* 776 */       meta11111.setColor(Color.BLUE);
-/* 777 */       tunic1.setItemMeta(meta11111);
-/* 778 */       s.getEquipment().setChestplate(tunic1);
-/* 779 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
-/* 780 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 781 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
-/* 782 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic11.getItemMeta();
-/* 783 */       meta111111.setColor(Color.BLUE);
-/* 784 */       tunic11.setItemMeta(meta111111);
-/* 785 */       s.getEquipment().setLeggings(tunic11);
-/* 786 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
-/* 787 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
-/* 788 */       tunic111.addUnsafeEnchantment(Enchantment.FROST_WALKER, 2);
-/* 789 */       LeatherArmorMeta meta1111111 = (LeatherArmorMeta)tunic111.getItemMeta();
-/* 790 */       meta1111111.setColor(Color.WHITE);
-/* 791 */       tunic111.setItemMeta(meta1111111);
-/* 792 */       s.getEquipment().setBoots(tunic111);
-for (int i = 0; i <= 34;) {
-    s.getInventory().addItem(new ItemStack[] { sopa });
-/* 793 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
-/* 794 */       if (this.main.getConfig().getString("CustomKitTitleMessage").equalsIgnoreCase("true")) {
-/* 795 */         s.sendTitle(this.main.getConfig().getString("Title.KitTitle").replace("&", "ง"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Freezer").replace("&", "ง"));
-/* 796 */         return true;
+/* 424 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Jumper").replace("&", "ยง"));
+/* 425 */       s.getInventory().clear();
+/* 426 */       s.setHealth(20.0D);
+/* 427 */       s.setFoodLevel(20);
+/* 428 */       for (Object bow1 = s.getActivePotionEffects().iterator(); ((Iterator)bow1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)bow1).next();
+/* 429 */         s.removePotionEffect(effect.getType());
 /*     */       }
-/* 798 */       return true;
+/* 431 */       TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Jumper"));
+/* 432 */       ItemStack sword5 = new ItemStack(Material.DIAMOND_SWORD);
+/* 433 */       sword5.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+/* 434 */       s.getInventory().addItem(new ItemStack[] { sword5 });
+/* 435 */       for (int i = 0; i <= 34; i++) {
+/* 436 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/*     */       }
+/*     */       
+/* 439 */       Object helmet = new ItemStack(Material.IRON_HELMET);
+/* 440 */       ((ItemStack)helmet).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 441 */       ((ItemStack)helmet).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/*     */       
+/*     */ 
+/* 444 */       s.getEquipment().setHelmet((ItemStack)helmet);
+/* 445 */       ItemStack tunic1 = new ItemStack(Material.IRON_CHESTPLATE);
+/* 446 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 447 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/*     */       
+/*     */ 
+/* 450 */       s.getEquipment().setChestplate(tunic1);
+/* 451 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
+/* 452 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 453 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 454 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)tunic11.getItemMeta();
+/* 455 */       meta1111.setColor(Color.BLACK);
+/* 456 */       tunic11.setItemMeta(meta1111);
+/* 457 */       s.getEquipment().setLeggings(tunic11);
+/* 458 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
+/* 459 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 460 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 461 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic111.getItemMeta();
+/* 462 */       meta11111.setColor(Color.YELLOW);
+/* 463 */       Habilidade.setAbility(s, "Jumper");
+/* 464 */       tunic111.setItemMeta(meta11111);
+/* 465 */       s.getEquipment().setBoots(tunic111);
+/* 466 */       s.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999999, 1));
+/* 467 */       s.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 999999999, 3));
+/* 468 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 470 */       return true;
 /*     */     }
-}
-return false;} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* 472 */     if (cmd.getName().equalsIgnoreCase("Cactus")) {
+/* 473 */       if (!sender.hasPermission("kitpvp.kit.cactus")) {
+/* 474 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 475 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 476 */         return true;
+/*     */       }
+/* 478 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 480 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 481 */         return true;
+/*     */       }
+/* 483 */       if (Habilidade.ContainsAbility(p)) {
+/* 484 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 485 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 486 */         return true;
+/*     */       }
+/* 488 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Cactus").replace("&", "ยง"));
+/* 489 */       s.getInventory().clear();
+/* 490 */       s.setHealth(20.0D);
+/* 491 */       s.setFoodLevel(20);
+/* 492 */       for (Object helmet1 = s.getActivePotionEffects().iterator(); ((Iterator)helmet1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet1).next();
+/* 493 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 495 */       ItemStack sword6 = new ItemStack(Material.DIAMOND_SWORD);
+/* 496 */       s.getInventory().addItem(new ItemStack[] { sword6 });
+/* 497 */       for (int i = 0; i <= 34; i++) {
+/* 498 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/* 499 */         TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Cactus"));
+/*     */       }
+/* 501 */       ItemStack helmet1 = new ItemStack(Material.IRON_HELMET);
+/* 502 */       ((ItemStack)helmet1).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 503 */       ((ItemStack)helmet1).addEnchantment(Enchantment.THORNS, 3);
+/* 504 */       s.getEquipment().setHelmet((ItemStack)helmet1);
+/* 505 */       ItemStack tunic1 = new ItemStack(Material.IRON_CHESTPLATE);
+/* 506 */       tunic1.addEnchantment(Enchantment.THORNS, 3);
+/* 507 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 508 */       s.getEquipment().setChestplate(tunic1);
+/* 509 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
+/* 510 */       tunic11.addEnchantment(Enchantment.THORNS, 3);
+/* 511 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 512 */       s.getEquipment().setLeggings(tunic11);
+/* 513 */       Habilidade.setAbility(s, "Cactus");
+/* 514 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
+/* 515 */       tunic111.addEnchantment(Enchantment.THORNS, 3);
+/* 516 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 517 */       s.getEquipment().setBoots(tunic111);
+/* 518 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 520 */       return true;
+/*     */     }
+/* 522 */     if (cmd.getName().equalsIgnoreCase("bomber")) {
+/* 523 */       if (!sender.hasPermission("kitpvp.kit.bomber")) {
+/* 524 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 525 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 526 */         return true;
+/*     */       }
+/* 528 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 530 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 531 */         return true;
+/*     */       }
+/* 533 */       if (Habilidade.ContainsAbility(p)) {
+/* 534 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 535 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 536 */         return true;
+/*     */       }
+/* 538 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Bomber").replace("&", "ยง"));
+/* 539 */       s.getInventory().clear();
+/* 540 */       s.setHealth(20.0D);
+/* 541 */       s.setFoodLevel(20);
+/* 542 */       for (Object helmet1 = s.getActivePotionEffects().iterator(); ((Iterator)helmet1).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet1).next();
+/* 543 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 545 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.DIAMOND_SWORD) });
+/* 546 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.TNT, 10) });
+/* 547 */       for (int i = 0; i <= 34; i++) {
+/* 548 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/* 549 */         TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replace("%kit%", "Bomber"));
+/*     */       }
+/* 551 */       ItemStack helmet11 = new ItemStack(Material.LEATHER_HELMET);
+/* 552 */       helmet11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 553 */       helmet11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+/* 554 */       Object meta11 = (LeatherArmorMeta)helmet11.getItemMeta();
+/* 555 */       ((LeatherArmorMeta)meta11).setColor(Color.RED);
+/* 556 */       helmet11.setItemMeta((ItemMeta)meta11);
+/* 557 */       s.getEquipment().setHelmet(helmet11);
+/* 558 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 559 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 560 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+/* 561 */       LeatherArmorMeta meta111 = (LeatherArmorMeta)tunic1.getItemMeta();
+/* 562 */       meta111.setColor(Color.WHITE);
+/* 563 */       tunic1.setItemMeta(meta111);
+/* 564 */       s.getEquipment().setChestplate(tunic1);
+/* 565 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
+/* 566 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 567 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+/* 568 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)tunic11.getItemMeta();
+/* 569 */       meta1111.setColor(Color.RED);
+/* 570 */       tunic11.setItemMeta(meta1111);
+/* 571 */       s.getEquipment().setLeggings(tunic11);
+/* 572 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
+/* 573 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 574 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+/* 575 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic111.getItemMeta();
+/* 576 */       meta11111.setColor(Color.WHITE);
+/* 577 */       tunic111.setItemMeta(meta11111);
+/* 578 */       s.getEquipment().setBoots(tunic111);
+/* 579 */       Habilidade.setAbility(s, "Bomber");
+/* 580 */       s.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999999, 1));
+/* 581 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 583 */       return true;
+/*     */     }
+/* 585 */     if (cmd.getName().equalsIgnoreCase("wasp")) {
+/* 586 */       if (!sender.hasPermission("kitpvp.kit.wasp")) {
+/* 587 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 588 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 589 */         return true;
+/*     */       }
+/* 591 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 593 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 594 */         return true;
+/*     */       }
+/* 596 */       if (Habilidade.ContainsAbility(p)) {
+/* 597 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 598 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 599 */         return true;
+/*     */       }
+/* 601 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Wasp").replace("&", "ยง"));
+/* 602 */       s.getInventory().clear();
+/* 603 */       s.setHealth(20.0D);
+/* 604 */       s.setFoodLevel(20);
+/* 605 */       for (Object meta11 = s.getActivePotionEffects().iterator(); ((Iterator)meta11).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta11).next();
+/* 606 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 608 */       ItemStack sword7 = new ItemStack(Material.BLAZE_ROD);
+/* 609 */       sword7.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 7);
+/* 610 */       s.getInventory().addItem(new ItemStack[] { sword7 });
+/* 611 */       for (int i = 0; i <= 34; i++) {
+/* 612 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/*     */       }
+/*     */       
+/* 615 */       Object helmet11 = new ItemStack(Material.LEATHER_HELMET);
+/* 616 */       ((ItemStack)helmet11).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 617 */       ((ItemStack)helmet11).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 618 */       LeatherArmorMeta meta111 = (LeatherArmorMeta)((ItemStack)helmet11).getItemMeta();
+/* 619 */       meta111.setColor(Color.BLACK);
+/* 620 */       ((ItemStack)helmet11).setItemMeta(meta111);
+/* 621 */       s.getEquipment().setHelmet((ItemStack)helmet11);
+/* 622 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 623 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 624 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 625 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)tunic1.getItemMeta();
+/* 626 */       meta1111.setColor(Color.YELLOW);
+/* 627 */       tunic1.setItemMeta(meta1111);
+/* 628 */       s.getEquipment().setChestplate(tunic1);
+/* 629 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
+/* 630 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 631 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 632 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic11.getItemMeta();
+/* 633 */       meta11111.setColor(Color.BLACK);
+/* 634 */       tunic11.setItemMeta(meta11111);
+/* 635 */       s.getEquipment().setLeggings(tunic11);
+/* 636 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
+/* 637 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 638 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 639 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic111.getItemMeta();
+/* 640 */       meta111111.setColor(Color.YELLOW);
+/* 641 */       tunic111.setItemMeta(meta111111);
+/* 642 */       s.getEquipment().setBoots(tunic111);
+/* 643 */       Habilidade.setAbility(s, "Wasp");
+/* 644 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/* 645 */       TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replace("%kit%", "Wasp"));
+/* 646 */       return true;
+/*     */     }
+/* 648 */     if (cmd.getName().equalsIgnoreCase("spiderman")) {
+/* 649 */       if (!sender.hasPermission("kitpvp.kit.spiderman")) {
+/* 650 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 651 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 652 */         return true;
+/*     */       }
+/* 654 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 656 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 657 */         return true;
+/*     */       }
+/* 659 */       if (Habilidade.ContainsAbility(p)) {
+/* 660 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 661 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 662 */         return true;
+/*     */       }
+/* 664 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Spiderman").replace("&", "ยง"));
+/* 665 */       s.getInventory().clear();
+/* 666 */       s.setHealth(20.0D);
+/* 667 */       s.setFoodLevel(20);
+/* 668 */       for (Object helmet11 = s.getActivePotionEffects().iterator(); ((Iterator)helmet11).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet11).next();
+/* 669 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 671 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.DIAMOND_SWORD, 1, 0, this.main.getConfig().getString("SidermanKit.Name").replace("&", "ยง"), Arrays.asList(new String[] { this.main.getConfig().getString("SidermanKit.Lore").replace("&", "ยง") }))) });
+/* 672 */       for (int i = 0; i <= 34; i++) {
+/* 673 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/*     */       }
+/*     */       
+/* 676 */       ItemStack helmet111 = new ItemStack(Material.LEATHER_HELMET);
+/* 677 */       helmet111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 678 */       helmet111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 679 */       helmet111.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+/* 680 */       Object meta111 = (LeatherArmorMeta)helmet111.getItemMeta();
+/* 681 */       ((LeatherArmorMeta)meta111).setColor(Color.RED);
+/* 682 */       helmet111.setItemMeta((ItemMeta)meta111);
+/* 683 */       s.getEquipment().setHelmet(helmet111);
+/* 684 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 685 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 686 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 687 */       tunic1.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+/* 688 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)tunic1.getItemMeta();
+/* 689 */       meta1111.setColor(Color.RED);
+/* 690 */       tunic1.setItemMeta(meta1111);
+/* 691 */       s.getEquipment().setChestplate(tunic1);
+/* 692 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
+/* 693 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 694 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 695 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic11.getItemMeta();
+/* 696 */       tunic11.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+/* 697 */       meta11111.setColor(Color.RED);
+/* 698 */       tunic11.setItemMeta(meta11111);
+/* 699 */       s.getEquipment().setLeggings(tunic11);
+/* 700 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
+/* 701 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 702 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 703 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic111.getItemMeta();
+/* 704 */       meta111111.setColor(Color.RED);
+/* 705 */       tunic111.setItemMeta(meta111111);
+/* 706 */       s.getEquipment().setBoots(tunic111);
+/* 707 */       Habilidade.setAbility(s, "Spiderman");
+/* 708 */       tunic111.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+/* 709 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 711 */       return true;
+/*     */     }
+/* 713 */     if (cmd.getName().equalsIgnoreCase("airman")) {
+/* 714 */       if (!sender.hasPermission("kitpvp.kit.airman")) {
+/* 715 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 716 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 717 */         return true;
+/*     */       }
+/* 719 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 721 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 722 */         return true;
+/*     */       }
+/* 724 */       if (Habilidade.ContainsAbility(p)) {
+/* 725 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 726 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 727 */         return true;
+/*     */       }
+/* 729 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "AirMan").replace("&", "ยง"));
+/* 730 */       s.getInventory().clear();
+/* 731 */       s.setHealth(20.0D);
+/* 732 */       s.setFoodLevel(20);
+/* 733 */       for (Object meta111 = s.getActivePotionEffects().iterator(); ((Iterator)meta111).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)meta111).next();
+/* 734 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 736 */       ItemStack sword8 = new ItemStack(Material.IRON_SWORD);
+/* 737 */       sword8.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
+/* 738 */       Habilidade.setAbility(s, "Airman");
+/*     */       
+/* 740 */       s.getInventory().addItem(new ItemStack[] { sword8 });
+/* 741 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.FEATHER, 1, 0, this.main.getConfig().getString("AirmanKit.Name").replace("&", "ยง"), Arrays.asList(new String[] { this.main.getConfig().getString("AirmanKit.Lore").replace("&", "ยง") }))) });
+/* 742 */       for (int i = 0; i <= 34; i++) {
+/* 743 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/* 744 */         TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Airman"));
+/*     */       }
+/* 746 */       Object helmet111 = new ItemStack(Material.LEATHER_HELMET);
+/* 747 */       ((ItemStack)helmet111).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 748 */       ((ItemStack)helmet111).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 749 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)((ItemStack)helmet111).getItemMeta();
+/* 750 */       meta1111.setColor(Color.BLACK);
+/* 751 */       ((ItemStack)helmet111).setItemMeta(meta1111);
+/* 752 */       s.getEquipment().setHelmet((ItemStack)helmet111);
+/* 753 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 754 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 755 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 756 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic1.getItemMeta();
+/* 757 */       meta11111.setColor(Color.BLACK);
+/* 758 */       tunic1.setItemMeta(meta11111);
+/* 759 */       s.getEquipment().setChestplate(tunic1);
+/* 760 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
+/* 761 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 762 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 763 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic11.getItemMeta();
+/* 764 */       meta111111.setColor(Color.BLACK);
+/* 765 */       tunic11.setItemMeta(meta111111);
+/* 766 */       s.getEquipment().setLeggings(tunic11);
+/* 767 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
+/* 768 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 769 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 770 */       LeatherArmorMeta meta1111111 = (LeatherArmorMeta)tunic111.getItemMeta();
+/* 771 */       meta1111111.setColor(Color.BLACK);
+/* 772 */       tunic111.setItemMeta(meta1111111);
+/* 773 */       s.getEquipment().setBoots(tunic111);
+/* 774 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/*     */       
+/* 776 */       return true;
+/*     */     }
+/* 778 */     if (cmd.getName().equalsIgnoreCase("fisherman")) {
+/* 779 */       if (!sender.hasPermission("kitpvp.kit.fisherman")) {
+/* 780 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 781 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 782 */         return true;
+/*     */       }
+/* 784 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 786 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 787 */         return true;
+/*     */       }
+/* 789 */       if (Habilidade.ContainsAbility(p)) {
+/* 790 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 791 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 792 */         return true;
+/*     */       }
+/* 794 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "FisherMan").replace("&", "ยง"));
+/* 795 */       s.getInventory().clear();
+/* 796 */       Habilidade.setAbility(p, "Fisherman");
+/* 797 */       s.setHealth(20.0D);
+/* 798 */       s.setFoodLevel(20);
+/* 799 */       for (Object helmet1111 = s.getActivePotionEffects().iterator(); ((Iterator)helmet1111).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet1111).next();
+/* 800 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 802 */       ItemStack sword9 = new ItemStack(Material.STONE_SWORD);
+/* 803 */       sword9.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
+/* 804 */       sword9.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
+/* 805 */       s.getInventory().addItem(new ItemStack[] { sword9 });
+/* 806 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.FISHING_ROD) });
+/* 807 */       for (int i = 0; i <= 34; i++) {
+/* 808 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/* 809 */         TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replace(Habilidade.getAbility(p), "%kit%"));
+/*     */       }
+/* 811 */       ItemStack helmet1111 = new ItemStack(Material.LEATHER_HELMET);
+/* 812 */       ((ItemStack)helmet1111).addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 813 */       ((ItemStack)helmet1111).addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 814 */       ((ItemStack)helmet1111).addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+/*     */       
+/* 816 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)((ItemStack)helmet1111).getItemMeta();
+/* 817 */       meta1111.setColor(Color.BLUE);
+/* 818 */       ((ItemStack)helmet1111).setItemMeta(meta1111);
+/* 819 */       s.getEquipment().setHelmet((ItemStack)helmet1111);
+/* 820 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 821 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 822 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 823 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic1.getItemMeta();
+/* 824 */       meta11111.setColor(Color.BLUE);
+/* 825 */       tunic1.setItemMeta(meta11111);
+/* 826 */       s.getEquipment().setChestplate(tunic1);
+/* 827 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
+/* 828 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 829 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 830 */       tunic11.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+/* 831 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic11.getItemMeta();
+/* 832 */       meta111111.setColor(Color.BLUE);
+/* 833 */       tunic11.setItemMeta(meta111111);
+/* 834 */       s.getEquipment().setLeggings(tunic11);
+/* 835 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
+/* 836 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 837 */       tunic111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 838 */       LeatherArmorMeta meta1111111 = (LeatherArmorMeta)tunic111.getItemMeta();
+/* 839 */       meta1111111.setColor(Color.BLUE);
+/* 840 */       tunic111.setItemMeta(meta1111111);
+/* 841 */       s.getEquipment().setBoots(tunic111);
+/* 842 */       s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/* 843 */       TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replaceAll("%kit%", "Fisherman"));
+/* 844 */       return true;
+/*     */     }
+/* 846 */     if (cmd.getName().equalsIgnoreCase("freezer")) {
+/* 847 */       if (!sender.hasPermission("kitpvp.kit.freezer")) {
+/* 848 */         sender.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Permission").replace("&", "ยง").replaceAll("%permisson%", commandLabel));
+/* 849 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+/* 850 */         return true;
+/*     */       }
+/* 852 */       if (!Join.game.contains(p.getName()))
+/*     */       {
+/* 854 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + " ยงeYou are not in kitpvp to do choose this kit!");
+/* 855 */         return true;
+/*     */       }
+/* 857 */       if (Habilidade.ContainsAbility(p)) {
+/* 858 */         s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.KitUse").replace("&", "ยง"));
+/* 859 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.KitUse")), 1.0F, 1.0F);
+/* 860 */         return true;
+/*     */       }
+/* 862 */       s.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "ยง")) + this.main.getConfig().getString("Message.Kit").replaceAll("%kit%", "Freezer").replace("&", "ยง"));
+/* 863 */       s.getInventory().clear();
+/* 864 */       s.setHealth(20.0D);
+/* 865 */       s.setFoodLevel(20);
+/* 866 */       for (Object helmet1111 = s.getActivePotionEffects().iterator(); ((Iterator)helmet1111).hasNext();) { PotionEffect effect = (PotionEffect)((Iterator)helmet1111).next();
+/* 867 */         s.removePotionEffect(effect.getType());
+/*     */       }
+/* 869 */       ItemStack sword10 = new ItemStack(Material.STONE_SWORD);
+/* 870 */       sword10.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
+/* 871 */       sword10.addUnsafeEnchantment(Enchantment.DURABILITY, 8);
+/*     */       
+/* 873 */       s.getInventory().addItem(new ItemStack[] { sword10 });
+/* 874 */       s.getInventory().addItem(new ItemStack[] { new ItemStack(Material.FISHING_ROD) });
+/*     */       
+/* 876 */       ItemStack helmet11111 = new ItemStack(Material.LEATHER_HELMET);
+/* 877 */       helmet11111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 878 */       helmet11111.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 879 */       LeatherArmorMeta meta1111 = (LeatherArmorMeta)helmet11111.getItemMeta();
+/* 880 */       meta1111.setColor(Color.WHITE);
+/* 881 */       helmet11111.setItemMeta(meta1111);
+/* 882 */       s.getEquipment().setHelmet(helmet11111);
+/* 883 */       ItemStack tunic1 = new ItemStack(Material.LEATHER_CHESTPLATE);
+/* 884 */       tunic1.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 885 */       tunic1.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 886 */       LeatherArmorMeta meta11111 = (LeatherArmorMeta)tunic1.getItemMeta();
+/* 887 */       meta11111.setColor(Color.BLUE);
+/* 888 */       tunic1.setItemMeta(meta11111);
+/* 889 */       s.getEquipment().setChestplate(tunic1);
+/* 890 */       ItemStack tunic11 = new ItemStack(Material.LEATHER_LEGGINGS);
+/* 891 */       tunic11.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/* 892 */       tunic11.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 2);
+/* 893 */       LeatherArmorMeta meta111111 = (LeatherArmorMeta)tunic11.getItemMeta();
+/* 894 */       meta111111.setColor(Color.BLUE);
+/* 895 */       tunic11.setItemMeta(meta111111);
+/* 896 */       s.getEquipment().setLeggings(tunic11);
+/* 897 */       ItemStack tunic111 = new ItemStack(Material.LEATHER_BOOTS);
+/* 898 */       tunic111.addUnsafeEnchantment(Enchantment.DURABILITY, 150);
+/*     */       
+/* 900 */       LeatherArmorMeta meta1111111 = (LeatherArmorMeta)tunic111.getItemMeta();
+/* 901 */       meta1111111.setColor(Color.WHITE);
+/* 902 */       tunic111.setItemMeta(meta1111111);
+/* 903 */       s.getEquipment().setBoots(tunic111);
+/* 904 */       int i = 0; if (i <= 34) {
+/* 905 */         s.getInventory().addItem(new ItemStack[] { sopa });
+/* 906 */         s.playSound(s.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Kit")), 1.0F, 1.0F);
+/* 907 */         TitleAPI.sendTitle(p, Integer.valueOf(5), Integer.valueOf(20), Integer.valueOf(5), this.main.getConfig().getString("Title.KitTitle"), this.main.getConfig().getString("Title.KitSubTitle").replace(Habilidade.getAbility(p), "%kit%"));
+/* 908 */         return true;
+/*     */       }
+/*     */     }
+/* 911 */     return false;
+/*     */   }
 /*     */   
-/*     */   private ItemStack make(Material material, int amount, int shrt, String displayName, java.util.List<String> lore) {
-/* 804 */     ItemStack item = new ItemStack(material, amount, (short)shrt);
-/* 805 */     ItemMeta meta = item.getItemMeta();
-/* 806 */     meta.setDisplayName(displayName);
-/* 807 */     meta.setLore(lore);
-/* 808 */     item.setItemMeta(meta);
-/* 809 */     return item;
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */ 
+/*     */   private ItemStack make(Material material, int amount, int shrt, String displayName, List<String> lore)
+/*     */   {
+/* 936 */     ItemStack item = new ItemStack(material, amount, (short)shrt);
+/* 937 */     ItemMeta meta = item.getItemMeta();
+/* 938 */     meta.setDisplayName(displayName);
+/* 939 */     meta.setLore(lore);
+/* 940 */     item.setItemMeta(meta);
+/* 941 */     return item;
 /*     */   }
 /*     */ }
 
 
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\main\Kits.class
+ * Java compiler version: 8 (52.0)
+ * JD-Core Version:       0.7.1
+ */

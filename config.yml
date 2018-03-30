@@ -1,10 +1,11 @@
-#KitPvP Version BUILD-08 | Author: zEnderX5_ , Rafael Auler
+#KitPvP Version BUILD-14 | Author: zEnderX5_ , Rafael Auler
 #Author Channel: https://www.youtube.com/channel/UCb1kjbiQj2B4KnRQpgeUwmQ
 #Subscribe to help me to improve the plugin. Thanks =D
 #PS: use /kp for view the plugin command list
-
 #ALL MESSAGES SUPPORT COLORS! 
 #View all colors here: http://minecraft.tools/en/color-code.php
+#The plugin only works on 1.7 if you use BUILD-10 or lower
+#BUILD-14 is for 1.8 or greater servers
 
 #Prefix settings
 Prefix: '&8[&cKitPvP&8] '
@@ -23,7 +24,9 @@ Message:
   Death: '&cYou are killed by &7%player%'
   Kill: '&cYou killed the player &7%player%'
   Clear: '&cYour inventory is now clear'
-  
+  KitPvpJoin-Message: '&eYou join in the kitpvp'
+  KitPvpLeave-Message: '&eYou leave the kitpvp'
+  BlockedCMD-OnKitPvP: '&eThis command cannot be perfomed on kitpvp!'
 #Kit Menu item settings
 JoinItem:
  
@@ -43,25 +46,49 @@ AirmanKit:
   Lore: '&7(Right click) to fly'
 
 #Title settings
-CustomDeathTitleMessage: true
-CustomKitTitleMessage: true
+#Only works on 1.8 or greater servers
 Title:
-  KitTitle: '&aYou have chosen kit'
-  KitSubTitle: '&aKit &8- &a%kit%!'
+  KitTitle: '&aYou have chosen the kit'
+  KitSubTitle: '&aKit &8- &a%kit% !'
   DeathTitle: '&cYou are killed'
   DeathSubTitle: '&cby &7%player%'
+  JoinTitle: '&eYou joined on the kitpvp'
+  JoinSubTitle: '&eHave a great game!'
+  LeaveTitle: '&cYou leave the kitpvp!'
+  LeaveSubTitle: '&cTo join again use: /kitpvp join'
 #Respawn settings
 RespawnSound: true
 
-#Sound list https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+#Sound list: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
 Sound:
-  Kit: 'ENTITY_ITEM_PICKUP'
-  KitUse: 'ENTITY_ENDERDRAGON_HURT'
-  Soup: 'ENTITY_GENERIC_EAT'
-  Fisherman: 'ENTITY_ENDERMEN_TELEPORT'
-  Spiderman: 'ENTITY_SLIME_JUMP'
-  Respawn: 'ENTITY_PLAYER_LEVELUP'
-  Join: 'ENTITY_PLAYER_LEVELUP'
+  Kit: 'ITEM_PICKUP'
+  ShopMenu: 'CHEST_OPEN'
+  KitUse: 'ENDERDRAGON_HIT'
+  Soup: 'EAT'
+  Fisherman: 'ENDERMAN_TELEPORT'
+  Spiderman: 'SLIME_WALK'
+  Respawn: 'LEVEL_UP'
+  Join: 'LEVEL_UP'
+  KitMenu: 'DOOR_CLOSE'
+  SpongeUse: 'ENDERMAN_TELEPORT'
+  BowlDrop: 'ITEM_PICKUP'
+  ErrorMessage: 'ARROW_HIT'
+  SucefullMessage: 'ORB_PICKUP'
+  NoPermissionMessage: 'WITHER_SHOOT'
+  SwitcherShoot: 'ENDERMAN_TELEPORT'
+  Timelord: 'WITHER_SPAWN'
+  Stomper: 'FIREWORK_BLAST'
+  NarutoAbility: 'BLAZE_DEATH'
+  CommandsSounds: 'BURP'
+  ShopMenu-Click: 'LEVEL_UP'
+  Streak: 'LEVEL_UP'
+  Airman-Fly: 'ENDERMAN_SCREAM'
+  DoubleJump-Ability: 'FIREWORK_BLAST2'
+  StomperDamage: 'ANVIL_LAND'
+
+#If the option below is true all commands play a sound when a player execute them
+#You can modify the sound in Sounds configuration
+EnableSoundsToAllCommands: true
 
   
 Death:
@@ -71,25 +98,33 @@ Death:
 #Custom kill message  
 Kill:
   Tell: '&aYou killed &7%player%&a, you earned 100 coins.'
- 
 
-  
-#Edit the ScoreBoard Here
+#Edit The Scoreboard Here
+ScoreBoardEnable: true
+ScorePrefix: '&4&l[&b&lKITPVP&4&l]'
+ScoreKills: '&e&lKills&6:&f '
+ScoreDeaths: '&e&lDeaths&6:&f '
+ScoreStreak: '&e&lStreak&6:&f '
+ScoreCoins: '&e&lCoins&6:&f '
+ScoreKit: '&e&lKit&6:&f '
 
-#Score Title
-ScorePrefix: '&8&l[&e&lKitPvP&8&l]' 
-#Score Kills
-ScoreKills: '&e&lKills:&f'
-#Score Deaths
-ScoreDeaths: '&e&lDeaths:&f' 
-#Score Coins
-ScoreCoins: '&e&lCoins:&f'
-#Score Streak
-ScoreStreak: '&e&lStreak:&f'
-#Score Kit
-ScoreKit: '&e&lKit:&f'
-#Scoreboard Arrow Color. Use: '&'
-ScoreArrowColor: '&b&l'
+ # Enable sending your server address to bStats? This could get you a couple more players. =)
+ # Defaults to true
+SendIPAddressData: true
+
+#Put here the cmds that are be blocked in kitpvp
+#Bypass permission: kitpvp.unblockedcmds
+BLOCKED_COMMANDS:
+- /warp
+- /spawn
+- /ewarp
+- /espawn
+- /server
+- /sw
+- /skywars
+- /bw
+- /bedwars
+- /mines
 status:
   retaliado1:
     kills: 2
@@ -105,4 +140,5 @@ Spawn:
   Pitch: 42.90001
   Yaw: -9.5999975
  
+
   

@@ -31,7 +31,7 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 /* 28 */       e.setCancelled(true);
 /* 29 */       if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 /* 30 */         p.openInventory(me.RafaelAulerDeMeloAraujo.main.Shop.shop);
-/* 31 */         p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 1.0F, 1.0F);
+/* 31 */         p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
 /*    */       }
 /*    */     }
 /*    */   }
@@ -43,6 +43,7 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 /* 40 */       e.setCancelled(true);
 /* 41 */       if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 /* 42 */         org.bukkit.Bukkit.dispatchCommand(p, "kpkitmenu");
+p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
 /*    */       }
 /*    */     }
 /*    */   }
@@ -63,6 +64,7 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 /* 31 */         p.sendMessage("§bCoins §8\u279C§e " + Coins.getCoins(p.getName()));
 /* 32 */         p.sendMessage("§bStreak §8\u279C§e " + Streak.killstreak.get(p.getName()));
 /* 33 */         p.sendMessage("§b");
+p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
 /*    */       }
 /*    */     }
 /*    */   }
@@ -74,6 +76,7 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 /* 51 */       e.setCancelled(true);
 /* 52 */       if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 /* 53 */         X1.entrar1v1(p);
+p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
 /*    */       }
 /*    */     }
 /*    */   }

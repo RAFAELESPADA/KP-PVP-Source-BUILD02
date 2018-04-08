@@ -95,17 +95,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 /*     */     {
 /*  93 */       if (args.length == 0)
 /*     */       {
-/*  95 */         sender.sendMessage("§7 [§b§l Plugin §c- §a§lKP-PVP§7] ");
-/*  96 */         sender.sendMessage("§7Version: §e" + Main.getInstance().getDescription().getVersion());
-/*  97 */         sender.sendMessage("§7Developer: §ezEnderX5_ , Rafael Auler");
-/*  98 */         sender.sendMessage("§7Commands: §e/kitpvp help");
-/*  99 */         sender.sendMessage("§7Download: §ehttp://bit.ly/2BZCtLE");
-/* 100 */         sender.sendMessage("§eLeave a 5 stars review on spigot page =)");
-/* 101 */         ((Player)sender).playSound(((Player)sender).getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.SucefullMessage")), 2.0F, 2.0F);
-/* 102 */         return true;
-/*     */       }
-/* 104 */       if (args[0].equalsIgnoreCase("help"))
-/*     */       {
+
 /* 106 */         sender.sendMessage(ChatColor.DARK_AQUA + "§m-----------" + ChatColor.AQUA + " KP-PVP COMMANDS " + ChatColor.DARK_AQUA + ChatColor.STRIKETHROUGH + "-------------");
 /* 107 */         sender.sendMessage(ChatColor.DARK_AQUA + "§eCreated by zEnderX5_");
 /* 108 */         sender.sendMessage("");
@@ -116,12 +106,27 @@ import org.bukkit.scheduler.BukkitRunnable;
 /* 113 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "shop" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Open shop menu!");
 /* 114 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "1v1" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Join kitpvp 1v1!");
 /*     */                                       
-/* 116 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "help" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Display this help message");
+/* 116 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "info" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Shows plugin info");
 /* 117 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "update" + ChatColor.DARK_AQUA + " - " + ChatColor.RED + "Get a link to verify updates");
 /* 118 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "reload" + ChatColor.DARK_AQUA + " - " + ChatColor.RED + "Reload config files");
 /* 119 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kp" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "View the full command list");
 /* 120 */         sender.sendMessage(ChatColor.DARK_AQUA + "§m------------------------------------------");
-/* 121 */         ((Player)sender).playSound(((Player)sender).getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.SucefullMessage")), 2.0F, 2.0F);
+/* 101 */         ((Player)sender).playSound(((Player)sender).getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.SucefullMessage")), 4.0F, 2.0F);
+/* 102 */         return true;
+/*     */       }
+/* 104 */       if (args[0].equalsIgnoreCase("info"))
+/*     */       {
+	/* 27 */       sender.sendMessage("§4§l\u274C §2§lCREDITS §f§lAND §e§lINFORMATION §4§l \u274C");
+	/* 28 */       sender.sendMessage("§6\u279C §cPlugin Name: §eKP-PVP");
+	/* 29 */       sender.sendMessage("§6\u279C §cPlugin Version: §e " + Main.getInstance().getDescription().getVersion());
+	/* 30 */       sender.sendMessage("§6\u279C §cAuthor: §ezEnderX5_ , Rafael Auler");
+	/* 31 */       sender.sendMessage("§6\u279C §cAuthor Channel: http://bit.ly/2kC345B");
+	/* 32 */       sender.sendMessage("§6\u279C §cSpigot Profile: http://bit.ly/2j5qvnM");
+	/* 33 */       sender.sendMessage("§6\u279C §cPlugin Page: http://bit.ly/2BZCtLE");
+	/* 34 */       sender.sendMessage("§cThanks for use this plugin i really appreaciate IT");
+	/* 35 */       sender.sendMessage("§cIf you like it consider giving a §e§l\u2605\u2605\u2605\u2605\u2605 §cReview");
+	/* 36 */       sender.sendMessage("§cPS: §eSubscribe to my channel and follow me on Spigot Thanks! §9§l=)");
+/* 121 */         ((Player)sender).playSound(((Player)sender).getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.SucefullMessage")), 10.0F, 2.0F);
 /* 122 */         return true;
 /*     */       }
 /*     */       

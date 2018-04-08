@@ -31,6 +31,7 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.ScoreBoardHelper;
 /*     */ import org.bukkit.plugin.Plugin;
 /*     */ import org.bukkit.plugin.PluginDescriptionFile;
 /*     */ import org.bukkit.plugin.PluginManager;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 /*     */ 
 /*     */ 
@@ -105,7 +106,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 /* 112 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "kits" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Open kit menu!");
 /* 113 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "shop" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Open shop menu!");
 /* 114 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "1v1" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Join kitpvp 1v1!");
-/*     */                                       
+/*     */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "clear" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Clear your kit and return to kitpvp spawn");                              
 /* 116 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "info" + ChatColor.DARK_AQUA + " - " + ChatColor.GRAY + "Shows plugin info");
 /* 117 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "update" + ChatColor.DARK_AQUA + " - " + ChatColor.RED + "Get a link to verify updates");
 /* 118 */         sender.sendMessage(ChatColor.DARK_AQUA + " - " + ChatColor.AQUA + "/kitpvp " + ChatColor.GREEN + "reload" + ChatColor.DARK_AQUA + " - " + ChatColor.RED + "Reload config files");
@@ -160,6 +161,72 @@ import org.bukkit.scheduler.BukkitRunnable;
 /* 152 */         sender.sendMessage("§c[KitPvP] §eIf your version is lower than the last update");
 /* 153 */         sender.sendMessage("§c[KitPvP] §eYou should update your plugin");
 /* 154 */         sender.sendMessage("§c[KitPvP] §eLink: http://bit.ly/2tIEzvJ");
+/*     */         
+/*     */ 
+/*     */ 
+/*     */ 
+/* 159 */         ((Player)sender).playSound(((Player)sender).getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.SucefullMessage")), 2.0F, 2.0F);
+/* 160 */         return true;
+/*     */       }
+/* 141 */       if (args[0].equalsIgnoreCase("clear"))
+/*     */       {
+	/*  58 */       if (!Join.game.contains(p.getName()))
+	/*     */       {
+	/*  60 */         p.sendMessage(String.valueOf("§cYou are not in kitpvp to do this!"));
+	/*  61 */         return true;
+	/*     */       }
+	/*     */       
+	/*  64 */       if (!sender.hasPermission("kitpvp.kitclear")) {
+	/*  65 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Permission").replace("&", "§").replaceAll("%permisson%", commandLabel));
+	/*  66 */         p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.NoPermissionMessage")), 1.0F, 1.0F);
+	/*  67 */         return true;
+	/*     */       }
+	/*  69 */       for (PotionEffect effect : p.getActivePotionEffects()) {
+	/*  70 */         p.removePotionEffect(effect.getType());
+	/*     */       }
+	/*  72 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + this.main.getConfig().getString("Message.Clear").replace("&", "§"));
+	/*  73 */       p.getInventory().clear();
+	/*  74 */       p.getInventory().setHelmet(new ItemStack(Material.AIR));
+	/*  75 */       p.getInventory().setChestplate(new ItemStack(Material.AIR));
+	/*  76 */       Habilidade.removeAbility(p);
+	/*  77 */       me.RafaelAulerDeMeloAraujo.SpecialAbility.Cooldown.remove(p);
+	/*  78 */       Deshfire.cooldownm.remove(p);
+	/*  79 */       Deshfire.armadura.remove(p);
+	/*  80 */       Gladiator.lutando.remove(p);
+	/*  81 */       Gladiator.gladgladiator.remove(p);
+	/*  82 */       org.bukkit.World w = org.bukkit.Bukkit.getServer().getWorld(Main.plugin.getConfig().getString("Spawn.World"));
+	/*  83 */       double x = Main.plugin.getConfig().getDouble("Spawn.X");
+	/*  84 */       double y = Main.plugin.getConfig().getDouble("Spawn.Y");
+	/*  85 */       double z = Main.plugin.getConfig().getDouble("Spawn.Z");
+	/*  86 */       Location lobby = new Location(w, x, y, z);
+	/*  87 */       lobby.setPitch((float)Main.plugin.getConfig().getDouble("Spawn.Pitch"));
+	/*  88 */       lobby.setYaw((float)Main.plugin.getConfig().getDouble("Spawn.Yaw"));
+	/*  89 */       p.getInventory().clear();
+	/*  90 */       p.teleport(lobby);
+	/*     */       
+	/*  92 */       p.getInventory().setLeggings(new ItemStack(Material.AIR));
+	/*  93 */       p.getInventory().setBoots(new ItemStack(Material.AIR));
+	/*  94 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "§aKit menu §7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
+	/*  95 */       ItemStack kits = new ItemStack(Material.EMERALD);
+	/*  96 */       ItemMeta kits2 = kits.getItemMeta();
+	/*  97 */       kits2.setDisplayName("§b§lShop Menu");
+	/*  98 */       kits.setItemMeta(kits2);
+	/*  99 */       ItemStack st = new ItemStack(Material.BLAZE_ROD);
+	/* 100 */       ItemMeta st2 = st.getItemMeta();
+	/* 101 */       st2.setDisplayName("§eJOIN 1V1");
+	/* 102 */       st.setItemMeta(st2);
+	ItemStack stats = new ItemStack(Material.NAME_TAG);
+	/* 227 */           ItemMeta stats2 = kits.getItemMeta();
+	/* 228 */           stats2.setDisplayName("§aYour Stats §7(Right click)");
+	/* 229 */           stats.setItemMeta(stats2);
+	p.getInventory().setItem(3, stats);
+	/* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
+	/* 104 */       p.getInventory().addItem(new ItemStack[] { st });
+	/*     */       
+	/*     */ 
+	/* 107 */       p.updateInventory();
+/*     */         
+
 /*     */         
 /*     */ 
 /*     */ 

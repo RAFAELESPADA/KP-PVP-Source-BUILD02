@@ -1,4 +1,4 @@
-#KitPvP Version BUILD-14 | Author: zEnderX5_ , Rafael Auler
+#KitPvP Version BUILD-15 | Author: zEnderX5_ , Rafael Auler
 #Author Channel: https://www.youtube.com/channel/UCb1kjbiQj2B4KnRQpgeUwmQ
 #Subscribe to help me to improve the plugin. Thanks =D
 #PS: use /kp for view the plugin command list
@@ -23,7 +23,7 @@ Message:
   KitUse: '&cYou have already taken a kit'
   Death: '&cYou are killed by &7%player%'
   Kill: '&cYou killed the player &7%player%'
-  Clear: '&cYour inventory is now clear'
+  Clear: '&cYou reset your kit'
   KitPvpJoin-Message: '&eYou join in the kitpvp'
   KitPvpLeave-Message: '&eYou leave the kitpvp'
   BlockedCMD-OnKitPvP: '&eThis command cannot be perfomed on kitpvp!'
@@ -107,6 +107,7 @@ ScoreDeaths: '&e&lDeaths&6:&f '
 ScoreStreak: '&e&lStreak&6:&f '
 ScoreCoins: '&e&lCoins&6:&f '
 ScoreKit: '&e&lKit&6:&f '
+ScoreServer: '&ehttp://spigotmc.org'
 
  # Enable sending your server address to bStats? This could get you a couple more players. =)
  # Defaults to true

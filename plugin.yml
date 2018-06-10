@@ -1,6 +1,6 @@
 name: KP-PVP
 main: me.RafaelAulerDeMeloAraujo.main.Main
-version: BUILD-14
+version: BUILD-15
 author: zEnderX5_ , Rafael Auler
 softdepend: [PlaceholderAPI , MVdWPlaceholderAPI]
 description: KitPvP Plugin what have much features like kits,shop with Custom Economy Support,A Unique 1v1 system to players fight,Coins System,Scoreboard,Stats kills,deaths,streak,Sponges acts like launchpads,Varius commands, and are very customisable,Support with others Gamemodes like Skywars and have everything to control your KITPVP Server. And the best part its is free to Download. If you want to support the developer subscribe to his channel.
@@ -24,10 +24,14 @@ commands:
        
    kpvp:
         description: Kit PvP
+   kresouper:
+        description: Kit Resouper
    viper:
         description: Kit Viper to poison your enemies
    naruto:
-        description: Kit Naruto from anime - Naruto    
+        description: Kit Naruto from anime - Naruto
+   gaara:
+        description: Kit Gaara from anime - Naruto      
    kpkitmenu:
         description: Original command to open the new kit menu
    kthor:
@@ -98,6 +102,8 @@ commands:
         description: Kit Ninja
    critical:
         description: Kit Critical
+   kvampire:
+        description: Kit Vampire
    monk:
         description: Kit Monk        
    deshfire:

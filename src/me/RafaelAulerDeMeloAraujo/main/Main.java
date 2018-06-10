@@ -25,9 +25,10 @@ import java.util.logging.Logger;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.Switcher;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.ThrowTnt;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.WallClamber;
+
 /*     */ import me.RafaelAulerDeMeloAraujo.PluginHooks.PlaceHolderAPIHook;
 import me.RafaelAulerDeMeloAraujo.ScoreboardManager.ScoreBoardHelper;
-/*     */ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.ScoreBoarding;
+
 import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Scoreboard;
 /*     */ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Basic;
@@ -35,6 +36,7 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Scoreboard;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Deshfire;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.DesifireCMD;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Dublejump;
+
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.GladCMD;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Gladiator;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
@@ -52,13 +54,14 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Scoreboard;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.ThorKITCOMMAND;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.TimeLord;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.TimelordCMD;
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.Vampire;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Viper;
 /*     */ import me.RafaelAulerDeMeloAraujo.X1.SetX1;
 /*     */ import me.RafaelAulerDeMeloAraujo.X1.X1;
-import me.rafael.litepvp.Main;
-import me.rafael.litepvp.scoreboard.ScoreboardIniciando;
+
 
 /*     */ import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 /*     */
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;
@@ -71,6 +74,7 @@ import org.bukkit.command.ConsoleCommandSender;
 /*     */ import org.bukkit.event.EventHandler;
 /*     */ import org.bukkit.event.Listener;
 /*     */ import org.bukkit.event.entity.EntityDeathEvent;
+
 /*     */ import org.bukkit.event.entity.PlayerDeathEvent;
 /*     */ import org.bukkit.plugin.Plugin;
 /*     */ import org.bukkit.plugin.PluginManager;
@@ -78,6 +82,9 @@ import org.bukkit.command.ConsoleCommandSender;
 /*     */ import org.bukkit.potion.PotionEffect;
 /*     */ import org.bukkit.potion.PotionEffectType;
 /*     */ import org.bukkit.scheduler.BukkitRunnable;
+
+
+
 /*     */ 
 /*     */ 
 /*     */ 
@@ -146,6 +153,15 @@ metrics.addCustomChart(new Metrics.SimplePie("ScoreBoard_Enabled", new Callable<
 /* 114 */       new PlaceHolderAPIHook(this).hook();
 /* 115 */       getLogger().info("PlaceHolderAPI Hooked Sucefully");
 /*     */     }
+ 
+
+	
+
+	
+
+		
+
+				
 /* 117 */     this.pm = Bukkit.getPluginManager();
 /* 118 */     registerEvents();
 /* 119 */     registerCommands();
@@ -242,7 +258,8 @@ metrics.addCustomChart(new Metrics.SimplePie("ScoreBoard_Enabled", new Callable<
 /* 192 */     getCommand("coins").setExecutor(new Commands(this));
 /* 193 */     getCommand("kitcredits").setExecutor(new KitCredits(this));
 /* 194 */     getCommand("dev").setExecutor(new Dev(this));
-/* 195 */     getCommand("ksc").setExecutor(new BSC(this));
+/* 195 */     getCommand("ksc").setExecutor(new BSC());
+         
 /* 196 */     getCommand("kpstats").setExecutor(new Stats());
 /* 197 */     getCommand("kp").setExecutor(new KITPVP());
 /* 198 */     getCommand("adminmode").setExecutor(new AdminMode(this));
@@ -257,6 +274,7 @@ metrics.addCustomChart(new Metrics.SimplePie("ScoreBoard_Enabled", new Callable<
 /* 207 */     getCommand("tank").setExecutor(new Kits(this));
 /* 208 */     getCommand("pyro").setExecutor(new Kits(this));
 /* 209 */     getCommand("kthor").setExecutor(new ThorKITCOMMAND(this));
+getCommand("kvampire").setExecutor(new Vampire(this));
 /* 210 */     getCommand("switcher").setExecutor(new Kits(this));
 /* 211 */     getCommand("viper").setExecutor(new Viper(this));
 /* 212 */     getCommand("snail").setExecutor(new Snail(this));
@@ -312,7 +330,8 @@ metrics.addCustomChart(new Metrics.SimplePie("ScoreBoard_Enabled", new Callable<
 /* 261 */     this.pm.registerEvents(new Menu(this), this);
 /* 262 */     this.pm.registerEvents(new NoBreakEvent(), this);
 /* 263 */     this.pm.registerEvents(new Fisherman(this), this);
-/* 264 */     this.pm.registerEvents(new Switcher(this), this);
+/* 264 */     this.pm.registerEvents(new Switcher(), this);
+              this.pm.registerEvents(new Vampire(this), this);
 /* 265 */     this.pm.registerEvents(new Viper(this), this);
 /* 266 */     this.pm.registerEvents(new SoupSign(), this);
 /* 267 */     this.pm.registerEvents(new Deshfire(), this);
@@ -322,6 +341,7 @@ metrics.addCustomChart(new Metrics.SimplePie("ScoreBoard_Enabled", new Callable<
 /* 271 */     this.pm.registerEvents(new LeaveSign(this), this);
 /* 272 */     this.pm.registerEvents(new Kangaroo(this), this);
 /* 273 */     this.pm.registerEvents(new AdminMode(this), this);
+             
 /* 274 */     this.pm.registerEvents(new TimeLord(this), this);
 /* 275 */     this.pm.registerEvents(new Soup(this), this);
 /* 276 */     this.pm.registerEvents(new NoDrops(this), this);

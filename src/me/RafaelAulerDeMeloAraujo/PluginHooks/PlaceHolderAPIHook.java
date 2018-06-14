@@ -23,7 +23,7 @@ public class PlaceHolderAPIHook extends EZPlaceholderHook {
 		
 	
 		if (indentifier.equals("player_kills")) {
-			return AntiDeathDrop.GetKills(p.getName());
+			return String.valueOf(AntiDeathDrop.GetKills(p));
 	}
 		if (p == null) {
 			return "";
@@ -31,15 +31,13 @@ public class PlaceHolderAPIHook extends EZPlaceholderHook {
 		
 		
 	if (indentifier.equals("player_deaths")) {
-		return AntiDeathDrop.GetDeaths(p.getName());
+		return String.valueOf(AntiDeathDrop.GetDeaths(p));
 }
 	
 		if (indentifier.equals("players_count_total")) {
 			return String.valueOf(Join.game.size());
 		}
-		if (indentifier.equals("player_coins")) {
-			return String.valueOf(Coins.getCoins(p.getName()));
-		}
+		
 		if (indentifier.equals("player_streak")) {
 			 int kills = ((Integer)Streak.killstreak.get(p.getName())).intValue();
 			return Integer.toString(kills);

@@ -79,7 +79,7 @@
 /*  79 */         }, 140L);
 /*  80 */         return;
 /*     */       }
-/*  82 */       p.sendMessage("§cThe last player that you hurt are very distant!");
+/*  82 */       p.sendMessage(Main.messages.getString("NinjaError").replace("&", "§"));
 /*  83 */       return;
 /*     */     }
 /*     */   }

@@ -69,6 +69,7 @@
 /*  69 */     createButton(Material.BLAZE_ROD, shop, 23, "§6\u2714 §cWasp", "§ePrice: 6000");
 /*  70 */     createButton(Material.NETHER_STAR, shop, 24, "§6\u2714 §cNaruto", "§ePrice: 12500");
 createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000");
+createButton(Material.GOLD_NUGGET, shop, 26, "§6\u2714 §cVampire", "§ePrice: 10000");
 /*  71 */     createButton(Material.BARRIER, shop, 53, "§4§l\u274C §cClose", "§bClose the menu!");
 /*     */   }
 /*     */   
@@ -920,7 +921,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 202 */       else if (Coins.getCoins(p.getName()).doubleValue() < 9000.0D)
 /*     */       {
-/* 204 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 204 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 205 */         e.setCancelled(true);
 /* 206 */         p.closeInventory();
 /*     */       }
@@ -941,7 +942,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 202 */       else if (Coins.getCoins(p.getName()).doubleValue() < 9000.0D)
 /*     */       {
-/* 204 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 204 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 205 */         e.setCancelled(true);
 /* 206 */         p.closeInventory();
 /*     */       }
@@ -962,7 +963,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 223 */       else if (Coins.getCoins(p.getName()).doubleValue() < 12500.0D)
 /*     */       {
-/* 225 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 225 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 226 */         e.setCancelled(true);
 /* 227 */         p.closeInventory();
 /*     */       }
@@ -985,7 +986,28 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 246 */       else if (Coins.getCoins(p.getName()).doubleValue() < 4500.0D)
 /*     */       {
-/* 248 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 248 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
+/* 249 */         e.setCancelled(true);
+/* 250 */         p.closeInventory();
+/*     */       }
+/*     */     }
+/* 232 */     if ((inv.getName().equals(shop.getName())) && (clicked.getType() == Material.GOLD_NUGGET)) {
+/* 233 */       if (Coins.getCoins(p.getName()).doubleValue() >= 10000.0D)
+/*     */       {
+/* 235 */         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "permissions player " + p.getName() + " set kitpvp.kit.vampire");
+/* 236 */         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.vampire local");
+/* 237 */         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "upc " + p.getName() + " addpermission  kitpvp.kit.vampire global");
+/* 238 */         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.vampire");
+/* 239 */         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.vampire true");
+/* 240 */         p.sendMessage("§6\u2714 §cYou buy the Vampire kit §e-10000 coins");
+/* 241 */         Coins.removeCoins(p.getName(), 10000.0D);
+/* 242 */         e.setCancelled(true);
+/* 243 */         p.closeInventory();
+/*     */ 
+/*     */       }
+/* 246 */       else if (Coins.getCoins(p.getName()).doubleValue() < 10000.0D)
+/*     */       {
+/* 248 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 249 */         e.setCancelled(true);
 /* 250 */         p.closeInventory();
 /*     */       }
@@ -1007,7 +1029,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 268 */       else if (Coins.getCoins(p.getName()).doubleValue() < 6500.0D)
 /*     */       {
-/* 270 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 270 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 271 */         e.setCancelled(true);
 /* 272 */         p.closeInventory();
 /*     */       }
@@ -1030,7 +1052,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 291 */       else if (Coins.getCoins(p.getName()).doubleValue() < 5000.0D)
 /*     */       {
-/* 293 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 293 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 294 */         e.setCancelled(true);
 /* 295 */         p.closeInventory();
 /*     */       }
@@ -1052,7 +1074,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 313 */       else if (Coins.getCoins(p.getName()).doubleValue() < 6000.0D)
 /*     */       {
-/* 315 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 315 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 316 */         e.setCancelled(true);
 /* 317 */         p.closeInventory();
 /*     */       }
@@ -1074,7 +1096,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 335 */       else if (Coins.getCoins(p.getName()).doubleValue() < 16000.0D)
 /*     */       {
-/* 337 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 337 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 338 */         e.setCancelled(true);
 /* 339 */         p.closeInventory();
 /*     */       }
@@ -1096,7 +1118,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 357 */       else if (Coins.getCoins(p.getName()).doubleValue() < 5000.0D)
 /*     */       {
-/* 359 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 359 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 360 */         e.setCancelled(true);
 /* 361 */         p.closeInventory();
 /*     */       }
@@ -1118,7 +1140,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 379 */       else if (Coins.getCoins(p.getName()).doubleValue() < 6000.0D)
 /*     */       {
-/* 381 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 381 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 382 */         e.setCancelled(true);
 /* 383 */         p.closeInventory();
 /*     */       }
@@ -1140,7 +1162,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 401 */       else if (Coins.getCoins(p.getName()).doubleValue() < 7000.0D)
 /*     */       {
-/* 403 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 403 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 404 */         e.setCancelled(true);
 /* 405 */         p.closeInventory();
 /*     */       }
@@ -1162,7 +1184,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 423 */       else if (Coins.getCoins(p.getName()).doubleValue() < 7000.0D)
 /*     */       {
-/* 425 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 425 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 426 */         e.setCancelled(true);
 /* 427 */         p.closeInventory();
 /*     */       }
@@ -1189,7 +1211,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 450 */       else if (Coins.getCoins(p.getName()).doubleValue() < 8500.0D)
 /*     */       {
-/* 452 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 452 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 453 */         e.setCancelled(true);
 /* 454 */         p.closeInventory();
 /*     */       }
@@ -1218,7 +1240,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 479 */       else if (Coins.getCoins(p.getName()).doubleValue() < 6000.0D)
 /*     */       {
-/* 481 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 481 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 482 */         e.setCancelled(true);
 /* 483 */         p.closeInventory();
 /*     */       }
@@ -1240,7 +1262,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 501 */       else if (Coins.getCoins(p.getName()).doubleValue() < 6000.0D)
 /*     */       {
-/* 503 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 503 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 504 */         e.setCancelled(true);
 /* 505 */         p.closeInventory();
 /*     */       }
@@ -1262,7 +1284,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 523 */       else if (Coins.getCoins(p.getName()).doubleValue() < 7000.0D)
 /*     */       {
-/* 525 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 525 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 526 */         e.setCancelled(true);
 /* 527 */         p.closeInventory();
 /*     */       }
@@ -1284,7 +1306,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 545 */       else if (Coins.getCoins(p.getName()).doubleValue() < 7000.0D)
 /*     */       {
-/* 547 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 547 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 548 */         e.setCancelled(true);
 /* 549 */         p.closeInventory();
 /*     */       }
@@ -1306,7 +1328,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 567 */       else if (Coins.getCoins(p.getName()).doubleValue() < 6000.0D)
 /*     */       {
-/* 569 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 569 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 570 */         e.setCancelled(true);
 /* 571 */         p.closeInventory();
 /*     */       }
@@ -1327,7 +1349,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 588 */       else if (Coins.getCoins(p.getName()).doubleValue() < 8000.0D)
 /*     */       {
-/* 590 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 590 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 591 */         e.setCancelled(true);
 /* 592 */         p.closeInventory();
 /*     */       }
@@ -1348,7 +1370,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 609 */       else if (Coins.getCoins(p.getName()).doubleValue() < 4000.0D)
 /*     */       {
-/* 611 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 611 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 612 */         e.setCancelled(true);
 /* 613 */         p.closeInventory();
 /*     */       }
@@ -1369,7 +1391,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 630 */       else if (Coins.getCoins(p.getName()).doubleValue() < 9000.0D)
 /*     */       {
-/* 632 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 632 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 633 */         e.setCancelled(true);
 /* 634 */         p.closeInventory();
 /*     */       }
@@ -1390,7 +1412,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 651 */       else if (Coins.getCoins(p.getName()).doubleValue() < 4000.0D)
 /*     */       {
-/* 653 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 653 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 654 */         e.setCancelled(true);
 /* 655 */         p.closeInventory();
 /*     */       }
@@ -1411,7 +1433,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 672 */       else if (Coins.getCoins(p.getName()).doubleValue() < 8000.0D)
 /*     */       {
-/* 674 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 674 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 675 */         e.setCancelled(true);
 /* 676 */         p.closeInventory();
 /*     */       }
@@ -1432,7 +1454,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 693 */       else if (Coins.getCoins(p.getName()).doubleValue() < 5000.0D)
 /*     */       {
-/* 695 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 695 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 696 */         e.setCancelled(true);
 /* 697 */         p.closeInventory();
 /*     */       }
@@ -1453,7 +1475,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 714 */       else if (Coins.getCoins(p.getName()).doubleValue() < 6000.0D)
 /*     */       {
-/* 716 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 716 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 717 */         e.setCancelled(true);
 /* 718 */         p.closeInventory();
 /*     */       }
@@ -1474,7 +1496,7 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /*     */       }
 /* 735 */       else if (Coins.getCoins(p.getName()).doubleValue() < 9500.0D)
 /*     */       {
-/* 737 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 737 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 738 */         e.setCancelled(true);
 /* 739 */         p.closeInventory();
 /*     */       }
@@ -1488,14 +1510,14 @@ createButton(Material.FEATHER, shop, 25, "§6\u2714 §cAirman", "§ePrice: 9000"
 /* 748 */         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user " + p.getName() + " add kitpvp.kit.stomper");
 /* 749 */         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set kitpvp.kit.stomper true");
 /*     */         
-/* 751 */         p.sendMessage("§6\u2714 §cYou buy the Stomper kit §e-17500 coins");
+/* 751 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 752 */         Coins.removeCoins(p.getName(), 17500.0D);
 /* 753 */         e.setCancelled(true);
 /* 754 */         p.closeInventory();
 /*     */       }
 /* 756 */       else if (Coins.getCoins(p.getName()).doubleValue() < 17500.0D)
 /*     */       {
-/* 758 */         p.sendMessage("§4§l\u274C You dont have Money to buy this kit!");
+/* 758 */        p.sendMessage((Main.messages.getString("NoFundsShop").replace("&", "§")));
 /* 759 */         e.setCancelled(true);
 /* 760 */         p.closeInventory();
 /*     */       }

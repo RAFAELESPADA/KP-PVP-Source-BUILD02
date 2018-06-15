@@ -37,16 +37,16 @@
 /* 37 */         return;
 /*    */       }
 /* 39 */       Cooldown.add(p, 15);
-/* 40 */       p.sendMessage(String.valueOf(API.NomeServer) + "§f§lYou freeze the players around you!");
+/* 40 */       p.sendMessage(String.valueOf(API.NomeServer) + Main.messages.getString("TimelordUse").replace("&", "§"));
 /* 41 */       for (final Entity pertos : p.getNearbyEntities(5.0D, 5.0D, 5.0D)) {
 /* 42 */         playercongelados.add(((Player)pertos).getName());
-/* 43 */         ((Player)pertos).sendMessage(String.valueOf(API.NomeServer) + "§aYou have been frozen by a TimeLord");
+/* 43 */         ((Player)pertos).sendMessage(String.valueOf(API.NomeServer) + Main.messages.getString("Timelordfrozen").replace("&", "§"));
 /* 44 */         ((Player)pertos).playSound(pertos.getLocation(), this.main.getConfig().getString("Sound.Timelord"), 1.0F, 1.0F);
 /* 45 */         org.bukkit.Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable()
 /*    */         {
 /*    */           public void run() {
 /* 48 */             TimeLord.playercongelados.remove(((Player)pertos).getName());
-/* 49 */             ((Player)pertos).sendMessage(String.valueOf(API.NomeServer) + "§aYou are unfrozen");
+/* 49 */             ((Player)pertos).sendMessage(String.valueOf(API.NomeServer) + Main.messages.getString("TimelordUnfrozen").replace("&", "§"));
 /*    */           }
 /* 51 */         }, 160L);
 /*    */       }

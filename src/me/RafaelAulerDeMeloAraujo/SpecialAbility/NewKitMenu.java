@@ -173,6 +173,11 @@
 /* 173 */           Bukkit.dispatchCommand(p, "airman");
 /* 174 */           p.closeInventory();
 /*     */         }
+/* 171 */         if (e.getCurrentItem().getItemMeta().getDisplayName().equals("§7Kit §e§lVampire"))
+/*     */         {
+/* 173 */           Bukkit.dispatchCommand(p, "kvampire");
+/* 174 */           p.closeInventory();
+/*     */         }
 /* 176 */         if (e.getCurrentItem().getItemMeta().getDisplayName().equals("§7Kit §e§lSwitcher"))
 /*     */         {
 /* 178 */           Bukkit.dispatchCommand(p, "switcher");
@@ -216,7 +221,7 @@
 /*     */       
 /* 217 */       ItemStack vidro = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)14);
 /* 218 */       ItemMeta vidro2 = vidro.getItemMeta();
-/* 219 */       vidro2.setDisplayName("§cSlot blocked. Buy more kits on shop to unlock!");
+/* 219 */       vidro2.setDisplayName((Main.messages.getString("KitSlotBlocked").replace("&", "§")));
 /* 220 */       vidro.setItemMeta(vidro2);
 /*     */       
 /* 222 */       ItemStack vidro1 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)7);
@@ -226,11 +231,11 @@
 /*     */       
 /* 227 */       ItemStack barrier = new ItemStack(Material.BARRIER);
 /* 228 */       ItemMeta barrier2 = barrier.getItemMeta();
-/* 229 */       barrier2.setDisplayName("§4§lœ– §a§lClose the Kit Menu");
+/* 229 */       barrier2.setDisplayName("§4§l-> §a§lClose the Kit Menu");
 /* 230 */       barrier.setItemMeta(barrier2);
 /*     */       
 /*     */ 
-/* 233 */       kits.setItem(27, vidro1);
+/* 233 */       
 /* 234 */       kits.setItem(28, vidro1);
 /* 235 */       kits.setItem(29, vidro1);
 /* 236 */       kits.setItem(30, vidro1);
@@ -544,6 +549,19 @@
 /* 545 */         ArrayList indiob = new ArrayList();
 /* 546 */         indiob.add("§7Starts with");
 /* 547 */         indiob.add("§7Sword , Armor and 8 ender pearls!");
+/*     */         
+/* 549 */         metapyro.setLore(indiob);
+/* 550 */         pyro.setItemMeta(metapyro);
+/* 551 */         kits.addItem(new ItemStack[] { pyro });
+/*     */       }
+/* 540 */       if (p.hasPermission("kitpvp.kit.vampire"))
+/*     */       {
+/* 542 */         ItemStack pyro = new ItemStack(Material.GOLD_NUGGET);
+/* 543 */         ItemMeta metapyro = pyro.getItemMeta();
+/* 544 */         metapyro.setDisplayName("§7Kit §e§lVampire");
+/* 545 */         ArrayList indiob = new ArrayList();
+/* 546 */         indiob.add("§7You have 27% chance to gain");
+/* 547 */         indiob.add("§7regeneration effect when you hit a player!");
 /*     */         
 /* 549 */         metapyro.setLore(indiob);
 /* 550 */         pyro.setItemMeta(metapyro);

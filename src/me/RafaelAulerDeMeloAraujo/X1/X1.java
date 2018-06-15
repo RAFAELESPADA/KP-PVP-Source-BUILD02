@@ -1,9 +1,12 @@
 /*     */ package me.RafaelAulerDeMeloAraujo.X1;
 /*     */ 
 /*     */ import java.util.ArrayList;
+import java.util.Arrays;
 /*     */ import java.util.HashMap;
 /*     */ import java.util.List;
 /*     */ import java.util.Map;
+
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.API;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 import me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI;
@@ -49,6 +52,7 @@ import me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI;
 	/*  61 */     this.main = main;
 	/*  62 */     plugin = main;
 	/*     */   }
+
 /*     */   
 /*     */ 
 /*  47 */   public static Map<String, String> convites = new HashMap();
@@ -73,32 +77,36 @@ import me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI;
 /*  66 */     p.getInventory().setBoots(new ItemStack(Material.AIR));
 /*  67 */     ItemStack shop = new ItemStack(Material.BOOK);
 /*  68 */     ItemMeta shop2 = shop.getItemMeta();
-/*  69 */     shop2.setDisplayName("§aKit menu §7(Right click)");
+/*  69 */     shop2.setDisplayName( Main.messages.getString("KitItemName").replace("&", "§"));
 /*  70 */     shop.setItemMeta(shop2);
-/*  71 */     ItemStack kits = new ItemStack(Material.EMERALD);
-/*  72 */     ItemMeta kits2 = kits.getItemMeta();
-/*  73 */     kits2.setDisplayName("§b§lShop Menu");
-/*  74 */     kits.setItemMeta(kits2);
-/*  75 */     ItemStack st = new ItemStack(Material.BLAZE_ROD);
-/*  76 */     ItemMeta st2 = st.getItemMeta();
-/*  77 */     st2.setDisplayName("§eJOIN 1V1");
-/*  78 */     st.setItemMeta(st2);
-/*     */     ItemStack stats = new ItemStack(Material.NAME_TAG);
+
+/*  95 */       ItemStack kits = new ItemStack(Material.EMERALD);
+/*  96 */       ItemMeta kits2 = kits.getItemMeta();
+/*  97 */       kits2.setDisplayName(Main.messages.getString("ShopItemName").replace("&", "§"));
+/*  98 */       kits.setItemMeta(kits2);
+/*  99 */       ItemStack st = new ItemStack(Material.BLAZE_ROD);
+/* 100 */       ItemMeta st2 = st.getItemMeta();
+/* 101 */       st2.setDisplayName(Main.messages.getString("1v1ItemName").replace("&", "§"));
+/* 102 */       st.setItemMeta(st2);
+ItemStack stats = new ItemStack(Material.NAME_TAG);
 /* 227 */           ItemMeta stats2 = kits.getItemMeta();
-/* 228 */           stats2.setDisplayName("§aYour Stats §7(Right click)");
+/* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 /* 229 */           stats.setItemMeta(stats2);
 p.getInventory().setItem(3, stats);
-/*  80 */     p.getInventory().addItem(new ItemStack[] { shop });
-/*  81 */     p.getInventory().addItem(new ItemStack[] { kits });
-/*  82 */     p.getInventory().addItem(new ItemStack[] { st });
+p.getInventory().setItem(0 , shop);
+p.getInventory().setItem(1 , kits);
+p.getInventory().setItem(2 , st);
+
+/*     */       
+/*     */ 
+/* 107 */       p.updateInventory();
 /*  83 */     Habilidade.removeAbility(p);
 /*  84 */     p.setHealth(20.0D);
 /*     */     
 /*     */ 
 /*  87 */     p.updateInventory();
-/*  88 */     p.sendMessage("§eYou leave the 1v1");
-/*  89 */     p.sendMessage("§eIf you want");
-/*  90 */     p.sendMessage("§eTo join again write /kitpvp 1v1");
+/*  88 */     p.sendMessage(Main.messages.getString("1v1Leave").replace("&", "§"));
+
 TitleAPI.sendTitle(p, Integer.valueOf(10), Integer.valueOf(20), Integer.valueOf(10), "§aYou leave the 1v1", "");
 /*     */   }
 /*     */   

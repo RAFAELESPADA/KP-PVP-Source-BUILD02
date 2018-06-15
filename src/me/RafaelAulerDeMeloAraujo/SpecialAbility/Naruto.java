@@ -54,7 +54,7 @@
 /*  54 */         e.setCancelled(true);
 /*  55 */         p.updateInventory();
 /*     */         
-/*  57 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§") + ChatColor.RED + " §c§lKyuubi mode activate!!!!!!"));
+/*  57 */         p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§") + ChatColor.RED + Main.messages.getString("NarutoUse").replace("&", "§")));
 /*  58 */         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 500, 0));
 /*  59 */         p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 500, 1));
 /*  60 */         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 500, 0));

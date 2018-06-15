@@ -91,23 +91,23 @@
 /*     */       
 /*  92 */       s.getInventory().setLeggings(new ItemStack(Material.AIR));
 /*  93 */       s.getInventory().setBoots(new ItemStack(Material.AIR));
-/*  94 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "§aKit menu §7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
+/*  94 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, Main.messages.getString("KitItemName").replace("&", "§"), Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
 /*  95 */       ItemStack kits = new ItemStack(Material.EMERALD);
 /*  96 */       ItemMeta kits2 = kits.getItemMeta();
-/*  97 */       kits2.setDisplayName("§b§lShop Menu");
+/*  97 */       kits2.setDisplayName(Main.messages.getString("ShopItemName").replace("&", "§"));
 /*  98 */       kits.setItemMeta(kits2);
 /*  99 */       ItemStack st = new ItemStack(Material.BLAZE_ROD);
 /* 100 */       ItemMeta st2 = st.getItemMeta();
-/* 101 */       st2.setDisplayName("§eJOIN 1V1");
+/* 101 */       st2.setDisplayName(Main.messages.getString("1v1ItemName").replace("&", "§"));
 /* 102 */       st.setItemMeta(st2);
 ItemStack stats = new ItemStack(Material.NAME_TAG);
 /* 227 */           ItemMeta stats2 = kits.getItemMeta();
-/* 228 */           stats2.setDisplayName("§aYour Stats §7(Right click)");
+/* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 /* 229 */           stats.setItemMeta(stats2);
 p.getInventory().setItem(3, stats);
 /* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
 /* 104 */       p.getInventory().addItem(new ItemStack[] { st });
-/*     */       
+/*     */        p.setAllowFlight(false);
 /*     */ 
 /* 107 */       p.updateInventory();
 /*     */     }

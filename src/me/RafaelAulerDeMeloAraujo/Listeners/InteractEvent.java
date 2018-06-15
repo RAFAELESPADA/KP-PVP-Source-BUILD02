@@ -1,89 +1,66 @@
 /*    */ package me.RafaelAulerDeMeloAraujo.Listeners;
 /*    */ 
 /*    */ import java.util.ArrayList;
-
-import me.RafaelAulerDeMeloAraujo.Coins.Coins;
-import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
-/*    */ import me.RafaelAulerDeMeloAraujo.X1.X1;
+/*    */ import java.util.List;
+/*    */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.API;
+/*    */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Cooldown;
+/*    */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
 /*    */ import me.RafaelAulerDeMeloAraujo.main.Main;
+/*    */ import org.bukkit.Effect;
+/*    */ import org.bukkit.Location;
 /*    */ import org.bukkit.Material;
+/*    */ import org.bukkit.Sound;
+/*    */ import org.bukkit.World;
+/*    */ import org.bukkit.configuration.file.FileConfiguration;
 /*    */ import org.bukkit.entity.Player;
 /*    */ import org.bukkit.event.EventHandler;
+/*    */ import org.bukkit.event.Listener;
 /*    */ import org.bukkit.event.block.Action;
 /*    */ import org.bukkit.event.player.PlayerInteractEvent;
 /*    */ import org.bukkit.inventory.ItemStack;
-/*    */ import org.bukkit.inventory.meta.ItemMeta;
+/*    */ import org.bukkit.scheduler.BukkitScheduler;
+/*    */ import org.bukkit.util.Vector;
 /*    */ 
-/*    */ public class InteractEvent implements org.bukkit.event.Listener
+/*    */ public class AirmanFly implements Listener
 /*    */ {
-/*    */   public static ArrayList<String> aocaixa;
+/*    */   Main plugin;
+/* 27 */   List<Player> FlyCooldown = new ArrayList();
+/* 28 */   List<Player> TogglePlayersCooldown = new ArrayList();
 /*    */   private Main main;
 /*    */   
-/*    */   public InteractEvent(Main main)
+/* 31 */   public AirmanFly(Main main) { this.main = main; }
+/*    */   
+/*    */ 
+/*    */   @EventHandler
+/*    */   public void onWall2(PlayerInteractEvent e)
 /*    */   {
-/* 21 */     this.main = main;
-/*    */   }
-/*    */   
-/*    */   @EventHandler
-/*    */   public void onBauKit(PlayerInteractEvent e) {
-/* 26 */     Player p = e.getPlayer();
-/* 27 */     if ((p.getItemInHand().getType().equals(Material.EMERALD)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§b§lShop Menu"))) {
-/* 28 */       e.setCancelled(true);
-/* 29 */       if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-/* 30 */         p.openInventory(me.RafaelAulerDeMeloAraujo.main.Shop.shop);
-/* 31 */         p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
+/* 37 */     final Player p = e.getPlayer();
+/* 38 */     Action a = e.getAction();
+/* 39 */     if (((a.equals(Action.RIGHT_CLICK_AIR)) || (a.equals(Action.RIGHT_CLICK_BLOCK))) && (p.getItemInHand().getType() == Material.FEATHER) && (!this.FlyCooldown.contains(p)) && 
+/* 40 */       (Habilidade.getAbility(p) == "Airman")) {
+/* 41 */       if (Cooldown.add(p)) {
+/* 42 */         API.MensagemCooldown(p);
+/* 43 */         return;
 /*    */       }
-/*    */     }
-/*    */   }
-/*    */   
-/*    */   @EventHandler
-/*    */   public void onKit(PlayerInteractEvent e) {
-/* 38 */     Player p = e.getPlayer();
-/* 39 */     if ((p.getItemInHand().getType().equals(Material.BOOK)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§aKit menu §7(Right click)"))) {
-/* 40 */       e.setCancelled(true);
-/* 41 */       if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-/* 42 */         org.bukkit.Bukkit.dispatchCommand(p, "kpkitmenu");
-p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
-/*    */       }
-/*    */     }
-/*    */   }
-/*    */   @EventHandler
-/*    */   public void onStats(PlayerInteractEvent e) {
-/* 38 */     Player p = e.getPlayer();
-/* 39 */     if ((p.getItemInHand().getType().equals(Material.NAME_TAG)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§aYour Stats §7(Right click)"))) {
-/* 40 */       e.setCancelled(true);
-/* 41 */       if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-/* 42 */            p.sendMessage("§b");
-/*    */         int kills = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".kills");
-/* 24 */         int deaths = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes");
-                 p.sendMessage("§4§l\u2605 §e§lYour Stats §a§l" + p.getName() + " §4§l\u2605");
-                 p.sendMessage("");
-/* 28 */         p.sendMessage("§bKills §8\u279C§e " + kills);
-/* 29 */         p.sendMessage("§bDeaths §8\u279C§e " + deaths);
-/*    */         
-/* 31 */         p.sendMessage("§bCoins §8\u279C§e " + Coins.getCoins(p.getName()));
-/* 32 */         p.sendMessage("§bStreak §8\u279C§e " + Streak.killstreak.get(p.getName()));
-/* 33 */         p.sendMessage("§b");
-p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
-/*    */       }
-/*    */     }
-/*    */   }
-/*    */   
-/*    */   @EventHandler
-/*    */   public void v1(PlayerInteractEvent e) {
-/* 49 */     Player p = e.getPlayer();
-/* 50 */     if ((p.getItemInHand().getType().equals(Material.BLAZE_ROD)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§eJOIN 1V1"))) {
-/* 51 */       e.setCancelled(true);
-/* 52 */       if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-/* 53 */         X1.entrar1v1(p);
-p.playSound(p.getLocation(), org.bukkit.Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
-/*    */       }
+/* 45 */       Cooldown.add(p, 3);
+/* 46 */       Vector v2 = p.getLocation().getDirection().multiply(2.0D).setY(1.0D);
+/* 47 */       p.getWorld().playEffect(p.getLocation().add(0.0D, 0.0D, 0.0D), Effect.FIREWORKS_SPARK, 1);
+/* 48 */       p.getWorld().playEffect(p.getLocation().add(0.0D, 0.5D, 0.0D), Effect.FIREWORKS_SPARK, 1);
+/* 49 */       p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.Airman-Fly")), 500.0F, 500.0F);
+/* 50 */       p.getWorld().playEffect(p.getLocation().add(0.0D, 1.5D, 0.0D), Effect.FIREWORKS_SPARK, 1);
+/* 51 */       p.setVelocity(v2);
+/* 52 */       org.bukkit.Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable()
+/*    */       {
+/*    */         public void run() {
+/* 55 */           p.sendMessage(API.fimcooldown(p));
+/*    */         }
+/* 57 */       }, 60L);
 /*    */     }
 /*    */   }
 /*    */ }
 
 
-/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\Listeners\InteractEvent.class
+/* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\Listeners\AirmanFly.class
  * Java compiler version: 8 (52.0)
  * JD-Core Version:       0.7.1
  */

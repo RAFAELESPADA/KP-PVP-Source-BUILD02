@@ -59,7 +59,7 @@
 /*     */     
 /*  60 */     if (args.length == 0) { Object estrelameta;
 /*  61 */       if (!admin.contains(p.getName())) {
-/*  62 */         p.sendMessage("§b§lYou enter in adminmode!");
+/*  62 */          p.sendMessage(Main.messages.getString("AdminModeJoin").replace("&", "§"));
 /*     */         
 /*  64 */         for (Player s : Bukkit.getOnlinePlayers()) {
 /*  65 */           if (!s.hasPermission("kitpvp.adminmode")) {
@@ -117,7 +117,7 @@
 /* 117 */         p.updateInventory();
 /*     */       }
 /*     */       else {
-/* 120 */         p.sendMessage("§a§lYou leave the admin mode!");
+/* 120 */         p.sendMessage(Main.messages.getString("AdminModeLeave").replace("&", "§"));
 /* 121 */         p.setHealth(20.0D);
 /* 122 */         p.getInventory().clear();
 /* 123 */         admin.remove(p.getName());

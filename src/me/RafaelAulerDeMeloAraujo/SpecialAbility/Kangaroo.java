@@ -98,7 +98,7 @@
 /*     */         }
 /*     */         
 /* 100 */         if (this.naofugir.contains(p.getName())) {
-/* 101 */           p.sendMessage("§cYou cannot use this kit while in PvP!");
+/* 101 */           p.sendMessage(Main.messages.getString("KangarooCooldown").replace("&", "§"));
 /*     */         }
 /*     */       }
 /*     */     }

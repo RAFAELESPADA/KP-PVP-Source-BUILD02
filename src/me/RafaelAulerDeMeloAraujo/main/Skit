@@ -9,6 +9,8 @@
 /*    */ import org.bukkit.event.Listener;
 /*    */ import org.bukkit.inventory.ItemStack;
 /*    */ import org.bukkit.inventory.PlayerInventory;
+
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.API;
 /*    */ 
 /*    */ 
 /*    */ 
@@ -40,28 +42,28 @@
 /* 40 */       (p.hasPermission("kitpvp.skit")))
 /*    */     {
 /* 42 */       if (args.length == 0) {
-/* 43 */         p.sendMessage("§7» §cUse /skit create|apply [name]|[range]");
+/* 43 */         p.sendMessage(API.NomeServer + "" + "§7» §cUse /skit create|apply [nome]|[raio]");
 /* 44 */         return true;
 /*    */       }
 /* 46 */       if (args[0].equalsIgnoreCase("create")) {
 /* 47 */         if (args.length == 1) {
-/* 48 */           p.sendMessage("§7» §cCorrect usage: /skit create [KitName]");
+/* 48 */           p.sendMessage(API.NomeServer + "" + "§7» §cCorrect usage: /skit create [NomeDoKit]");
 /* 49 */           return true;
 /*    */         }
 /* 51 */         String name = args[1];
 /* 52 */         this.kit.put(name, p.getInventory().getContents());
 /* 53 */         this.armadura.put(name, p.getInventory().getArmorContents());
-/* 54 */         p.sendMessage("§7» §aKit " + args[1] + " §a has been created sucefully!");
+/* 54 */         p.sendMessage(API.NomeServer + "" + "§7» §aKit " + args[1] + " §a created with sucess!");
 /* 55 */         return true;
 /*    */       }
 /* 57 */       if (args[0].equalsIgnoreCase("apply")) {
 /* 58 */         if (args.length <= 2) {
-/* 59 */           p.sendMessage("§7» §cCorrect usage: /skit apply [kits] [range]");
+/* 59 */           p.sendMessage(API.NomeServer + "" + "§7» §cCorrect usage: /skit apply [kits] [range]");
 /* 60 */           return true;
 /*    */         }
 /* 62 */         String name = args[1];
 /* 63 */         if ((!this.kit.containsKey(name)) && (!this.armadura.containsKey(name))) {
-/* 64 */           p.sendMessage("§7» §cThis kit " + name + " does not exist!");
+/* 64 */           p.sendMessage(API.NomeServer + "" + "§7» §cThis kit " + name + " does not exist!");
 /* 65 */           return true;
 /*    */         }
 /* 67 */         if (isInt(args[2])) {
@@ -74,7 +76,7 @@
 /* 74 */               plr.getInventory().setContents((ItemStack[])this.kit.get(name));
 /*    */             }
 /*    */           }
-/* 77 */           p.sendMessage("§7» §aKit " + name + " has been applied to the players on range of " + numero + " blocks");
+/* 77 */           p.sendMessage(API.NomeServer + "" + "§7» §aKit " + name + " has been applied to the players on range of " + numero + " blocks");
 /* 78 */           return true;
 /*    */         }
 /*    */       }

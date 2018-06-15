@@ -169,22 +169,25 @@
 /*     */       
 /*     */ 
 /*     */ 
-/* 172 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "§aKit menu §7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
-/* 173 */       ItemStack kits = new ItemStack(Material.EMERALD);
-/* 174 */       ItemMeta kits2 = kits.getItemMeta();
-/* 175 */       kits2.setDisplayName("§b§lShop Menu");
-/* 176 */       kits.setItemMeta(kits2);
-/* 177 */       p.getInventory().addItem(new ItemStack[] { kits });
-/* 178 */       ItemStack st = new ItemStack(Material.BLAZE_ROD);
-/* 179 */       ItemMeta st2 = st.getItemMeta();
-/* 180 */       st2.setDisplayName("§eJOIN 1V1");
-/* 181 */       st.setItemMeta(st2);
+/*  94 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, Main.messages.getString("KitItemName").replace("&", "§"), Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
+/*  95 */       ItemStack kits = new ItemStack(Material.EMERALD);
+/*  96 */       ItemMeta kits2 = kits.getItemMeta();
+/*  97 */       kits2.setDisplayName(Main.messages.getString("ShopItemName").replace("&", "§"));
+/*  98 */       kits.setItemMeta(kits2);
+/*  99 */       ItemStack st = new ItemStack(Material.BLAZE_ROD);
+/* 100 */       ItemMeta st2 = st.getItemMeta();
+/* 101 */       st2.setDisplayName(Main.messages.getString("1v1ItemName").replace("&", "§"));
+/* 102 */       st.setItemMeta(st2);
 ItemStack stats = new ItemStack(Material.NAME_TAG);
 /* 227 */           ItemMeta stats2 = kits.getItemMeta();
-/* 228 */           stats2.setDisplayName("§aYour Stats §7(Right click)");
+/* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 /* 229 */           stats.setItemMeta(stats2);
-p.getInventory().addItem(new ItemStack[] { st });
-/* 182 */       p.getInventory().setItem(3, stats);
+p.getInventory().setItem(3, stats);
+/* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
+/* 104 */       p.getInventory().addItem(new ItemStack[] { st });
+/*     */       
+/*     */ 
+/* 107 */       
 /*     */       
 /*     */ 
 /*     */ 

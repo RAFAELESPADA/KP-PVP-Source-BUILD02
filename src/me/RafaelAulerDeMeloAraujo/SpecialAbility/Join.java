@@ -206,22 +206,25 @@ import org.bukkit.scheduler.BukkitRunnable;
 	/*     */       
 	/*  92 */       p.getInventory().setLeggings(new ItemStack(Material.AIR));
 	/*  93 */       p.getInventory().setBoots(new ItemStack(Material.AIR));
-	/*  94 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "§aKit menu §7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
+	/*  94 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, Main.messages.getString("KitItemName").replace("&", "§"), Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
 	/*  95 */       ItemStack kits = new ItemStack(Material.EMERALD);
 	/*  96 */       ItemMeta kits2 = kits.getItemMeta();
-	/*  97 */       kits2.setDisplayName("§b§lShop Menu");
+	/*  97 */       kits2.setDisplayName(Main.messages.getString("ShopItemName").replace("&", "§"));
 	/*  98 */       kits.setItemMeta(kits2);
 	/*  99 */       ItemStack st = new ItemStack(Material.BLAZE_ROD);
 	/* 100 */       ItemMeta st2 = st.getItemMeta();
-	/* 101 */       st2.setDisplayName("§eJOIN 1V1");
+	/* 101 */       st2.setDisplayName(Main.messages.getString("1v1ItemName").replace("&", "§"));
 	/* 102 */       st.setItemMeta(st2);
 	ItemStack stats = new ItemStack(Material.NAME_TAG);
 	/* 227 */           ItemMeta stats2 = kits.getItemMeta();
-	/* 228 */           stats2.setDisplayName("§aYour Stats §7(Right click)");
+	/* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 	/* 229 */           stats.setItemMeta(stats2);
 	p.getInventory().setItem(3, stats);
 	/* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
 	/* 104 */       p.getInventory().addItem(new ItemStack[] { st });
+	/*     */       p.setAllowFlight(false);
+	/*     */ 
+	/* 107 */    
 	/*     */       
 	/*     */ 
 	/* 107 */       p.updateInventory();
@@ -295,24 +298,25 @@ import org.bukkit.scheduler.BukkitRunnable;
 /*     */ 
 /* 219 */           p.getInventory().clear();
 /* 220 */           p.getInventory().setArmorContents(null);
-/* 221 */           p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, "§aKit menu §7(Right click)", Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
-/* 222 */           ItemStack st = new ItemStack(Material.BLAZE_ROD);
-/* 223 */           ItemMeta st2 = st.getItemMeta();
-/* 224 */           st2.setDisplayName("§eJOIN 1V1");
-/* 225 */           st.setItemMeta(st2);
-/* 226 */           ItemStack kits = new ItemStack(Material.EMERALD);
-/* 227 */           ItemMeta kits2 = kits.getItemMeta();
-/* 228 */           kits2.setDisplayName("§b§lShop Menu");
-/* 229 */           kits.setItemMeta(kits2);
+/*  94 */       p.getInventory().addItem(new ItemStack[] { new ItemStack(make(Material.BOOK, 1, 0, Main.messages.getString("KitItemName").replace("&", "§"), Arrays.asList(new String[] { this.main.getConfig().getString("JoinItem.Lore").replace("&", "§") }))) });
+/*  95 */       ItemStack kits = new ItemStack(Material.EMERALD);
+/*  96 */       ItemMeta kits2 = kits.getItemMeta();
+/*  97 */       kits2.setDisplayName(Main.messages.getString("ShopItemName").replace("&", "§"));
+/*  98 */       kits.setItemMeta(kits2);
+/*  99 */       ItemStack st = new ItemStack(Material.BLAZE_ROD);
+/* 100 */       ItemMeta st2 = st.getItemMeta();
+/* 101 */       st2.setDisplayName(Main.messages.getString("1v1ItemName").replace("&", "§"));
+/* 102 */       st.setItemMeta(st2);
 ItemStack stats = new ItemStack(Material.NAME_TAG);
 /* 227 */           ItemMeta stats2 = kits.getItemMeta();
-/* 228 */           stats2.setDisplayName("§aYour Stats §7(Right click)");
+/* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 /* 229 */           stats.setItemMeta(stats2);
 p.getInventory().setItem(3, stats);
-/* 182 */       
-/* 230 */           p.getInventory().addItem(new ItemStack[] { kits });
-
-/* 231 */           p.getInventory().addItem(new ItemStack[] { st });
+/* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
+/* 104 */       p.getInventory().addItem(new ItemStack[] { st });
+/*     */       
+/*     */ 
+/* 107 */       p.updateInventory();
 /*     */           
 /*     */ 
 
@@ -413,8 +417,12 @@ ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper
 /* 306 */       p.getInventory().setContents((ItemStack[])saveinv.get(p.getName()));
 /* 307 */       p.setGameMode((GameMode)savegamemode.get(p.getName()));
 /* 308 */       p.getInventory().setArmorContents((ItemStack[])savearmor.get(p.getName()));
+
+/* 111 */     if (Bukkit.getPluginManager().isPluginEnabled("FeatherBoard"))
+/*     */     {
 /*     */       p.chat("/featherboard off");
 p.chat("/featherboard on");
+}
 /*     */   TitleAPI.sendTitle(p, Integer.valueOf(10), Integer.valueOf(30), Integer.valueOf(10), this.main.getConfig().getString("Title.LeaveTitle"), this.main.getConfig().getString("Title.LeaveSubTitle"));
 /* 311 */       p.updateInventory();
 /*     */     }
@@ -429,21 +437,24 @@ p.chat("/featherboard on");
 /*     */   {
 /* 322 */     Player p = e.getPlayer();
 /*     */     
-/* 324 */     if ((e.getMessage().equalsIgnoreCase("/kitpvp 1v1")) && (game.contains(e.getPlayer().getName()))) {
+/* 324 */     if ((e.getMessage().equalsIgnoreCase("/kitpvp 1v1"))) {
+	/* 327 */       if (!game.contains(e.getPlayer().getName()))
+	/*     */       {
+	/* 329 */         e.getPlayer().sendMessage("§cYou must be in game to join 1v1!");
+	/* 330 */         e.setCancelled(true);
+	/*     */       }else{
 /* 325 */       e.setCancelled(true);
 /* 326 */       X1.entrar1v1(p);
-/* 327 */       if (!game.contains(e.getPlayer().getName()))
-/*     */       {
-/* 329 */         e.getPlayer().sendMessage("§cYou must be in game to join 1v1!");
-/* 330 */         e.setCancelled(true);
-/*     */       }
+
 /*     */     }
 /*     */     
-/* 334 */     return false;
-/*     */   }
-/*     */   
+/* 334 */  
+/*     */
+return false;   
 
 /*     */ }
+return false;
+}}
 
 
 /* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\SpecialAbility\Join.class

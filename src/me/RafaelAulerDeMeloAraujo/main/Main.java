@@ -56,6 +56,7 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Scoreboard;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.TimelordCMD;
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Vampire;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Viper;
+import me.RafaelAulerDeMeloAraujo.Updater.SpigotUpdater;
 /*     */ import me.RafaelAulerDeMeloAraujo.X1.SetX1;
 /*     */ import me.RafaelAulerDeMeloAraujo.X1.X1;
 
@@ -124,6 +125,14 @@ import org.bukkit.command.ConsoleCommandSender;
 /*     */   
 /*     */   public void onEnable()
 /*     */   {
+	try
+    {
+      new SpigotUpdater(this, 50969);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
 /* 107 */     getLogger().info("KP-PVP plugin is now enable [By zEnderX5_]");
 /* 108 */     getLogger().info("Website: http://bit.ly/2kC345B");
 /* 109 */     Metrics metrics = new Metrics(this);

@@ -57,7 +57,7 @@
 /* 57 */         inv.setItemInHand(replacer);
 /* 58 */         inv.setItem(slot, replaced);
 /* 59 */         API.monkStaff.put(item, Long.valueOf(System.currentTimeMillis()));
-/* 60 */         e.getPlayer().sendMessage("§6You used your ability!");
+/* 60 */         e.getPlayer().sendMessage(Main.messages.getString("MonkUse").replace("&", "§"));
 /*    */       }
 /*    */     }
 /*    */   }

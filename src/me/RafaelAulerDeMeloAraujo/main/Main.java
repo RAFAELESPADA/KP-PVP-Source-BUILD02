@@ -110,6 +110,8 @@ import org.bukkit.command.ConsoleCommandSender;
 /*     */   public static Logger log;
 /*  93 */   public static File customizationf = new File("plugins/KP-PVP", "settings.yml");
 /*     */   public YamlConfiguration cf;
+/*  93 */   public static File messagesf = new File("plugins/KP-PVP", "messages.yml");
+/*     */   
 /*     */   public static Plugin plugin;
 /*     */   public static Main instance;
 /*     */   private static ConfigUtils cH;
@@ -182,9 +184,14 @@ metrics.addCustomChart(new Metrics.SimplePie("ScoreBoard_Enabled", new Callable<
 /* 134 */     if (!customizationf.exists()) {
 /* 135 */       saveResource("settings.yml", false);
 /*     */     }
+/* 134 */     if (!messagesf.exists()) {
+/* 135 */       saveResource("messages.yml", false);
+/*     */     }
 /*     */     try
 /*     */     {
 /* 139 */       cfg_x1.load(file_x1);
+messages.load(messagesf);
+
 /* 140 */       customization.load(customizationf);
 /*     */     }
 /*     */     catch (IOException|InvalidConfigurationException e1)
@@ -418,6 +425,7 @@ getCommand("kvampire").setExecutor(new Vampire(this));
 /*     */   }
 /*     */   
 /* 364 */   public static FileConfiguration cfg_x1 = YamlConfiguration.loadConfiguration(file_x1);
+public static FileConfiguration messages = YamlConfiguration.loadConfiguration(messagesf);
 /* 365 */   public static FileConfiguration customization = YamlConfiguration.loadConfiguration(customizationf);
 /*     */   private File cf1;
 /*     */   FileConfiguration config;

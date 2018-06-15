@@ -20,6 +20,8 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import me.RafaelAulerDeMeloAraujo.SpecialAbility.API;
+
 
 
 public class kpsetspawn
@@ -45,7 +47,7 @@ implements  CommandExecutor{
 	        Main.plugin.getConfig().set("Spawn.Yaw", Float.valueOf(p.getLocation().getYaw()));
 	        Main.plugin.saveConfig();
 	     
-	        p.sendMessage("§7» §aYou seted the kitpvp spawn sucessufull!");
+	        p.sendMessage(API.NomeServer + Main.messages.getString("SpawnSeted").replace("&", "Â§"));
 	        return true;
 	      }
 		return false;

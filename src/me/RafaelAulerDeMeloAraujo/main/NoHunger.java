@@ -22,7 +22,7 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
     }
 	Player p = (Player) e.getEntity();
 /* 15 */     
-/* 16 */     if ((Join.game.contains(p.getName()))) 
+/* 16 */     if ((Join.game.contains(p.getName()) && (Main.getInstace().getConfig().getString("DisableHungerOnKitPvP").equalsIgnoreCase("true")))) 
 /* 17 */       e.setCancelled(true);
 
 

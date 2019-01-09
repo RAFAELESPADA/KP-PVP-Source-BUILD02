@@ -68,7 +68,7 @@
 /*     */       }
 /*  69 */       if (cooldownm.contains(p))
 /*     */       {
-/*  71 */         p.sendMessage("§c§lYou are in cooldown!");
+/*  71 */         p.sendMessage((Main.messages.getString("DeshFireCooldown").replace("&", "§")));
 /*  72 */         return;
 /*     */       }
 /*  74 */       cooldownm.add(p);
@@ -139,7 +139,7 @@
 /*     */         {
 /* 140 */           Deshfire.cooldownm.remove(p);
 /*     */           
-/* 142 */           p.sendMessage("§3§oYou can use the Deshfire again!");
+/* 142 */           p.sendMessage((Main.messages.getString("DeshFireCooldownEnd").replace("&", "§")));
 /*     */         }
 /*     */         
 /* 145 */       }, 700L);

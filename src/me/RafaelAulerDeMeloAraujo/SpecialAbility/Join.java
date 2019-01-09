@@ -5,10 +5,12 @@
 /*     */ import java.util.HashMap;
 /*     */ import java.util.List;
 
-import me.RafaelAulerDeMeloAraujo.ScoreboardManager.ScoreBoardHelper;
+
 /*     */ import me.RafaelAulerDeMeloAraujo.TitleAPI.TitleAPI;
 /*     */ import me.RafaelAulerDeMeloAraujo.X1.X1;
 /*     */ import me.RafaelAulerDeMeloAraujo.main.Main;
+
+
 /*     */ import org.bukkit.Bukkit;
 /*     */ import org.bukkit.ChatColor;
 /*     */ import org.bukkit.GameMode;
@@ -48,7 +50,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 /*  44 */   public static HashMap<String, ItemStack[]> savearmor = new HashMap();
 /*  45 */   public static HashMap<String, Location> saveworld = new HashMap();
 /*  46 */   public static HashMap<String, GameMode> savegamemode = new HashMap();
-/*     */   
+
 /*     */ 
 /*     */ 
 /*     */   private Main main;
@@ -216,17 +218,23 @@ import org.bukkit.scheduler.BukkitRunnable;
 	/* 101 */       st2.setDisplayName(Main.messages.getString("1v1ItemName").replace("&", "§"));
 	/* 102 */       st.setItemMeta(st2);
 	ItemStack stats = new ItemStack(Material.NAME_TAG);
-	/* 227 */           ItemMeta stats2 = kits.getItemMeta();
+	/* 227 */           ItemMeta stats2 = stats.getItemMeta();
 	/* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 	/* 229 */           stats.setItemMeta(stats2);
 	p.getInventory().setItem(3, stats);
+	ItemStack stats1 = new ItemStack(Material.WOOD_SWORD);
+	/* 227 */           ItemMeta stats12 = stats1.getItemMeta();
+	/* 228 */           stats12.setDisplayName(Main.messages.getString("ClickTestItemName").replace("&", "§"));
+	/* 229 */           stats1.setItemMeta(stats12);
+	
 	/* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
 	/* 104 */       p.getInventory().addItem(new ItemStack[] { st });
+	p.getInventory().setItem(4, stats1);
 	/*     */       p.setAllowFlight(false);
 	/*     */ 
 	/* 107 */    
 	/*     */       
-	/*     */ 
+	/*     */ API.tirarEfeitos(p);
 	/* 107 */       p.updateInventory();
 /*     */         
 
@@ -283,6 +291,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 /* 203 */           double z = Main.plugin.getConfig().getDouble("Spawn.Z");
 /* 204 */           Location lobby = new Location(w, x, y, z);
 /* 205 */           saveworld.put(p.getName(), p.getLocation());
+
 /* 206 */           saveinv.put(p.getName(), p.getInventory().getContents());
 /* 207 */           savearmor.put(p.getName(), p.getInventory().getArmorContents());
 /* 208 */           savegamemode.put(p.getName(), p.getGameMode());
@@ -312,6 +321,14 @@ ItemStack stats = new ItemStack(Material.NAME_TAG);
 /* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 /* 229 */           stats.setItemMeta(stats2);
 p.getInventory().setItem(3, stats);
+ItemStack stats1 = new ItemStack(Material.WOOD_SWORD);
+/* 227 */           ItemMeta stats12 = stats1.getItemMeta();
+/* 228 */           stats12.setDisplayName(Main.messages.getString("ClickTestItemName").replace("&", "§"));
+/* 229 */           stats1.setItemMeta(stats12);
+
+/* 103 */     
+
+p.getInventory().setItem(4, stats1);
 /* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
 /* 104 */       p.getInventory().addItem(new ItemStack[] { st });
 /*     */       
@@ -326,6 +343,7 @@ p.getInventory().setItem(3, stats);
 /* 237 */           p.setFireTicks(0);
 /* 238 */           p.setFoodLevel(20000);
 /* 239 */           TitleAPI.sendTitle(p, Integer.valueOf(10), Integer.valueOf(30), Integer.valueOf(10), this.main.getConfig().getString("Title.JoinTitle"), this.main.getConfig().getString("Title.JoinSubTitle"));
+API.tirarEfeitos(p);
 
 }
 
@@ -391,22 +409,7 @@ p.getInventory().setItem(3, stats);
 /* 295 */       game.remove(p.getName());
 /* 296 */       game.remove(p.getName());
 /* 297 */       game.remove(p.getName());
-/*     */       ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);
-ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);
+
 /*     */ 
 /*     */ 
 /*     */ 
@@ -417,14 +420,16 @@ ScoreBoardHelper.removeScore(p);ScoreBoardHelper.removeScore(p);ScoreBoardHelper
 /* 306 */       p.getInventory().setContents((ItemStack[])saveinv.get(p.getName()));
 /* 307 */       p.setGameMode((GameMode)savegamemode.get(p.getName()));
 /* 308 */       p.getInventory().setArmorContents((ItemStack[])savearmor.get(p.getName()));
-
+TitleAPI.sendTitle(p, Integer.valueOf(10), Integer.valueOf(30), Integer.valueOf(10), this.main.getConfig().getString("Title.LeaveTitle"), this.main.getConfig().getString("Title.LeaveSubTitle"));
 /* 111 */     if (Bukkit.getPluginManager().isPluginEnabled("FeatherBoard"))
 /*     */     {
-/*     */       p.chat("/featherboard off");
-p.chat("/featherboard on");
+	p.chat("/featherboard off");
+	p.chat("/featherboard on");
 }
-/*     */   TitleAPI.sendTitle(p, Integer.valueOf(10), Integer.valueOf(30), Integer.valueOf(10), this.main.getConfig().getString("Title.LeaveTitle"), this.main.getConfig().getString("Title.LeaveSubTitle"));
+/*     */   
 /* 311 */       p.updateInventory();
+API.tirarEfeitos(p);
+
 /*     */     }
 /*     */     
 /*     */ 

@@ -9,6 +9,7 @@ import org.bukkit.entity.*;
 import org.bukkit.inventory.meta.*;
 
 import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
+import me.RafaelAulerDeMeloAraujo.main.Main;
 
 import org.bukkit.inventory.*;
 
@@ -17,10 +18,10 @@ public class SoupSign implements Listener
     @EventHandler
     public void onSignChange(final SignChangeEvent e) {
         if (e.getLine(0).equalsIgnoreCase("[kp]") && e.getLine(1).equalsIgnoreCase("soup") && e.getPlayer().hasPermission("kitpvp.createsigns")) {
-            e.setLine(0, "§4=-=-=-=");
-            e.setLine(1, "§2Free");
-            e.setLine(2, "§bSoup!");
-            e.setLine(3, "§4=-=-=-=");
+            e.setLine(0, Main.messages.getString("SoupSignLine1").replace("&", "Â§"));
+            e.setLine(1, Main.messages.getString("SoupSignLine2").replace("&", "Â§"));
+            e.setLine(2, Main.messages.getString("SoupSignLine3").replace("&", "Â§"));
+            e.setLine(3, Main.messages.getString("SoupSignLine4").replace("&", "Â§"));
         }
     }
     
@@ -29,9 +30,9 @@ public class SoupSign implements Listener
         final Player p = e.getPlayer();
         final ItemStack sopas = new ItemStack(Material.MUSHROOM_SOUP);
         final ItemMeta sopasm = sopas.getItemMeta();
-        sopasm.setDisplayName("§6Soup");
+        sopasm.setDisplayName("Â§6Soup");
         sopas.setItemMeta(sopasm);
-        final Inventory inve = Bukkit.getServer().createInventory((InventoryHolder)p, 36, "§bFree Soups!");
+        final Inventory inve = Bukkit.getServer().createInventory((InventoryHolder)p, 36, "Â§bFree Soups!");
         inve.setItem(0, sopas);
         inve.setItem(1, sopas);
         inve.setItem(2, sopas);
@@ -71,7 +72,7 @@ public class SoupSign implements Listener
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock() != null && (e.getClickedBlock().getType() == Material.WALL_SIGN || e.getClickedBlock().getType() == Material.SIGN_POST)) {
             final Sign s = (Sign)e.getClickedBlock().getState();
             final String[] lines = s.getLines();
-            if (lines.length > 0 && lines[0].equals("§4=-=-=-=") && lines.length > 1 && lines[1].equals("§2Free") && lines.length > 2 && lines[2].equals("§bSoup!") && lines.length > 3 && lines[3].equals("§4=-=-=-=") && Join.game.contains(p.getName())) {
+            if (lines.length > 0 && lines[0].equals(Main.messages.getString("SoupSignLine1").replace("&", "Â§")) && lines.length > 1 && lines[1].equals(Main.messages.getString("SoupSignLine2").replace("&", "Â§")) && lines.length > 2 && lines[2].equals(Main.messages.getString("SoupSignLine3").replace("&", "Â§")) && lines.length > 3 && lines[3].equals(Main.messages.getString("SoupSignLine4").replace("&", "Â§")) && Join.game.contains(p.getName())) {
                 p.openInventory(inve);
             }
         }

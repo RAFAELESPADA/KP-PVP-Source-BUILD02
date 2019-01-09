@@ -5,11 +5,15 @@
 /*     */ import java.util.HashMap;
 /*     */ import java.util.List;
 /*     */ import java.util.Map;
+
+import me.RafaelAulerDeMeloAraujo.Coins.Coins;
 /*     */ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Cooldown;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Deshfire;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Habilidade;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
+import me.RafaelAulerDeMeloAraujo.X1.X1;
+
 /*     */ import org.bukkit.Bukkit;
 /*     */ import org.bukkit.Location;
 /*     */ import org.bukkit.Material;
@@ -23,7 +27,9 @@
 /*     */ import org.bukkit.entity.Player;
 /*     */ import org.bukkit.event.EventHandler;
 /*     */ import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 /*     */ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 /*     */ import org.bukkit.event.player.PlayerJoinEvent;
 /*     */ import org.bukkit.event.player.PlayerKickEvent;
 /*     */ import org.bukkit.event.player.PlayerQuitEvent;
@@ -149,19 +155,19 @@
 /* 149 */     if (Join.game.contains(p.getName()))
 /*     */     {
 /*     */ 
-/* 152 */       World w = Bukkit.getServer().getWorld(Main.plugin.getConfig().getString("Spawn.World"));
-/* 153 */       double x = Main.plugin.getConfig().getDouble("Spawn.X");
-/* 154 */       double y = Main.plugin.getConfig().getDouble("Spawn.Y");
-/* 155 */       double z = Main.plugin.getConfig().getDouble("Spawn.Z");
+/* 152 */       World w = Bukkit.getServer().getWorld(Main.plugin.getConfig().getString("SpawnD.World"));
+/* 153 */       double x = Main.plugin.getConfig().getDouble("SpawnD.X");
+/* 154 */       double y = Main.plugin.getConfig().getDouble("SpawnD.Y");
+/* 155 */       double z = Main.plugin.getConfig().getDouble("SpawnD.Z");
 /* 156 */       Location lobby = new Location(w, x, y, z);
-/* 157 */       lobby.setPitch((float)Main.plugin.getConfig().getDouble("Spawn.Pitch"));
-/* 158 */       lobby.setYaw((float)Main.plugin.getConfig().getDouble("Spawn.Yaw"));
+/* 157 */       lobby.setPitch((float)Main.plugin.getConfig().getDouble("SpawnD.Pitch"));
+/* 158 */       lobby.setYaw((float)Main.plugin.getConfig().getDouble("SpawnD.Yaw"));
 /* 159 */       e.getRespawnLocation().setWorld(w);
 /* 160 */       e.getRespawnLocation().setX(x);
 /* 161 */       e.getRespawnLocation().setY(y);
 /* 162 */       e.getRespawnLocation().setZ(z);
-/* 163 */       e.getRespawnLocation().setPitch((float)Main.plugin.getConfig().getDouble("Spawn.Pitch"));
-/* 164 */       e.getRespawnLocation().setYaw((float)Main.plugin.getConfig().getDouble("Spawn.Yaw"));
+/* 163 */       e.getRespawnLocation().setPitch((float)Main.plugin.getConfig().getDouble("SpawnD.Pitch"));
+/* 164 */       e.getRespawnLocation().setYaw((float)Main.plugin.getConfig().getDouble("SpawnD.Yaw"));
 /*     */       
 /*     */ 
 /*     */ 
@@ -183,6 +189,11 @@ ItemStack stats = new ItemStack(Material.NAME_TAG);
 /* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 /* 229 */           stats.setItemMeta(stats2);
 p.getInventory().setItem(3, stats);
+ItemStack stats1 = new ItemStack(Material.WOOD_SWORD);
+/* 227 */           ItemMeta stats12 = kits.getItemMeta();
+/* 228 */           stats12.setDisplayName(Main.messages.getString("ClickTestItemName").replace("&", "§"));
+/* 229 */           stats1.setItemMeta(stats12);
+p.getInventory().setItem(4, stats1);
 /* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
 /* 104 */       p.getInventory().addItem(new ItemStack[] { st });
 /*     */       
@@ -421,6 +432,90 @@ p.getInventory().setItem(3, stats);
 /*     */ 
 /*     */ 
 /*     */ 
+@EventHandler
+public void onBauKit(PlayerInteractEvent e)
+{
+  Player p = e.getPlayer();
+  if ((p.getItemInHand().getType().equals(Material.EMERALD)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && !Habilidade.ContainsAbility(p) && Join.game.contains(p.getName()))
+  {
+    e.setCancelled(true);
+    if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK))
+    {
+      p.openInventory(Shop.shop);
+      p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
+    }
+  }
+}
+
+@EventHandler
+public void onKit(PlayerInteractEvent e)
+{
+  Player p = e.getPlayer();
+  if ((p.getItemInHand().getType().equals(Material.BOOK)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && !Habilidade.ContainsAbility(p) && Join.game.contains(p.getName()))
+  {
+    e.setCancelled(true);
+    if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK))
+    {
+      Bukkit.dispatchCommand(p, "kpkitmenu");
+      p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
+    }
+  }
+}
+@EventHandler
+public void onKit2(PlayerInteractEvent e)
+{
+  Player p = e.getPlayer();
+  if ((p.getItemInHand().getType().equals(Material.WOOD_SWORD)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && !Habilidade.ContainsAbility(p) && Join.game.contains(p.getName()))
+  {
+    e.setCancelled(true);
+    if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK))
+    {
+      ClickTest.StartClick(p);
+    }
+  }
+}
+
+@EventHandler
+public void onStats(PlayerInteractEvent e)
+{
+  Player p = e.getPlayer();
+  if ((p.getItemInHand().getType().equals(Material.NAME_TAG)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && !Habilidade.ContainsAbility(p) && Join.game.contains(p.getName()))
+  {
+    e.setCancelled(true);
+    if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK))
+    {
+      p.sendMessage("§b");
+      int kills = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".kills");
+      int deaths = Main.plugin.getConfig().getInt("status." + p.getName().toLowerCase() + ".mortes");
+      p.sendMessage("§5§l\u279C §e§lYour Stats §a§l" + p.getName());
+      p.sendMessage("");
+      p.sendMessage("§bKills:§e " + kills);
+      p.sendMessage("§bDeaths:§e " + deaths);
+      
+      p.sendMessage("§bCoins:§e " + Coins.getCoins(p.getName()));
+      p.sendMessage("§bStreak:§e " + Streak.killstreak.get(p.getName()));
+      p.sendMessage("§b");
+      p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
+    }
+  }
+}
+
+@EventHandler
+public void v1(PlayerInteractEvent e)
+{
+  Player p = e.getPlayer();
+  if ((p.getItemInHand().getType().equals(Material.BLAZE_ROD)) && (p.getItemInHand().getItemMeta().hasDisplayName()) && !Habilidade.ContainsAbility(p) && Join.game.contains(p.getName()))
+  {
+    e.setCancelled(true);
+    if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK))
+    {
+      X1.entrar1v1(p);
+      p.playSound(p.getLocation(), Sound.valueOf(this.main.getConfig().getString("Sound.ShopMenu")), 12.0F, 1.0F);
+    }
+  }
+}
+
+
 /*     */ 
 /*     */ 
 /*     */ 

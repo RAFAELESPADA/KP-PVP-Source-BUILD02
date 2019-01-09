@@ -17,7 +17,7 @@
 /*    */   public void aoconstruir(BlockPlaceEvent e)
 /*    */   {
 /* 19 */     Player p = e.getPlayer();
-/* 20 */     if ((Join.game.contains(p.getName())) && (!p.hasPermission("kitpvp.build")))
+/* 20 */     if ((Join.game.contains(p.getName())) && (!p.hasPermission("kitpvp.build") && (Main.getInstace().getConfig().getString("BlockPlayersBuilding").equalsIgnoreCase("true"))))
 /*    */     {
 /* 22 */       e.setCancelled(true);
 /*    */     } else {
@@ -28,7 +28,7 @@
 /*    */   @EventHandler
 /*    */   public void aoconstruir2(BlockBreakEvent e) {
 /* 30 */     Player p = e.getPlayer();
-/* 31 */     if ((Join.game.contains(p.getName())) && (!p.hasPermission("kitpvp.build")))
+/* 31 */     if ((Join.game.contains(p.getName())) && (!p.hasPermission("kitpvp.build") && (Main.getInstace().getConfig().getString("BlockPlayersBuilding").equalsIgnoreCase("true"))))
 /*    */     {
 /* 33 */       e.setCancelled(true);
 /*    */     } else {

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.CommandsSounds;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.ConfigUtils;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.Fisherman;
-/*     */ import me.RafaelAulerDeMeloAraujo.Listeners.InteractEvent;
+
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.JoinSign;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.LeaveSign;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.NoDrops;
@@ -27,9 +27,8 @@ import java.util.logging.Logger;
 /*     */ import me.RafaelAulerDeMeloAraujo.Listeners.WallClamber;
 
 /*     */ import me.RafaelAulerDeMeloAraujo.PluginHooks.PlaceHolderAPIHook;
-import me.RafaelAulerDeMeloAraujo.ScoreboardManager.ScoreBoardHelper;
 
-import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Scoreboard;
+
 /*     */ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Streak;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Basic;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Critical;
@@ -41,8 +40,7 @@ import me.RafaelAulerDeMeloAraujo.ScoreboardManager.Scoreboard;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Gladiator;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Join;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Kangaroo;
-/*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Monk;
-/*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.MonkCMD;
+
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Naruto;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.NewKitMenu;
 /*     */ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Ninja;
@@ -59,9 +57,10 @@ import me.RafaelAulerDeMeloAraujo.SpecialAbility.Vampire;
 import me.RafaelAulerDeMeloAraujo.Updater.SpigotUpdater;
 /*     */ import me.RafaelAulerDeMeloAraujo.X1.SetX1;
 /*     */ import me.RafaelAulerDeMeloAraujo.X1.X1;
-
+import net.milkbowl.vault.permission.Permission;
 
 /*     */ import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 /*     */
 import org.bukkit.Server;
@@ -79,6 +78,7 @@ import org.bukkit.command.ConsoleCommandSender;
 /*     */ import org.bukkit.event.entity.PlayerDeathEvent;
 /*     */ import org.bukkit.plugin.Plugin;
 /*     */ import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 /*     */ import org.bukkit.plugin.java.JavaPlugin;
 /*     */ import org.bukkit.potion.PotionEffect;
 /*     */ import org.bukkit.potion.PotionEffectType;
@@ -112,7 +112,7 @@ import org.bukkit.command.ConsoleCommandSender;
 /*  93 */   public static File customizationf = new File("plugins/KP-PVP", "settings.yml");
 /*     */   public YamlConfiguration cf;
 /*  93 */   public static File messagesf = new File("plugins/KP-PVP", "messages.yml");
-/*     */   
+/*     */   private static Permission perms = null;
 /*     */   public static Plugin plugin;
 /*     */   public static Main instance;
 /*     */   private static ConfigUtils cH;
@@ -148,21 +148,17 @@ metrics.addCustomChart(new Metrics.DrilldownPie("serverAddress", () -> {
 	
 	return map;
 }));
-metrics.addCustomChart(new Metrics.SimplePie("ScoreBoard_Enabled", new Callable<String>() {
-    @Override
-    public String call() throws Exception {
-        return getConfig().getString("ScoreBoardEnable");
-    }
-}));
+
+
 
 
 
 
 /* 111 */     if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
 /*     */     {
-/* 113 */       getLogger().info("Hooking into PlaceHolderAPI");
+/* 113 */        Bukkit.getConsoleSender().sendMessage("§e[KP-PVP] §aHooking into PlaceHolderAPI");
 /* 114 */       new PlaceHolderAPIHook(this).hook();
-/* 115 */       getLogger().info("PlaceHolderAPI Hooked Sucefully");
+/* 115 */        Bukkit.getConsoleSender().sendMessage("§e[KP-PVP] §aPlaceHolderAPI Hooked Sucefully");
 /*     */     }
  
 
@@ -208,59 +204,49 @@ messages.load(messagesf);
 /* 144 */       System.out.println(e1.getMessage());
 /*     */     }
 
-/* 146 */     if ((Bukkit.getVersion().contains("1.9")) || (Bukkit.getVersion().contains("1.10")) || (Bukkit.getVersion().contains("1.11")) || (Bukkit.getVersion().contains("1.12")) || (Bukkit.getVersion().contains("1.13")))
+
+/* 146 */     if ((Bukkit.getVersion().contains("1.9") || (Bukkit.getVersion().contains("1.10") || (Bukkit.getVersion().contains("1.11") || (Bukkit.getVersion().contains("1.12"))))))
 /*     */     {
 /* 148 */       getConfig().options().copyDefaults(true);
 /* 149 */       getConfig().options().copyHeader(true);
 /* 150 */       saveConfig();
-/* 151 */       Bukkit.getConsoleSender().sendMessage("The server is using a 1.9 or higher minecraft version");
-/* 152 */       Bukkit.getConsoleSender().sendMessage("Altering config sounds to 1.9 Sounds...");
-/* 153 */       getConfig().set("Sound.Kit", "ENTITY_ITEM_PICKUP");
-/* 154 */       getConfig().set("Sound.ShopMenu", "BLOCK_CHEST_OPEN");
-/* 155 */       getConfig().set("Sound.KitUse", "ENTITY_ENDERDRAGON_HURT");
-/* 156 */       getConfig().set("Sound.Soup", "ENTITY_GENERIC_EAT");
-/* 157 */       getConfig().set("Sound.Fisherman", "ENTITY_ENDERMEN_TELEPORT");
-/* 158 */       getConfig().set("Sound.Spiderman", "ENTITY_SLIME_JUMP");
-/* 159 */       getConfig().set("Sound.Respawn", "ENTITY_PLAYER_LEVELUP");
-/* 160 */       getConfig().set("Sound.Join", "ENTITY_PLAYER_LEVELUP");
-/* 161 */       getConfig().set("Sound.KitMenu", "BLOCK_WOODEN_DOOR_CLOSE");
-/* 162 */       getConfig().set("Sound.SpongeUse", "ENTITY_ENDERMEN_TELEPORT");
-/* 163 */       getConfig().set("Sound.BowlDrop", "ENTITY_ITEM_PICKUP");
-/* 164 */       getConfig().set("Sound.ErrorMessage", "ENTITY_ARROW_HIT_PLAYER");
-/* 165 */       getConfig().set("Sound.SucefullMessage", "ENTITY_EXPERIENCE_ORB_PICKUP");
-/* 166 */       getConfig().set("Sound.NoPermissionMessage", "ENTITY_WITHER_SHOOT");
-/* 167 */       getConfig().set("Sound.SwitcherShoot", "ENTITY_ENDERMEN_TELEPORT");
-/* 168 */       getConfig().set("Sound.Timelord", "ENTITY_WITHER_SPAWN");
-/*     */       
-/* 170 */       getConfig().set("Sound.Stomper", "ENTITY_FIREWORK_BLAST");
-/* 171 */       getConfig().set("Sound.NarutoAbility", "ENTITY_BLAZE_DEATH");
-/* 172 */       getConfig().set("Sound.CommandsSounds", "UI_BUTTON_CLICK");
-/* 173 */       getConfig().set("Sound.ShopMenu-Click", "ENTITY_PLAYER_LEVELUP");
-/* 174 */       getConfig().set("Sound.Streak", "ENTITY_PLAYER_LEVELUP");
-/* 175 */       getConfig().set("Sound.Airman-Fly", "ENTITY_ENDERMEN_SCREAM");
-/* 176 */       getConfig().set("Sound.DoubleJump-Ability", "ENTITY_FIREWORK_BLAST");
-/* 177 */       getConfig().set("Sound.StomperDamage", "BLOCK_ANVIL_LAND");
-/* 178 */       Bukkit.getConsoleSender().sendMessage("Done! All Sounds have been modified to 1.9 Sounds.");
+/* 151 */       Bukkit.getConsoleSender().sendMessage("§e[KP-PVP] §aThe server is using 1.9+ MINECRAFT VERSION");
+/* 152 */       Bukkit.getConsoleSender().sendMessage("§e[KP-PVP] §aAltering config sounds to 1.9 Sounds...");
+getConfig().options().copyDefaults(true);
+getConfig().options().copyHeader(true);
+saveConfig();
+getConfig().set("Sound.Kit", "ENTITY_ITEM_PICKUP");
+getConfig().set("Sound.ShopMenu", "BLOCK_CHEST_OPEN");
+getConfig().set("Sound.KitUse", "ENTITY_ENDERDRAGON_HURT");
+getConfig().set("Sound.Soup", "ENTITY_GENERIC_EAT");
+getConfig().set("Sound.Fisherman", "ENTITY_ENDERMEN_TELEPORT");
+getConfig().set("Sound.Spiderman", "ENTITY_SLIME_JUMP");
+getConfig().set("Sound.Respawn", "ENTITY_PLAYER_LEVELUP");
+getConfig().set("Sound.Join", "ENTITY_PLAYER_LEVELUP");
+getConfig().set("Sound.KitMenu", "BLOCK_WOODEN_DOOR_CLOSE");
+getConfig().set("Sound.SpongeUse", "ENTITY_ENDERMEN_TELEPORT");
+getConfig().set("Sound.BowlDrop", "ENTITY_ITEM_PICKUP");
+getConfig().set("Sound.ErrorMessage", "ENTITY_ARROW_HIT_PLAYER");
+getConfig().set("Sound.SucefullMessage", "ENTITY_EXPERIENCE_ORB_PICKUP");
+getConfig().set("Sound.NoPermissionMessage", "ENTITY_WITHER_SHOOT");
+getConfig().set("Sound.SwitcherShoot", "ENTITY_ENDERMEN_TELEPORT");
+getConfig().set("Sound.Timelord", "ENTITY_WITHER_SPAWN");
+
+getConfig().set("Sound.Stomper", "ENTITY_FIREWORK_BLAST");
+getConfig().set("Sound.NarutoAbility", "ENTITY_BLAZE_DEATH");
+getConfig().set("Sound.CommandsSounds", "UI_BUTTON_CLICK");
+getConfig().set("Sound.ClickTest", "UI_BUTTON_CLICK");
+getConfig().set("Sound.1v1", "UI_BUTTON_CLICK");
+getConfig().set("Sound.ShopMenu-Click", "ENTITY_PLAYER_LEVELUP");
+getConfig().set("Sound.Streak", "ENTITY_PLAYER_LEVELUP");
+getConfig().set("Sound.Airman-Fly", "ENTITY_ENDERMEN_SCREAM");
+getConfig().set("Sound.DoubleJump-Ability", "ENTITY_FIREWORK_BLAST");
+getConfig().set("Sound.StomperDamage", "BLOCK_ANVIL_LAND");
+/* 178 */       Bukkit.getConsoleSender().sendMessage("§e[KP-PVP] §aDone! All Sounds have been modified to 1.9+ Sounds.");
 /*     */     }
+
 /*     */   
-/*     */   new BukkitRunnable()
-{
-    public void run()
-    {
-     
-      for (Player arrayOfPlayer : Bukkit.getOnlinePlayers())
-      
-      
-      {
-        Player p = arrayOfPlayer;
-        if (Join.game.contains(p.getName()) && (Main.getInstace().getConfig().getString("ScoreBoardEnable").equalsIgnoreCase("true")))  {
-        	Scoreboard.createScoreBoard(p);
-        	 if (!Join.game.contains(p.getName()) && (ScoreBoardHelper.hasScore(p)))  {
-          ScoreBoardHelper.removeScore(p);
-        }
-      }
-    }
-    }}.runTaskTimer(this, 20L, 60L);}
+}
 /*     */ 
 /*     */ 
 /*     */   public ConfigUtils getConfigHandler()
@@ -291,6 +277,7 @@ messages.load(messagesf);
 /* 208 */     getCommand("pyro").setExecutor(new Kits(this));
 /* 209 */     getCommand("kthor").setExecutor(new ThorKITCOMMAND(this));
 getCommand("kvampire").setExecutor(new Vampire(this));
+getCommand("kpsetdeathspawn").setExecutor(new kpsetdeathspawn());
 /* 210 */     getCommand("switcher").setExecutor(new Kits(this));
 /* 211 */     getCommand("viper").setExecutor(new Viper(this));
 /* 212 */     getCommand("snail").setExecutor(new Snail(this));
@@ -328,7 +315,8 @@ getCommand("kvampire").setExecutor(new Vampire(this));
 /* 243 */     getCommand("critical").setExecutor(new Critical(this));
 /* 244 */     getCommand("kitpvp").setExecutor(new Join(this));
 /* 245 */     getCommand("naruto").setExecutor(new Naruto(this));
-/* 246 */     getCommand("monk").setExecutor(new MonkCMD(this));
+this.pm.registerEvents(new ClickTest(), this);
+/* 246 */     
 /* 247 */     getCommand("set1v1").setExecutor(new SetX1());
 /*     */   }
 /*     */   
@@ -336,8 +324,8 @@ getCommand("kvampire").setExecutor(new Vampire(this));
 /*     */   {
 /* 252 */     this.pm.registerEvents(new ThrowTnt(this), this);
 /* 253 */     this.pm.registerEvents(new Dublejump(this), this);
-/* 254 */     this.pm.registerEvents(new Monk(this), this);
-/* 255 */     this.pm.registerEvents(new InteractEvent(this), this);
+
+
 /* 256 */     this.pm.registerEvents(new NewKitMenu(this), this);
 /* 257 */     this.pm.registerEvents(new Sponge(this), this);
 /* 258 */     this.pm.registerEvents(new Naruto(this), this);
@@ -357,7 +345,7 @@ getCommand("kvampire").setExecutor(new Vampire(this));
 /* 271 */     this.pm.registerEvents(new LeaveSign(this), this);
 /* 272 */     this.pm.registerEvents(new Kangaroo(this), this);
 /* 273 */     this.pm.registerEvents(new AdminMode(this), this);
-             
+
 /* 274 */     this.pm.registerEvents(new TimeLord(this), this);
 /* 275 */     this.pm.registerEvents(new Soup(this), this);
 /* 276 */     this.pm.registerEvents(new NoDrops(this), this);
@@ -455,8 +443,20 @@ public void onDisable()
   cmd.sendMessage(" ");
  
   }
+public static Permission getPermissions() {
+    return perms;
 }
 
+
+public static String TAC(String s)
+{
+  return ChatColor.translateAlternateColorCodes('&', s);
+}
+
+{
+
+}
+}
 
 
 /* Location:              D:\Desktop\video\Minhas Coisas do Desktop\KP-PVPvB12 (1).jar!\me\RafaelAulerDeMeloAraujo\main\Main.class

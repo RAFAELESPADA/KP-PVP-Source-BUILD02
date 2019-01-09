@@ -1,4 +1,4 @@
-#KitPvP Version BUILD-15 | Author: zEnderX5_ , Rafael Auler
+#KitPvP Version BUILD-19 | Author: zEnderX5_ , Rafael Auler
 #Author Channel: https://www.youtube.com/channel/UCb1kjbiQj2B4KnRQpgeUwmQ
 #Subscribe to help me to improve the plugin. Thanks =D
 #PS: use /kp for view the plugin command list
@@ -85,29 +85,48 @@ Sound:
   Airman-Fly: 'ENDERMAN_SCREAM'
   DoubleJump-Ability: 'FIREWORK_BLAST2'
   StomperDamage: 'ANVIL_LAND'
+  1v1: 'CLICK'
+  ClickTest: 'CLICK'
 
 #If the option below is true all commands play a sound when a player execute them
 #You can modify the sound in Sounds configuration
 EnableSoundsToAllCommands: true
 
+#If the option below is true the players cannot break or place blocks while in kitpvp
+#Unless they have the permission kitpvp.build
+#If the option is false everyone can build while in kitpvp unless you protect the zone with WorldGuard
+#Defaults to true
+BlockPlayersBuilding: true
+
+#Enable or disable command block feature on kitpvp
+#true means enabled / false means disabled
+#Defaults to true
+EnableCommandBlockingInKitPvP: true
+
+#Enable or disable hunger on kitpvp
+DisableHungerOnKitPvP: true
+
+#Enable or disable droppig items while in kitpvp
+#If this is true the player cannoy drop anhyting except bowls
+#If this is false he can drop any item
+#Recommended to leave this true
+#Defaults to true
+DisableDropsOnKitPvP: true
+
+#Enable or disable pickup items on kitpvp
+#If this is true the player can only pickup mushroom soups and bowls
+#If this is false the player can pickup any items
+#Defaults to true
+DisablePickupItemsOnKitPvP: true
   
 Death:
 #Custom death message
-  Tell: '&aYou have died to &7%player%&a! You lost 50 coins.'
+  Tell: 'You have died to &7%player%&a! You lost 50 coins.'
   
 #Custom kill message  
 Kill:
-  Tell: '&aYou killed &7%player%&a, you earned 100 coins.'
+  Tell: 'You killed &7%player%&a, you earned 100 coins.'
 
-#Edit The Scoreboard Here
-ScoreBoardEnable: true
-ScorePrefix: '&4&l[&b&lKITPVP&4&l]'
-ScoreKills: '&e&lKills&6:&f '
-ScoreDeaths: '&e&lDeaths&6:&f '
-ScoreStreak: '&e&lStreak&6:&f '
-ScoreCoins: '&e&lCoins&6:&f '
-ScoreKit: '&e&lKit&6:&f '
-ScoreServer: '&ehttp://spigotmc.org'
 
  # Enable sending your server address to bStats? This could get you a couple more players. =)
  # Defaults to true
@@ -140,6 +159,13 @@ Spawn:
   Z: -91.71575866737658
   Pitch: 42.90001
   Yaw: -9.5999975
+SpawnD:
+  World: world
+  X: 45.80294662701026
+  Y: 124.86933315841993
+  Z: -91.71575866737658
+  Pitch: 42.90001
+  Yaw: -9.5999975  
  
 
   

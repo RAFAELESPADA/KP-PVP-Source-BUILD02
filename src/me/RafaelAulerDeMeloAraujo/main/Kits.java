@@ -105,6 +105,14 @@ ItemStack stats = new ItemStack(Material.NAME_TAG);
 /* 228 */           stats2.setDisplayName(Main.messages.getString("StatsItemName").replace("&", "§"));
 /* 229 */           stats.setItemMeta(stats2);
 p.getInventory().setItem(3, stats);
+ItemStack stats1 = new ItemStack(Material.WOOD_SWORD);
+/* 227 */           ItemMeta stats12 = stats1.getItemMeta();
+/* 228 */           stats12.setDisplayName(Main.messages.getString("ClickTestItemName").replace("&", "§"));
+/* 229 */           stats1.setItemMeta(stats12);
+
+/* 103 */      
+
+p.getInventory().setItem(4, stats1);
 /* 103 */       p.getInventory().addItem(new ItemStack[] { kits });
 /* 104 */       p.getInventory().addItem(new ItemStack[] { st });
 /*     */        p.setAllowFlight(false);

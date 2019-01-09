@@ -23,10 +23,10 @@
 /*    */   @org.bukkit.event.EventHandler
 /*    */   public void onPlayerDropItem(PlayerDropItemEvent paramPlayerPickupItemEvent)
 /*    */   {
-/* 26 */     if (!Join.game.contains(paramPlayerPickupItemEvent.getPlayer().getName())) {
+/* 26 */     if (!Join.game.contains(paramPlayerPickupItemEvent.getPlayer().getName()) || (Main.getInstace().getConfig().getString("DisableDropsOnKitPvP").equalsIgnoreCase("false"))) {
 /* 27 */       return;
 /*    */     }
-/* 29 */     if (Join.game.contains(paramPlayerPickupItemEvent.getPlayer().getName()))
+/* 29 */     if (Join.game.contains(paramPlayerPickupItemEvent.getPlayer().getName()) && (Main.getInstace().getConfig().getString("DisableDropsOnKitPvP").equalsIgnoreCase("true")))
 /*    */     {
 /* 31 */       if (paramPlayerPickupItemEvent.getItemDrop().getItemStack().getType() == Material.BOWL)
 /*    */       {
@@ -43,10 +43,10 @@
 /*    */   @org.bukkit.event.EventHandler
 /*    */   public void onPlayerPickupItem(PlayerPickupItemEvent paramPlayerPickupItemEvent)
 /*    */   {
-/* 46 */     if (!Join.game.contains(paramPlayerPickupItemEvent.getPlayer().getName())) {
+/* 46 */     if (!Join.game.contains(paramPlayerPickupItemEvent.getPlayer().getName()) || (Main.getInstace().getConfig().getString("DisablePickupItemsOnKitPvP").equalsIgnoreCase("false"))) {
 /* 47 */       return;
 /*    */     }
-/* 49 */     if (Join.game.contains(paramPlayerPickupItemEvent.getPlayer().getName()))
+/* 49 */     if (Join.game.contains(paramPlayerPickupItemEvent.getPlayer().getName()) && (Main.getInstace().getConfig().getString("DisablePickupItemsOnKitPvP").equalsIgnoreCase("true")))
 /*    */     {
 /* 51 */       if ((paramPlayerPickupItemEvent.getItem().getItemStack().getType() == Material.BOWL) || (paramPlayerPickupItemEvent.getItem().getItemStack().getType() == Material.MUSHROOM_SOUP))
 /*    */       {

@@ -37,7 +37,7 @@
 /* 37 */       plugin.reloadConfig();
 /* 38 */       p.getServer().getPluginManager().disablePlugin(plugin);
 /* 39 */       p.getServer().getPluginManager().enablePlugin(plugin);
-/* 40 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + " §eThe plugin Config has been sucefully reloaded.");
+/* 40 */       p.sendMessage(String.valueOf(this.main.getConfig().getString("Prefix").replace("&", "§")) + Main.messages.getString("PluginReloaded").replace("&", "§"));
 /* 41 */       return true;
 /*    */     }
 /* 43 */     return false;

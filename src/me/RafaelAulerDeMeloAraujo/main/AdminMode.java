@@ -98,7 +98,7 @@
 /*  98 */         kbmeta.setDisplayName("§a§lAntiKnock Test!");
 /*  99 */         kb.setItemMeta(kbmeta);
 /*     */         
-/* 101 */         ItemStack kb1 = new ItemStack(Material.CLAY_BRICK);
+/* 101 */         ItemStack kb1 = new ItemStack(Material.BRICK);
 /* 102 */         ItemMeta kbmeta1 = kb1.getItemMeta();
 /*     */         
 /* 104 */         kbmeta1.setDisplayName("§b§lInfo Player!");
@@ -172,7 +172,7 @@
 /*     */   @EventHandler
 /*     */   public void onPlayerInfo(PlayerInteractEntityEvent e) {
 /* 174 */     Player p = e.getPlayer();
-/* 175 */     if ((admin.contains(p.getName())) && (p.getItemInHand().getType() == Material.CLAY_BRICK))
+/* 175 */     if ((admin.contains(p.getName())) && (p.getItemInHand().getType() == Material.BRICK))
 /*     */     {
 /* 177 */       Player p1 = (Player)e.getRightClicked();
 /* 178 */       Damageable hp = p1;
@@ -191,7 +191,7 @@
 /*     */     
 /*     */ 
 /*     */ 
-/* 194 */     if ((admin.contains(p.getName())) && (p.getItemInHand().getType() == Material.CLAY_BRICK))
+/* 194 */     if ((admin.contains(p.getName())) && (p.getItemInHand().getType() == Material.BRICK))
 /*     */     {
 /*     */ 
 /* 197 */       Player p1 = (Player)e.getRightClicked();

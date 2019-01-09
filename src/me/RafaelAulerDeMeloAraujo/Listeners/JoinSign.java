@@ -37,10 +37,10 @@ public class JoinSign
   {
     if (e.getLine(0).equalsIgnoreCase("[kp]") && (e.getLine(1).equalsIgnoreCase("join")) && e.getPlayer().hasPermission("kitpvp.createsigns"))
     {
-      e.setLine(0, "§4=-=()=-=");
-      e.setLine(1, "§2Join");
-      e.setLine(2, "§bKitPvP!");
-      e.setLine(3, "§4=-=()=-=");
+      e.setLine(0, Main.messages.getString("JoinSignLine1").replace("&", "Â§"));
+      e.setLine(1, Main.messages.getString("JoinSignLine2").replace("&", "Â§"));
+      e.setLine(2, Main.messages.getString("JoinSignLine3").replace("&", "Â§"));
+      e.setLine(3, Main.messages.getString("JoinSignLine4").replace("&", "Â§"));
     }
   }
   
@@ -55,10 +55,10 @@ public class JoinSign
 		    {
 		      Sign s = (Sign)e.getClickedBlock().getState();
 		      String[] lines = s.getLines();
-		      if ((lines.length > 0) && (lines[0].equals("§4=-=()=-=")) && 
-		        (lines.length > 1) && (lines[1].equals("§2Join")) && 
-		        (lines.length > 2) && (lines[2].equals("§bKitPvP!")) && 
-		        (lines.length > 3) && (lines[3].equals("§4=-=()=-="))) {
+		      if ((lines.length > 0) && (lines[0].equals(Main.messages.getString("JoinSignLine1").replace("&", "Â§")) && 
+		        (lines.length > 1) && (lines[1].equals(Main.messages.getString("JoinSignLine2").replace("&", "Â§")) && 
+		        (lines.length > 2) && (lines[2].equals(Main.messages.getString("JoinSignLine3").replace("&", "Â§")) && 
+		        (lines.length > 3) && (lines[3].equals(Main.messages.getString("JoinSignLine4").replace("&", "Â§"))))))) {
 		    	  p.performCommand("kitpvp join");
 		      }
   }

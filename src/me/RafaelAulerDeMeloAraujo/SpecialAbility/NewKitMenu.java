@@ -150,7 +150,7 @@
 /*     */         }
 /* 151 */         if ((inv.getName().equals("§bKit Menu")) && (e.getCurrentItem().getType() == Material.BARRIER)) {
 /* 152 */           p.closeInventory();
-/* 153 */           p.sendMessage("§2§lœ” §aYou close the Kit Menu Successfully!");
+/* 153 */           p.sendMessage(Main.messages.getString("KitMenuClosed").replace("&", "§"));
 /*     */         }
 /*     */         
 /* 156 */         if (e.getCurrentItem().getItemMeta().getDisplayName().equals("§7Kit §e§lBomber"))
@@ -235,7 +235,7 @@
 /* 230 */       barrier.setItemMeta(barrier2);
 /*     */       
 /*     */ 
-/* 233 */       
+/* 233 */       kits.setItem(27, vidro1);
 /* 234 */       kits.setItem(28, vidro1);
 /* 235 */       kits.setItem(29, vidro1);
 /* 236 */       kits.setItem(30, vidro1);
@@ -357,17 +357,6 @@
 /* 353 */         metapyro.setLore(indiob);
 /* 354 */         pyro.setItemMeta(metapyro);
 /* 355 */         kits.addItem(new ItemStack[] { pyro });
-/*     */       }
-/* 357 */       if (p.hasPermission("kitpvp.kit.monk")) {
-/* 358 */         ItemStack pyro = new ItemStack(Material.BLAZE_ROD);
-/* 359 */         ItemMeta metapyro = pyro.getItemMeta();
-/* 360 */         metapyro.setDisplayName("§7Kit §e§lMonk");
-/* 361 */         ArrayList indiob = new ArrayList();
-/* 362 */         indiob.add("§7Right click on your enemy");
-/* 363 */         indiob.add("§7And mix they inventory");
-/* 364 */         metapyro.setLore(indiob);
-/* 365 */         pyro.setItemMeta(metapyro);
-/* 366 */         kits.addItem(new ItemStack[] { pyro });
 /*     */       }
 /* 368 */       if (p.hasPermission("kitpvp.kit.critical")) {
 /* 369 */         ItemStack pyro = new ItemStack(Material.GOLDEN_APPLE);
